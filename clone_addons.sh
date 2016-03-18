@@ -17,4 +17,6 @@ echo "IMPORTANT WARNING: If you're using Linux, please make sure you checkout th
 
 ${PREFIX}jvcleave/ofxImGui.git
 
+${PREFIX}videodromm/ofxRPiCameraVideoGrabber.git
+
 echo "Done cloning addons! :)"
