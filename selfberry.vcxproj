@@ -1,0 +1,470 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7FD42DF7-442E-479A-BA76-D0022F99702A}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>selfberry</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="../../openFrameworks/libs\openFrameworksCompiled\project\vs\openFrameworksRelease.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="../../openFrameworks/libs\openFrameworksCompiled\project\vs\openFrameworksRelease.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="../../openFrameworks/libs\openFrameworksCompiled\project\vs\openFrameworksDebug.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="../../openFrameworks/libs\openFrameworksCompiled\project\vs\openFrameworksDebug.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>bin\</OutDir>
+    <IntDir>obj\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)_debug</TargetName>
+    <LinkIncremental>true</LinkIncremental>
+    <GenerateManifest>true</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>bin\</OutDir>
+    <IntDir>obj\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)_debug</TargetName>
+    <LinkIncremental>true</LinkIncremental>
+    <GenerateManifest>true</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>bin\</OutDir>
+    <IntDir>obj\$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>bin\</OutDir>
+    <IntDir>obj\$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);
+..\..\openFrameworks\addons\ofxNetwork\src;
+..\..\openFrameworks\addons\ofxOpenCv\libs;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\calib3d;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\core;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\detail;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\core\hal;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\features2d;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\flann;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\highgui;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\imgcodecs;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\imgproc;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\imgproc\detail;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\ml;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\objdetect;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\photo;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\shape;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\superres;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\video;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\videoio;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib\emscripten;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib\vs;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib\vs\Win32;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib\vs\Win32\Debug;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib\vs\Win32\Release;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib\vs\x64;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib\vs\x64\Debug;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib\vs\x64\Release;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\license;
+..\..\openFrameworks\addons\ofxOpenCv\src;
+..\..\openFrameworks\addons\ofxOsc\libs;
+..\..\openFrameworks\addons\ofxOsc\libs\oscpack;
+..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src;
+..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\ip;
+..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\ip\posix;
+..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\ip\win32;
+..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\osc;
+..\..\openFrameworks\addons\ofxOsc\src;
+..\..\openFrameworks\addons\ofxThreadedImageLoader\src;
+..\..\openFrameworks\addons\ofxXmlSettings\libs;
+..\..\openFrameworks\addons\ofxXmlSettings\src;
+..\..\openFrameworks\addons\ofxGifEncoder\src;
+..\..\openFrameworks\addons\ofxJSON\libs;
+..\..\openFrameworks\addons\ofxJSON\libs\jsoncpp;
+..\..\openFrameworks\addons\ofxJSON\libs\jsoncpp\include;
+..\..\openFrameworks\addons\ofxJSON\libs\jsoncpp\include\json;
+..\..\openFrameworks\addons\ofxJSON\libs\jsoncpp\src;
+..\..\openFrameworks\addons\ofxJSON\src;
+..\..\openFrameworks\addons\ofxMidi\libs;
+..\..\openFrameworks\addons\ofxMidi\libs\pgmidi;
+..\..\openFrameworks\addons\ofxMidi\libs\rtmidi;
+..\..\openFrameworks\addons\ofxMidi\src;
+..\..\openFrameworks\addons\ofxMidi\src\desktop;
+..\..\openFrameworks\addons\ofxMidi\src\ios;
+..\..\openFrameworks\addons\ofxRPiCameraVideoGrabber\src;
+..\..\openFrameworks\addons\ofxVideodromm\src</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsCpp</CompileAs>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <AdditionalDependencies>%(AdditionalDependencies);libwebpd.lib;opencv_calib3d310d.lib;opencv_core310d.lib;opencv_features2d310d.lib;opencv_flann310d.lib;opencv_highgui310d.lib;opencv_imgcodecs310d.lib;opencv_imgproc310d.lib;opencv_ml310d.lib;opencv_objdetect310d.lib;opencv_photo310d.lib;opencv_shape310d.lib;opencv_stitching310d.lib;opencv_superres310d.lib;opencv_video310d.lib;opencv_videoio310d.lib;opencv_videostab310d.lib;zlibd.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib\vs\Win32\Debug</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>"$(INHERIT)" libwebpd.lib opencv_calib3d310d.lib opencv_core310d.lib opencv_features2d310d.lib opencv_flann310d.lib opencv_highgui310d.lib opencv_imgcodecs310d.lib opencv_imgproc310d.lib opencv_ml310d.lib opencv_objdetect310d.lib opencv_photo310d.lib opencv_shape310d.lib opencv_stitching310d.lib opencv_superres310d.lib opencv_video310d.lib opencv_videoio310d.lib opencv_videostab310d.lib zlibd.lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <AdditionalDependencies>%(AdditionalDependencies);libwebpd.lib;opencv_calib3d310d.lib;opencv_core310d.lib;opencv_features2d310d.lib;opencv_flann310d.lib;opencv_highgui310d.lib;opencv_imgcodecs310d.lib;opencv_imgproc310d.lib;opencv_ml310d.lib;opencv_objdetect310d.lib;opencv_photo310d.lib;opencv_shape310d.lib;opencv_stitching310d.lib;opencv_superres310d.lib;opencv_video310d.lib;opencv_videoio310d.lib;opencv_videostab310d.lib;zlibd.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib\vs\x64\Debug</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);
+..\..\openFrameworks\addons\ofxNetwork\src;
+..\..\openFrameworks\addons\ofxOpenCv\libs;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\calib3d;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\core;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\detail;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\core\hal;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\features2d;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\flann;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\highgui;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\imgcodecs;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\imgproc;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\imgproc\detail;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\ml;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\objdetect;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\photo;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\shape;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\superres;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\video;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\videoio;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib\emscripten;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib\vs;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib\vs\Win32;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib\vs\Win32\Debug;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib\vs\Win32\Release;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib\vs\x64;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib\vs\x64\Debug;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib\vs\x64\Release;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\license;
+..\..\openFrameworks\addons\ofxOpenCv\src;
+..\..\openFrameworks\addons\ofxOsc\libs;
+..\..\openFrameworks\addons\ofxOsc\libs\oscpack;
+..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src;
+..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\ip;
+..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\ip\posix;
+..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\ip\win32;
+..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\osc;
+..\..\openFrameworks\addons\ofxOsc\src;
+..\..\openFrameworks\addons\ofxThreadedImageLoader\src;
+..\..\openFrameworks\addons\ofxXmlSettings\libs;
+..\..\openFrameworks\addons\ofxXmlSettings\src;
+..\..\openFrameworks\addons\ofxGifEncoder\src;
+..\..\openFrameworks\addons\ofxJSON\libs;
+..\..\openFrameworks\addons\ofxJSON\libs\jsoncpp;
+..\..\openFrameworks\addons\ofxJSON\libs\jsoncpp\include;
+..\..\openFrameworks\addons\ofxJSON\libs\jsoncpp\include\json;
+..\..\openFrameworks\addons\ofxJSON\libs\jsoncpp\src;
+..\..\openFrameworks\addons\ofxJSON\src;
+..\..\openFrameworks\addons\ofxMidi\libs;
+..\..\openFrameworks\addons\ofxMidi\libs\pgmidi;
+..\..\openFrameworks\addons\ofxMidi\libs\rtmidi;
+..\..\openFrameworks\addons\ofxMidi\src;
+..\..\openFrameworks\addons\ofxMidi\src\desktop;
+..\..\openFrameworks\addons\ofxMidi\src\ios;
+..\..\openFrameworks\addons\ofxRPiCameraVideoGrabber\src;
+..\..\openFrameworks\addons\ofxVideodromm\src</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <AdditionalDependencies>%(AdditionalDependencies);libwebp.lib;opencv_calib3d310.lib;opencv_core310.lib;opencv_features2d310.lib;opencv_flann310.lib;opencv_highgui310.lib;opencv_imgcodecs310.lib;opencv_imgproc310.lib;opencv_ml310.lib;opencv_objdetect310.lib;opencv_photo310.lib;opencv_shape310.lib;opencv_stitching310.lib;opencv_superres310.lib;opencv_video310.lib;opencv_videoio310.lib;opencv_videostab310.lib;zlib.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib\vs\Win32\Release</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);
+..\..\openFrameworks\addons\ofxNetwork\src;
+..\..\openFrameworks\addons\ofxOpenCv\libs;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\calib3d;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\core;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\detail;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\core\hal;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\features2d;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\flann;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\highgui;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\imgcodecs;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\imgproc;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\imgproc\detail;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\ml;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\objdetect;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\photo;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\shape;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\superres;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\video;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\videoio;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib\emscripten;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib\vs;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib\vs\Win32;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib\vs\Win32\Debug;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib\vs\Win32\Release;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib\vs\x64;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib\vs\x64\Debug;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib\vs\x64\Release;
+..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\license;
+..\..\openFrameworks\addons\ofxOpenCv\src;
+..\..\openFrameworks\addons\ofxOsc\libs;
+..\..\openFrameworks\addons\ofxOsc\libs\oscpack;
+..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src;
+..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\ip;
+..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\ip\posix;
+..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\ip\win32;
+..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\osc;
+..\..\openFrameworks\addons\ofxOsc\src;
+..\..\openFrameworks\addons\ofxThreadedImageLoader\src;
+..\..\openFrameworks\addons\ofxXmlSettings\libs;
+..\..\openFrameworks\addons\ofxXmlSettings\src;
+..\..\openFrameworks\addons\ofxGifEncoder\src;
+..\..\openFrameworks\addons\ofxJSON\libs;
+..\..\openFrameworks\addons\ofxJSON\libs\jsoncpp;
+..\..\openFrameworks\addons\ofxJSON\libs\jsoncpp\include;
+..\..\openFrameworks\addons\ofxJSON\libs\jsoncpp\include\json;
+..\..\openFrameworks\addons\ofxJSON\libs\jsoncpp\src;
+..\..\openFrameworks\addons\ofxJSON\src;
+..\..\openFrameworks\addons\ofxMidi\libs;
+..\..\openFrameworks\addons\ofxMidi\libs\pgmidi;
+..\..\openFrameworks\addons\ofxMidi\libs\rtmidi;
+..\..\openFrameworks\addons\ofxMidi\src;
+..\..\openFrameworks\addons\ofxMidi\src\desktop;
+..\..\openFrameworks\addons\ofxMidi\src\ios;
+..\..\openFrameworks\addons\ofxRPiCameraVideoGrabber\src;
+..\..\openFrameworks\addons\ofxVideodromm\src</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsCpp</CompileAs>
+    </ClCompile>
+    <Link>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <AdditionalDependencies>%(AdditionalDependencies);libwebp.lib;opencv_calib3d310.lib;opencv_core310.lib;opencv_features2d310.lib;opencv_flann310.lib;opencv_highgui310.lib;opencv_imgcodecs310.lib;opencv_imgproc310.lib;opencv_ml310.lib;opencv_objdetect310.lib;opencv_photo310.lib;opencv_shape310.lib;opencv_stitching310.lib;opencv_superres310.lib;opencv_video310.lib;opencv_videoio310.lib;opencv_videostab310.lib;zlib.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);..\..\openFrameworks\addons\ofxOpenCv\libs\opencv\lib\vs\x64\Release</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent />
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\ofApp.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxNetwork\src\ofxTCPClient.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxNetwork\src\ofxTCPManager.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxNetwork\src\ofxTCPServer.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxNetwork\src\ofxUDPManager.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxOsc\src\ofxOscBundle.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxOsc\src\ofxOscMessage.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxOsc\src\ofxOscParameterSync.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxOsc\src\ofxOscReceiver.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxOsc\src\ofxOscSender.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\ip\IpEndpointName.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\ip\win32\NetworkingUtils.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\ip\win32\UdpSocket.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscOutboundPacketStream.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscPrintReceivedElements.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscReceivedElements.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscTypes.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxThreadedImageLoader\src\ofxThreadedImageLoader.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxXmlSettings\src\ofxXmlSettings.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxXmlSettings\libs\tinyxml.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxXmlSettings\libs\tinyxmlerror.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxXmlSettings\libs\tinyxmlparser.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxGifEncoder\src\ofxGifEncoder.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxJSON\src\ofxJSONElement.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxJSON\libs\jsoncpp\src\jsoncpp.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxMidi\src\desktop\ofxRtMidiIn.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxMidi\src\desktop\ofxRtMidiOut.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxMidi\src\ofxBaseMidi.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxMidi\src\ofxMidi.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxMidi\src\ofxMidiIn.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxMidi\src\ofxMidiMessage.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxMidi\src\ofxMidiOut.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxMidi\libs\rtmidi\RtMidi.cpp" />
+    <ClCompile Include="..\..\openFrameworks\addons\ofxVideodromm\src\VDLog.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\ofApp.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxNetwork\src\ofxNetwork.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxNetwork\src\ofxNetworkUtils.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxNetwork\src\ofxTCPClient.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxNetwork\src\ofxTCPManager.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxNetwork\src\ofxTCPServer.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxNetwork\src\ofxUDPManager.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\src\ofxOsc.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\src\ofxOscArg.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\src\ofxOscBundle.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\src\ofxOscMessage.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\src\ofxOscParameterSync.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\src\ofxOscReceiver.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\src\ofxOscSender.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\ip\IpEndpointName.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\ip\NetworkingUtils.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\ip\PacketListener.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\ip\TimerListener.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\ip\UdpSocket.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\osc\MessageMappingOscPacketListener.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscException.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscHostEndianness.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscOutboundPacketStream.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscPacketListener.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscPrintReceivedElements.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscReceivedElements.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscTypes.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxThreadedImageLoader\src\ofxThreadedImageLoader.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxXmlSettings\src\ofxXmlSettings.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxXmlSettings\libs\tinyxml.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxGifEncoder\src\ofxGifDitherTypes.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxGifEncoder\src\ofxGifEncoder.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxGifEncoder\src\ofxGifFrame.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxJSON\src\ofxJSON.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxJSON\src\ofxJSONElement.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxJSON\libs\jsoncpp\include\json\json-forwards.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxJSON\libs\jsoncpp\include\json\json.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxMidi\src\desktop\ofxRtMidiIn.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxMidi\src\desktop\ofxRtMidiOut.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxMidi\src\ofxBaseMidi.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxMidi\src\ofxMidi.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxMidi\src\ofxMidiConstants.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxMidi\src\ofxMidiIn.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxMidi\src\ofxMidiMessage.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxMidi\src\ofxMidiOut.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxMidi\src\ofxMidiTypes.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxMidi\libs\rtmidi\RtMidi.h" />
+    <ClInclude Include="..\..\openFrameworks\addons\ofxVideodromm\src\VDLog.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">
+      <Project>{5837595d-aca9-485c-8e76-729040ce4b0b}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="icon.rc">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/D_DEBUG %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/D_DEBUG %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(OF_ROOT)\libs\openFrameworksCompiled\project\vs</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="icon.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
