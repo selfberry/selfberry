@@ -19,4 +19,6 @@ ${PREFIX}jvcleave/ofxImGui.git
 
 ${PREFIX}videodromm/ofxRPiCameraVideoGrabber.git
 
+${PREFIX}videodromm/ofxVideodromm.git
+
 echo "Done cloning addons! :)"
