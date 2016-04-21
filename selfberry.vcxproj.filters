@@ -7,104 +7,50 @@
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxNetwork\src\ofxTCPClient.cpp">
+    <ClCompile Include="..\..\..\addons\ofxNetwork\src\ofxTCPClient.cpp">
       <Filter>addons\ofxNetwork\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxNetwork\src\ofxTCPManager.cpp">
+    <ClCompile Include="..\..\..\addons\ofxNetwork\src\ofxTCPManager.cpp">
       <Filter>addons\ofxNetwork\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxNetwork\src\ofxTCPServer.cpp">
+    <ClCompile Include="..\..\..\addons\ofxNetwork\src\ofxTCPServer.cpp">
       <Filter>addons\ofxNetwork\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxNetwork\src\ofxUDPManager.cpp">
+    <ClCompile Include="..\..\..\addons\ofxNetwork\src\ofxUDPManager.cpp">
       <Filter>addons\ofxNetwork\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOsc\src\ofxOscBundle.cpp">
-      <Filter>addons\ofxOsc\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOsc\src\ofxOscMessage.cpp">
-      <Filter>addons\ofxOsc\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOsc\src\ofxOscParameterSync.cpp">
-      <Filter>addons\ofxOsc\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOsc\src\ofxOscReceiver.cpp">
-      <Filter>addons\ofxOsc\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOsc\src\ofxOscSender.cpp">
-      <Filter>addons\ofxOsc\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\ip\IpEndpointName.cpp">
-      <Filter>addons\ofxOsc\libs\oscpack\src\ip</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\ip\win32\NetworkingUtils.cpp">
-      <Filter>addons\ofxOsc\libs\oscpack\src\ip\win32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\ip\win32\UdpSocket.cpp">
-      <Filter>addons\ofxOsc\libs\oscpack\src\ip\win32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscOutboundPacketStream.cpp">
-      <Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscPrintReceivedElements.cpp">
-      <Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscReceivedElements.cpp">
-      <Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscTypes.cpp">
-      <Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxThreadedImageLoader\src\ofxThreadedImageLoader.cpp">
+    <ClCompile Include="..\..\..\addons\ofxThreadedImageLoader\src\ofxThreadedImageLoader.cpp">
       <Filter>addons\ofxThreadedImageLoader\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxXmlSettings\src\ofxXmlSettings.cpp">
+    <ClCompile Include="..\..\..\addons\ofxXmlSettings\src\ofxXmlSettings.cpp">
       <Filter>addons\ofxXmlSettings\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxXmlSettings\libs\tinyxml.cpp">
+    <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxml.cpp">
       <Filter>addons\ofxXmlSettings\libs</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxXmlSettings\libs\tinyxmlerror.cpp">
+    <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxmlerror.cpp">
       <Filter>addons\ofxXmlSettings\libs</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxXmlSettings\libs\tinyxmlparser.cpp">
+    <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxmlparser.cpp">
       <Filter>addons\ofxXmlSettings\libs</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxGifEncoder\src\ofxGifEncoder.cpp">
+    <ClCompile Include="..\..\..\addons\ofxGifEncoder\src\ofxGifEncoder.cpp">
       <Filter>addons\ofxGifEncoder\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxJSON\src\ofxJSONElement.cpp">
-      <Filter>addons\ofxJSON\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxJSON\libs\jsoncpp\src\jsoncpp.cpp">
-      <Filter>addons\ofxJSON\libs\jsoncpp\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxMidi\src\desktop\ofxRtMidiIn.cpp">
-      <Filter>addons\ofxMidi\src\desktop</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxMidi\src\desktop\ofxRtMidiOut.cpp">
-      <Filter>addons\ofxMidi\src\desktop</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxMidi\src\ofxBaseMidi.cpp">
-      <Filter>addons\ofxMidi\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxMidi\src\ofxMidi.cpp">
-      <Filter>addons\ofxMidi\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxMidi\src\ofxMidiIn.cpp">
-      <Filter>addons\ofxMidi\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxMidi\src\ofxMidiMessage.cpp">
-      <Filter>addons\ofxMidi\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxMidi\src\ofxMidiOut.cpp">
-      <Filter>addons\ofxMidi\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxMidi\libs\rtmidi\RtMidi.cpp">
-      <Filter>addons\ofxMidi\libs\rtmidi</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxVideodromm\src\VDLog.cpp">
+    <ClCompile Include="..\..\..\addons\ofxVideodromm\src\VDLog.cpp">
       <Filter>addons\ofxVideodromm\src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\recorder.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\saver.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\uig.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\videoSlot.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -119,30 +65,6 @@
     </Filter>
     <Filter Include="addons\ofxNetwork\src">
       <UniqueIdentifier>{3D1C10C7-8F35-E796-9C70-F5F3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="addons\ofxOsc">
-      <UniqueIdentifier>{D91DCA33-6E5D-4481-2AEC-9FBB}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="addons\ofxOsc\src">
-      <UniqueIdentifier>{B9DD339A-D93D-92A1-0A2F-4B41}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="addons\ofxOsc\libs">
-      <UniqueIdentifier>{99ECA1D9-873F-4622-8FC0-FC7B}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="addons\ofxOsc\libs\oscpack">
-      <UniqueIdentifier>{D3A98534-1602-4FEF-57A6-6593}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="addons\ofxOsc\libs\oscpack\src">
-      <UniqueIdentifier>{BFB5BB47-98C8-BBCB-3066-1046}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="addons\ofxOsc\libs\oscpack\src\ip">
-      <UniqueIdentifier>{5A029128-EB41-95C5-CBC0-CDED}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="addons\ofxOsc\libs\oscpack\src\ip\win32">
-      <UniqueIdentifier>{79DFDFE2-400B-8654-3675-01A3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="addons\ofxOsc\libs\oscpack\src\osc">
-      <UniqueIdentifier>{EDACB89C-9768-9551-4D41-B590}</UniqueIdentifier>
     </Filter>
     <Filter Include="addons\ofxThreadedImageLoader">
       <UniqueIdentifier>{4FCFBE74-4716-4092-C67F-91AE}</UniqueIdentifier>
@@ -165,193 +87,70 @@
     <Filter Include="addons\ofxGifEncoder\src">
       <UniqueIdentifier>{BACC6C90-4215-5125-029E-5D29}</UniqueIdentifier>
     </Filter>
-    <Filter Include="addons\ofxJSON">
-      <UniqueIdentifier>{CF86E01B-D8D7-A112-88F3-5883}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="addons\ofxJSON\src">
-      <UniqueIdentifier>{CE83AFE9-FE4A-682E-D5C9-50B4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="addons\ofxJSON\libs">
-      <UniqueIdentifier>{5302B3F8-ECDD-0465-334A-F39E}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="addons\ofxJSON\libs\jsoncpp">
-      <UniqueIdentifier>{87D6C548-39D9-FD9F-093E-9F4E}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="addons\ofxJSON\libs\jsoncpp\include">
-      <UniqueIdentifier>{0B6CA981-484E-6E8C-776C-7298}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="addons\ofxJSON\libs\jsoncpp\include\json">
-      <UniqueIdentifier>{5FF260B2-1497-3EFE-19D5-40DB}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="addons\ofxJSON\libs\jsoncpp\src">
-      <UniqueIdentifier>{6D569A5B-6719-AEFD-C08E-5CE5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="addons\ofxMidi">
-      <UniqueIdentifier>{4DF4D977-A753-531B-5057-9AC1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="addons\ofxMidi\src">
-      <UniqueIdentifier>{7EED8620-FDD5-520C-3F5D-2677}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="addons\ofxMidi\src\desktop">
-      <UniqueIdentifier>{03CA45A4-AB22-A57E-895E-C6BC}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="addons\ofxMidi\libs">
-      <UniqueIdentifier>{B8086AD6-372B-1A12-88A6-74F9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="addons\ofxMidi\libs\rtmidi">
-      <UniqueIdentifier>{8E6C5628-3502-6F01-4B1D-AEAE}</UniqueIdentifier>
-    </Filter>
     <Filter Include="addons\ofxVideodromm">
-      <UniqueIdentifier>{A75308D4-CC67-2F83-AFD0-C5B5}</UniqueIdentifier>
+      <UniqueIdentifier>{645fa047-6c61-43d9-94f6-d9912d620589}</UniqueIdentifier>
     </Filter>
     <Filter Include="addons\ofxVideodromm\src">
-      <UniqueIdentifier>{98DBBBD4-059F-548D-8F88-59E9}</UniqueIdentifier>
+      <UniqueIdentifier>{35279bee-575b-42f2-847a-77f55a58e267}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ofApp.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxNetwork\src\ofxNetwork.h">
+    <ClInclude Include="..\..\..\addons\ofxNetwork\src\ofxNetwork.h">
       <Filter>addons\ofxNetwork\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxNetwork\src\ofxNetworkUtils.h">
+    <ClInclude Include="..\..\..\addons\ofxNetwork\src\ofxNetworkUtils.h">
       <Filter>addons\ofxNetwork\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxNetwork\src\ofxTCPClient.h">
+    <ClInclude Include="..\..\..\addons\ofxNetwork\src\ofxTCPClient.h">
       <Filter>addons\ofxNetwork\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxNetwork\src\ofxTCPManager.h">
+    <ClInclude Include="..\..\..\addons\ofxNetwork\src\ofxTCPManager.h">
       <Filter>addons\ofxNetwork\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxNetwork\src\ofxTCPServer.h">
+    <ClInclude Include="..\..\..\addons\ofxNetwork\src\ofxTCPServer.h">
       <Filter>addons\ofxNetwork\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxNetwork\src\ofxUDPManager.h">
+    <ClInclude Include="..\..\..\addons\ofxNetwork\src\ofxUDPManager.h">
       <Filter>addons\ofxNetwork\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\src\ofxOsc.h">
-      <Filter>addons\ofxOsc\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\src\ofxOscArg.h">
-      <Filter>addons\ofxOsc\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\src\ofxOscBundle.h">
-      <Filter>addons\ofxOsc\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\src\ofxOscMessage.h">
-      <Filter>addons\ofxOsc\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\src\ofxOscParameterSync.h">
-      <Filter>addons\ofxOsc\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\src\ofxOscReceiver.h">
-      <Filter>addons\ofxOsc\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\src\ofxOscSender.h">
-      <Filter>addons\ofxOsc\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\ip\IpEndpointName.h">
-      <Filter>addons\ofxOsc\libs\oscpack\src\ip</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\ip\NetworkingUtils.h">
-      <Filter>addons\ofxOsc\libs\oscpack\src\ip</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\ip\PacketListener.h">
-      <Filter>addons\ofxOsc\libs\oscpack\src\ip</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\ip\TimerListener.h">
-      <Filter>addons\ofxOsc\libs\oscpack\src\ip</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\ip\UdpSocket.h">
-      <Filter>addons\ofxOsc\libs\oscpack\src\ip</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\osc\MessageMappingOscPacketListener.h">
-      <Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscException.h">
-      <Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscHostEndianness.h">
-      <Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscOutboundPacketStream.h">
-      <Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscPacketListener.h">
-      <Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscPrintReceivedElements.h">
-      <Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscReceivedElements.h">
-      <Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscTypes.h">
-      <Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxThreadedImageLoader\src\ofxThreadedImageLoader.h">
+    <ClInclude Include="..\..\..\addons\ofxThreadedImageLoader\src\ofxThreadedImageLoader.h">
       <Filter>addons\ofxThreadedImageLoader\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxXmlSettings\src\ofxXmlSettings.h">
+    <ClInclude Include="..\..\..\addons\ofxXmlSettings\src\ofxXmlSettings.h">
       <Filter>addons\ofxXmlSettings\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxXmlSettings\libs\tinyxml.h">
+    <ClInclude Include="..\..\..\addons\ofxXmlSettings\libs\tinyxml.h">
       <Filter>addons\ofxXmlSettings\libs</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxGifEncoder\src\ofxGifDitherTypes.h">
+    <ClInclude Include="..\..\..\addons\ofxGifEncoder\src\ofxGifDitherTypes.h">
       <Filter>addons\ofxGifEncoder\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxGifEncoder\src\ofxGifEncoder.h">
+    <ClInclude Include="..\..\..\addons\ofxGifEncoder\src\ofxGifEncoder.h">
       <Filter>addons\ofxGifEncoder\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxGifEncoder\src\ofxGifFrame.h">
+    <ClInclude Include="..\..\..\addons\ofxGifEncoder\src\ofxGifFrame.h">
       <Filter>addons\ofxGifEncoder\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxJSON\src\ofxJSON.h">
-      <Filter>addons\ofxJSON\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxJSON\src\ofxJSONElement.h">
-      <Filter>addons\ofxJSON\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxJSON\libs\jsoncpp\include\json\json-forwards.h">
-      <Filter>addons\ofxJSON\libs\jsoncpp\include\json</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxJSON\libs\jsoncpp\include\json\json.h">
-      <Filter>addons\ofxJSON\libs\jsoncpp\include\json</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxMidi\src\desktop\ofxRtMidiIn.h">
-      <Filter>addons\ofxMidi\src\desktop</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxMidi\src\desktop\ofxRtMidiOut.h">
-      <Filter>addons\ofxMidi\src\desktop</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxMidi\src\ofxBaseMidi.h">
-      <Filter>addons\ofxMidi\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxMidi\src\ofxMidi.h">
-      <Filter>addons\ofxMidi\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxMidi\src\ofxMidiConstants.h">
-      <Filter>addons\ofxMidi\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxMidi\src\ofxMidiIn.h">
-      <Filter>addons\ofxMidi\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxMidi\src\ofxMidiMessage.h">
-      <Filter>addons\ofxMidi\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxMidi\src\ofxMidiOut.h">
-      <Filter>addons\ofxMidi\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxMidi\src\ofxMidiTypes.h">
-      <Filter>addons\ofxMidi\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxMidi\libs\rtmidi\RtMidi.h">
-      <Filter>addons\ofxMidi\libs\rtmidi</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxVideodromm\src\VDLog.h">
+    <ClInclude Include="..\..\..\addons\ofxVideodromm\src\VDLog.h">
       <Filter>addons\ofxVideodromm\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\recorder.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\saver.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\threadedObject.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\uig.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\videoSlot.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

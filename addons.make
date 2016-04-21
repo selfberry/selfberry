@@ -1,5 +1,6 @@
 ofxNetwork
 ofxOsc
+ofxRPiCameraVideoGrabber
 ofxThreadedImageLoader
 ofxXmlSettings
 ofxGifEncoder

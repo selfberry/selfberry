@@ -1,6 +1,12 @@
 #pragma once
 
 #include "ofMain.h"
+
+#include "videoSlot.h"
+#include "recorder.h"
+#include "uig.h"
+#include "saver.h"
+#include "ofxXmlSettings.h"
 // Log
 #include "VDLog.h"
 
@@ -15,15 +21,36 @@ class ofApp : public ofBaseApp{
 
 		void keyPressed(int key);
 		void keyReleased(int key);
-		void mouseMoved(int x, int y );
-		void mouseDragged(int x, int y, int button);
-		void mousePressed(int x, int y, int button);
-		void mouseReleased(int x, int y, int button);
-		void mouseEntered(int x, int y);
-		void mouseExited(int x, int y);
-		void windowResized(int w, int h);
-		void dragEvent(ofDragInfo dragInfo);
-		void gotMessage(ofMessage msg);
+
 private:
 	VDLogRef mVDLog;
+    ofDirectory dirSRC;
+    ofDirectory dirDST;
+    int slotAmount;
+    int frameNumber;
+    int maxFrames;
+    int fps;
+    
+    int timer;
+    
+    ofxXmlSettings settings;
+    ofTrueTypeFont TTF;
+    
+    long long timeZero;
+    long long timePresent;
+    
+    std::string bufferDir;
+    std::string slotDir;
+    std::string outputDir;
+    
+    int slotRecording;
+    int recordedFramesAmount;
+    int processedFramesAmount;
+    
+    videoSlot videoGrid[4];
+    recorder cctv;
+    uig uiBackground;
+    saver saveUs;
+    
+    int lastSpot;
 };
