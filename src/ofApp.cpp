@@ -1,135 +1,112 @@
 #include "ofApp.h"
 
 //--------------------------------------------------------------
-void ofApp::setup() {
-	// Log
-	mVDLog = VDLog::create();
-	mVDLog->log("setup");
-	if (settings.loadFile("settings.xml") == false) {
-		ofLog() << "XML ERROR, possibly quit";
-	}
-	settings.pushTag("settings");
+void ofApp::setup()
+{
+	ofSetLogLevel(OF_LOG_VERBOSE);
+	ofSetLogLevel("ofThread", OF_LOG_ERROR);
+	ofSetVerticalSync(false);
+	ofEnableAlphaBlending();
+	
+	doDrawInfo	= true;
+		
+	consoleListener.setup(this);
+	
+	omxCameraSettings.width = 1280;
+	omxCameraSettings.height = 720;
+	omxCameraSettings.framerate = 30;
+	omxCameraSettings.enableTexture = true;
+	
+	videoGrabber.setup(omxCameraSettings);
+	filterCollection.setup();
 
-	/*if (settings.getValue("log", 1) == 0) {
-		ofLogLevel(OF_LOG_SILENT);
-	}	 */
-	fps = settings.getValue("fps", 15);
-	maxFrames = settings.getValue("frameAmount", 15);
-	bufferDir = settings.getValue("bufferDir", "buffer");
-	slotDir = settings.getValue("slotDir", "slot");
-	outputDir = settings.getValue("outputDir", "output");
-	if (settings.getValue("fullScreen", 0) == 1) {
-		ofToggleFullscreen();
+	doShader = true;
+	shader.load("shaderExample");
+	
+	fbo.allocate(omxCameraSettings.width, omxCameraSettings.height);
+	fbo.begin();
+		ofClear(0, 0, 0, 0);
+	fbo.end();
+	
+	
+		
+}	
+
+//--------------------------------------------------------------
+void ofApp::update()
+{
+	if (!doShader || !videoGrabber.isFrameNew())
+	{
+		return;
 	}
-	for (int i = 0;i < settings.getNumTags("slot");i++) {
-		settings.pushTag("slot", i);
-		videoGrid[i].init(settings.getValue("id", i), settings.getValue("x", 0), settings.getValue("y", 0), &slotDir, settings.getValue("key", 0), settings.getValue("highlight", "high"));
-		settings.popTag();
+	fbo.begin();
+		ofClear(0, 0, 0, 0);
+		shader.begin();
+			shader.setUniformTexture("tex0", videoGrabber.getTextureReference(), videoGrabber.getTextureID());
+			shader.setUniform1f("time", ofGetElapsedTimef());
+			shader.setUniform2f("resolution", ofGetWidth(), ofGetHeight());
+			videoGrabber.draw();
+		shader.end();
+	fbo.end();
+
+}
+
+
+//--------------------------------------------------------------
+void ofApp::draw(){
+	
+	if (doShader)
+	{
+		fbo.draw(0, 0);		
+	}else 
+	{
+		videoGrabber.draw();
 	}
 
-	cctv.init(maxFrames, settings.getValue("cameraId", 1));
-	// TTF.loadFont("mono.ttf", 7);
-	uiBackground.init(settings.getValue("ui", "uuu.png"));
-	timeZero = ofGetElapsedTimeMicros();
-	frameNumber = 0;
-	slotRecording = 255;
-	slotAmount = 4;
-	if (dirSRC.doesDirectoryExist(bufferDir)) {
-		dirSRC.removeDirectory(bufferDir, true);
+	stringstream info;
+	info << "APP FPS: " << ofGetFrameRate() << "\n";
+	info << "Camera Resolution: " << videoGrabber.getWidth() << "x" << videoGrabber.getHeight()	<< " @ "<< videoGrabber.getFrameRate() <<"FPS"<< "\n";
+	info << "CURRENT FILTER: " << filterCollection.getCurrentFilterName() << "\n";
+	info << "SHADER ENABLED: " << doShader << "\n";
+	//info <<	filterCollection.filterList << "\n";
+	
+	info << "\n";
+	info << "Press e to increment filter" << "\n";
+	info << "Press g to Toggle info" << "\n";
+	info << "Press s to Toggle Shader" << "\n";
+	
+	if (doDrawInfo) 
+	{
+		ofDrawBitmapStringHighlight(info.str(), 100, 100, ofColor::black, ofColor::yellow);
 	}
-	if (!dirSRC.doesDirectoryExist("slot1")) {
-		dirSRC.createDirectory("slot1");
-	}
-	if (!dirSRC.doesDirectoryExist("slot2")) {
-		dirSRC.createDirectory("slot2");
-	}
-	if (!dirSRC.doesDirectoryExist("slot3")) {
-		dirSRC.createDirectory("slot3");
-	}
-	if (!dirSRC.doesDirectoryExist("slot4")) {
-		dirSRC.createDirectory("slot4");
-	}
-	if (!dirSRC.doesDirectoryExist("tmp")) {
-		dirSRC.createDirectory("tmp");
-	}
-	dirSRC.createDirectory(bufferDir);
-	saveUs.init(maxFrames);
+	
+	//
 }
 
 //--------------------------------------------------------------
-void ofApp::update() {
-	int i;
-	timePresent = ofGetElapsedTimeMicros();
-	if ((timePresent - timeZero) >= (1000000 / fps)) {
-		cctv.update();
-		timeZero = timePresent;
-		for (i = 0; i < slotAmount;i++) {
-			if (slotRecording != i) {
-				videoGrid[i].loadFrameNumber(frameNumber);
-			}
-		}
-		frameNumber++;
-		if (frameNumber == maxFrames) {
-			frameNumber = 0;
-		}
+void ofApp::keyPressed  (int key)
+{
+	ofLog(OF_LOG_VERBOSE, "%c keyPressed", key);
+	
+	if (key == 'e')
+	{
+		videoGrabber.setImageFilter(filterCollection.getNextFilter());
+	}
+	
+	if (key == 'g')
+	{
+		doDrawInfo = !doDrawInfo;
+	}
+	
+	if (key == 's')
+	{
+		doShader = !doShader;
 	}
 
-	if (cctv.isRecording == true) {
-		dirSRC.listDir(bufferDir);
-		//  dirDST.listDir(slotDir+ofToString(slotRecording));
-		recordedFramesAmount = dirSRC.size();
-		//  ofLogNotice("AMOUNT OF FILES: "+ofToString(recordedFramesAmount)+"/"+ofToString(maxFrames)+":"+ofToString(slotRecording));
-		if (recordedFramesAmount == maxFrames) {
-			//ofLog() << videoGrid[slotRecording].dirString << "l";
-			dirSRC.removeDirectory(videoGrid[slotRecording].dirString, true);
-			dirSRC.renameTo(videoGrid[slotRecording].dirString);
-			// dirSRC.renameTo("temp");
-			//   dirDST.renameTo(bufferDir);
-			dirSRC.createDirectory(bufferDir);
-			slotRecording = 255;
-			for (i = 0;i < slotAmount;i++) {
-				videoGrid[i].lowlightSpot();
-			}
-			//ofDirectory.crea
-		}
-	}
 }
 
-//--------------------------------------------------------------
-void ofApp::draw() {
-	for (int i = 0; i < slotAmount;i++) {
-		videoGrid[i].draw();
-	}
-	uiBackground.draw();
+void ofApp::onCharacterReceived(KeyListenerEventData& e)
+{
+	keyPressed((int)e.character);
 }
 
-//--------------------------------------------------------------
-void ofApp::keyPressed(int key) {
-	ofLogNotice("PRESSED KEY: " + ofToString(key));
-	if (slotRecording == 255) {
-		/*RED 13
-			WHITE 127
-			YELLOW 54
-			GREEN 357
-			BLUE 50*/
-		for (int i = 0;i < slotAmount;i++) {
-			if ((videoGrid[i].key == key) || (key == 49 + i)) {
-				cctv.record();
-				slotRecording = i;
-				videoGrid[i].highlightSpot();
-			}
-		}
-	}
-	else {
-		// starts recording from beggining
-	}
-	ofLogNotice(ofToString(key));
-	if (key == settings.getValue("change", 0) || (key == 32)) {
-		saveUs.saveGif(videoGrid[lastSpot].dirString, lastSpot);
-	}
-}
-
-//--------------------------------------------------------------
-void ofApp::keyReleased(int key) {
-
-}

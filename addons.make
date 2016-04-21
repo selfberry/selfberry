@@ -1,9 +1,4 @@
-ofxNetwork
-ofxOsc
 ofxRPiCameraVideoGrabber
 ofxThreadedImageLoader
 ofxXmlSettings
 ofxGifEncoder
-ofxJSON
-ofxMidi
-ofxVideodromm
