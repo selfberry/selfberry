@@ -1,0 +1,57 @@
+<settings>
+<fullScreen>0</fullScreen>
+<cameraId>0</cameraId>
+<log>1</log>
+<frameAmount>10</frameAmount>
+<fps>25</fps>
+
+<ui>ui.png</ui>
+<fonts>monot.ttf</fonts>
+
+<bufferDir>buffer</bufferDir>
+<outputDir>gifs</outputDir>
+<slotDir>slot</slotDir>
+
+<twitterTags>  </twitterTags>
+<twitterAPIkey>  </twitterAPIkey>
+<change>27</change> <!-- yellow -->
+
+   
+<slot>
+<id>1</id>
+<x>428</x>
+<y>27</y>
+<directory>slot1</directory>
+<key>13</key> <!-- red was 45 -->
+<highlight>high1.png</highlight>
+</slot>
+
+<slot>
+<key>357</key> <!-- green was 43 -->
+<id>2</id>
+<x>975</x>
+<y>27</y>
+
+<directory>slot2</directory>
+ <highlight>high2.png</highlight>
+</slot>
+
+<slot>
+<id>3</id>
+<x>435</x>
+<y>560</y>
+<directory>slot3</directory>
+ <key>127</key> <!-- white was -1 -->
+ <highlight>high3.png</highlight>
+</slot>
+
+<slot>
+<id>4</id>
+<x>975</x>
+<y>560</y>
+<directory>slot4</directory>
+<key>50</key> <!-- blue was 47 -->
+ <highlight>high4.png</highlight>
+</slot>
+
+</settings>
