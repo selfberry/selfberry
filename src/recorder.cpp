@@ -5,6 +5,9 @@ recorder::recorder()
 	//ctor
 }
 void recorder::record() {
+#ifdef TARGET_OPENGLES
+	videoGrabber.startRecording();
+#endif
 	isRecording = true;
 }
 
@@ -26,6 +29,8 @@ void recorder::init(int frameNumber, int cameraID) {
 	omxCameraSettings.enablePixels = true;
 	//pass in the settings and it will start the camera
 	videoGrabber.setup(omxCameraSettings);
+	videoGrabber.stopRecording();
+
 	ofLogNotice("recorder::init, using RPI camera");
 	shader.load("shaders//shader_GLES.vert", "shaders//shader_GLES.frag", "");
 	ofLogNotice("Loading RPI/mobile shader");
@@ -175,6 +180,9 @@ void recorder::update() {
 		indexSavedPhoto++;
 		if (indexSavedPhoto == (amountOfFrames + 1)) {
 			isRecording = false;
+#ifdef TARGET_OPENGLES
+			videoGrabber.stopRecording();
+#endif
 			indexSavedPhoto = 0;
 			saveGif();
 		}
