@@ -15,8 +15,8 @@ int main()
 #if defined(TARGET_OPENGLES)
 #if (OF_VERSION_MINOR == 9)
     ofGLESWindowSettings settings;
-    settings.width = 1280;
-    settings.height = 720;
+    settings.width = 1600;
+    settings.height = 1020;
     settings.setGLESVersion(2);
     ofCreateWindow(settings);
 #else

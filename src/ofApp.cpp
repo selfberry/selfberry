@@ -101,15 +101,21 @@ void ofApp::update()
 				savedImage.setFromPixels(pix);
 				savedImage.setImageType(OF_IMAGE_COLOR);
 				savedImage.saveImage("buffer//" + filename + ".tga");
-				
+				//omxCameraSettings.width, omxCameraSettings.height
 				// add frame to gif encoder
 				colorGifEncoder.addFrame(
 					pix.getPixels(),
-					pix.getWidth(),
-					pix.getHeight(),
+					640,
+					480,
 					pix.getBitsPerPixel()/*,
 										 .1f duration */
-				);
+				);				
+				/*colorGifEncoder.addFrame(
+					pix.getPixels(),
+					pix.getWidth(),
+					pix.getHeight(),
+					pix.getBitsPerPixel()
+				);*/
 
 				pix.clear();
 				savedImage.clear();
@@ -167,34 +173,33 @@ void ofApp::keyPressed  (int key)
 {
 	ofLog(OF_LOG_VERBOSE, "%c keyPressed", key);
 	ofLogNotice("PRESSED KEY: " + ofToString(key));
-		/*RED 13
-			WHITE 127
-			YELLOW 54
-			GREEN 357
+		/*RED 13 10
+			WHITE 127 126
+			YELLOW 54 
+			GREEN 357 65
 			BLUE 50*/
-		
-	if (key == 357)
-	{
-		videoGrabber.setImageFilter(filterCollection.getNextFilter());
-	}
-	if (key == 13)
-	{
-		if (!isRecording) {			
-			isRecording = true;	
-			indexSavedPhoto = 0;
-			bufferDir = ofToString(ofGetMonth()) + "-" + ofToString(ofGetDay()) + "-" + ofToString(ofGetHours()) + "-" + ofToString(ofGetMinutes()) + "-" + ofToString(ofGetSeconds());		
-		}	
-	}
-	
-	if (key == 'g')
-	{
-		doDrawInfo = !doDrawInfo;
-	}
-	
+	switch (key) {
+		case 65:
+			videoGrabber.setImageFilter(filterCollection.getNextFilter());
+		break;
+		case 10:
+		case 13:
+			if (!isRecording) {			
+				isRecording = true;	
+				indexSavedPhoto = 0;
+				bufferDir = ofToString(ofGetMonth()) + "-" + ofToString(ofGetDay()) + "-" + ofToString(ofGetHours()) + "-" + ofToString(ofGetMinutes()) + "-" + ofToString(ofGetSeconds());		
+			}
+		break;
+		case 126:
+			doDrawInfo = !doDrawInfo;
+		break;
+	}	
+
+	/*
 	if (key == 's')
 	{
 		doShader = !doShader;
-	}
+	}*/
 
 }
 
