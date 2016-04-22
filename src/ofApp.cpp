@@ -37,7 +37,7 @@ void ofApp::setup()
 	timeZero = ofGetElapsedTimeMicros();
 	frameNumber = 0;
 	slotRecording = 255;
-	slotAmount = 4;
+	slotAmount = 3;
 	if (dirSRC.doesDirectoryExist(bufferDir)) {
 		dirSRC.removeDirectory(bufferDir, true);
 	}
@@ -61,7 +61,29 @@ void ofApp::setup()
 	isRecording = false;	
 	amountOfFrames = 10;
 	maxFrames = 10;
+	if (settings.loadFile("settings.xml") == false){
+		ofLog() << "XML ERROR, possibly quit";
+	}
+	settings.pushTag("settings");
 
+	/*if (settings.getValue("log", 1) == 0) {
+		ofLogLevel(OF_LOG_SILENT);
+	}
+	fps = settings.getValue("fps", 15);
+	maxFrames = settings.getValue("frameAmount", 15);
+	bufferDir = settings.getValue("bufferDir", "buffer");
+	outputDir = settings.getValue("outputDir", "output");
+	if (settings.getValue("fullScreen", 0) == 1) {
+		ofToggleFullscreen();
+	}*/
+	slotDir = "slot";
+	for (int i = 0; i < settings.getNumTags("slot"); i++){
+		settings.pushTag("slot", i);
+		videoGrid[i].init(settings.getValue("id", i), settings.getValue("x", 700), settings.getValue("y", 500), &slotDir, settings.getValue("key", 0));
+		settings.popTag();
+	}
+	lastSpot = 0;
+	currentDisplaySlot = 2;
 }	
 
 //--------------------------------------------------------------
@@ -95,15 +117,25 @@ void ofApp::update()
 				if (indexSavedPhoto < 10) filename = "seq00" + ofToString(indexSavedPhoto);
 				if (indexSavedPhoto >= 10 && indexSavedPhoto < 100) filename = "seq0" + ofToString(indexSavedPhoto);
 				if (indexSavedPhoto >= 100 && indexSavedPhoto < 1000) filename = "seq" + ofToString(indexSavedPhoto);
-				// FBO TODO GETTEXTURE? videoTexture = videoGrabber.getTextureReference();
+				// fbo to pixels
 				fbo.readToPixels(pix);
 				fbo.draw(0,0, omxCameraSettings.width, omxCameraSettings.height);
-						ofLogNotice("AMOUNT OF FILES: "+ofToString(recordedFramesAmount)+"/"+ofToString(maxFrames));
+				ofLogNotice("AMOUNT OF FILES: "+ofToString(recordedFramesAmount)+"/"+ofToString(maxFrames));
 
 				//pix.resize(targetWidth, targetHeight, OF_INTERPOLATE_NEAREST_NEIGHBOR);
 				savedImage.setFromPixels(pix);
 				savedImage.setImageType(OF_IMAGE_COLOR);
-				savedImage.saveImage("buffer//" + filename + ".tga");
+				switch (currentDisplaySlot) {
+					case 2:
+						savedImage.saveImage("slot2//" + filename + ".tga");
+					break;
+					case 3:
+						savedImage.saveImage("slot3//" + filename + ".tga");
+					break;
+					case 4:
+						savedImage.saveImage("slot4//" + filename + ".tga");
+					break;
+				}
 				//omxCameraSettings.width, omxCameraSettings.height
 				// add frame to gif encoder
 				colorGifEncoder.addFrame(
@@ -113,12 +145,7 @@ void ofApp::update()
 					pix.getBitsPerPixel()/*,
 										 .1f duration */
 				);				
-				/*colorGifEncoder.addFrame(
-					pix.getPixels(),
-					pix.getWidth(),
-					pix.getHeight(),
-					pix.getBitsPerPixel()
-				);*/
+				
 				recordedFramesAmount++;
 				pix.clear();
 				savedImage.clear();
@@ -131,6 +158,13 @@ void ofApp::update()
 			}
 
 		}
+	}
+	for (i = 0; i < slotAmount; i++) {		
+			videoGrid[i].loadFrameNumber(frameNumber);
+	}
+	frameNumber++;
+	if (frameNumber == maxFrames) {
+		frameNumber = 0;
 	}
 }
 void ofApp::saveGif()
@@ -150,7 +184,9 @@ void ofApp::draw(){
 	{
 		videoGrabber.draw();
 	}
-
+	for (int i = 0; i < slotAmount; i++) {
+		videoGrid[i].draw();
+	}
 	stringstream info;
 	info << "APP FPS: " << ofGetFrameRate() << "\n";
 	info << "Camera Resolution: " << videoGrabber.getWidth() << "x" << videoGrabber.getHeight()	<< " @ "<< videoGrabber.getFrameRate() <<"FPS"<< "\n";
@@ -159,13 +195,12 @@ void ofApp::draw(){
 	//info <<	filterCollection.filterList << "\n";
 	
 	info << "\n";
-	info << "Press e to increment filter" << "\n";
-	info << "Press g to Toggle info" << "\n";
-	info << "Press s to Toggle Shader" << "\n";
+	info << "VERT: changement de filtre" << "\n";
+	info << "ROUGE: enregistrer" << "\n";
 	
 	if (doDrawInfo) 
 	{
-		ofDrawBitmapStringHighlight(info.str(), 100, 100, ofColor::black, ofColor::yellow);
+		ofDrawBitmapStringHighlight(info.str(), 500, 400, ofColor::black, ofColor::yellow);
 	}
 	
 	//
@@ -190,6 +225,8 @@ void ofApp::keyPressed  (int key)
 			if (!isRecording) {			
 				isRecording = true;	
 				indexSavedPhoto = 0;
+				currentDisplaySlot++;
+				if (currentDisplaySlot>4) currentDisplaySlot = 2;
 				bufferDir = ofToString(ofGetMonth()) + "-" + ofToString(ofGetDay()) + "-" + ofToString(ofGetHours()) + "-" + ofToString(ofGetMinutes()) + "-" + ofToString(ofGetSeconds());		
 			}
 		break;

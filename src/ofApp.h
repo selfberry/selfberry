@@ -7,6 +7,7 @@
 #include "ImageFilterCollection.h"
 #include "ofxXmlSettings.h"
 #include "ofxGifEncoder.h"
+#include "videoSlot.h"
 
 class ofApp : public ofBaseApp, public KeyListener { 
 
@@ -56,8 +57,9 @@ class ofApp : public ofBaseApp, public KeyListener {
     int recordedFramesAmount;
     int processedFramesAmount;
     
-    //videoSlot videoGrid[4];
+    videoSlot videoGrid[4];
     int lastSpot;
+    int i;
     //recorder
     ofTexture					videoTexture;
     ofPixels pix;  
@@ -67,6 +69,6 @@ class ofApp : public ofBaseApp, public KeyListener {
     // gif encoder
     void						saveGif();
 	ofxGifEncoder				colorGifEncoder;
-  
+    int currentDisplaySlot;
 };
 
