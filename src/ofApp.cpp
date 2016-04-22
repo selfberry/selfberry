@@ -29,6 +29,7 @@ void ofApp::setup()
 		ofClear(0, 0, 0, 0);
 	fbo.end();
 	// selfberry
+	colorGifEncoder.setup(omxCameraSettings.width, omxCameraSettings.height, .2, 256);
 	videoTexture.allocate(omxCameraSettings.width, omxCameraSettings.height, GL_RGB);
 
 	bufferDir = "buffer";
@@ -97,6 +98,8 @@ void ofApp::update()
 				// FBO TODO GETTEXTURE? videoTexture = videoGrabber.getTextureReference();
 				fbo.readToPixels(pix);
 				fbo.draw(0,0, omxCameraSettings.width, omxCameraSettings.height);
+						ofLogNotice("AMOUNT OF FILES: "+ofToString(recordedFramesAmount)+"/"+ofToString(maxFrames));
+
 				//pix.resize(targetWidth, targetHeight, OF_INTERPOLATE_NEAREST_NEIGHBOR);
 				savedImage.setFromPixels(pix);
 				savedImage.setImageType(OF_IMAGE_COLOR);
@@ -105,8 +108,8 @@ void ofApp::update()
 				// add frame to gif encoder
 				colorGifEncoder.addFrame(
 					pix.getPixels(),
-					640,
-					480,
+					omxCameraSettings.width, 
+					omxCameraSettings.height, 
 					pix.getBitsPerPixel()/*,
 										 .1f duration */
 				);				
@@ -116,7 +119,7 @@ void ofApp::update()
 					pix.getHeight(),
 					pix.getBitsPerPixel()
 				);*/
-
+				recordedFramesAmount++;
 				pix.clear();
 				savedImage.clear();
 				indexSavedPhoto++;
