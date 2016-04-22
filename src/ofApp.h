@@ -5,8 +5,10 @@
 #include "TerminalListener.h"
 #include "ofxRPiCameraVideoGrabber.h"
 #include "ImageFilterCollection.h"
+#include "ofxXmlSettings.h"
+#include "ofxGifEncoder.h"
 
-class ofApp : public ofBaseApp, public KeyListener{
+class ofApp : public ofBaseApp, public KeyListener { 
 
 	public:
 
@@ -28,5 +30,43 @@ class ofApp : public ofBaseApp, public KeyListener{
 	bool doShader;
 		
 	OMXCameraSettings omxCameraSettings;
+	// selfberry
+	ofDirectory dirSRC;
+	ofDirectory dirDST;
+    int slotAmount;
+    int frameNumber;
+    int maxFrames;
+    int      amountOfFrames;
+
+    int fps;
+    
+    int timer;
+    
+    ofxXmlSettings settings;
+    ofTrueTypeFont TTF;
+    
+    long long timeZero;
+    long long timePresent;
+    
+    std::string bufferDir;
+    std::string slotDir;
+    std::string outputDir;
+    
+    int slotRecording;
+    int recordedFramesAmount;
+    int processedFramesAmount;
+    
+    //videoSlot videoGrid[4];
+    int lastSpot;
+    //recorder
+    ofTexture					videoTexture;
+    ofPixels pix;  
+    int							indexSavedPhoto;
+    bool						isRecording;
+    ofImage						savedImage;
+    // gif encoder
+    void						saveGif();
+	ofxGifEncoder				colorGifEncoder;
+  
 };
 

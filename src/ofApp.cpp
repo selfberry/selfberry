@@ -12,9 +12,9 @@ void ofApp::setup()
 		
 	consoleListener.setup(this);
 	
-	omxCameraSettings.width = 1280;
-	omxCameraSettings.height = 720;
-	omxCameraSettings.framerate = 30;
+	omxCameraSettings.width = 640;
+	omxCameraSettings.height = 480;
+	omxCameraSettings.framerate = 15;
 	omxCameraSettings.enableTexture = true;
 	
 	videoGrabber.setup(omxCameraSettings);
@@ -23,13 +23,44 @@ void ofApp::setup()
 	doShader = true;
 	shader.load("shaderExample");
 	
+	//fbo.allocate(omxCameraSettings.width, omxCameraSettings.height);
 	fbo.allocate(omxCameraSettings.width, omxCameraSettings.height);
 	fbo.begin();
 		ofClear(0, 0, 0, 0);
 	fbo.end();
-	
-	
-		
+	// selfberry
+	videoTexture.allocate(omxCameraSettings.width, omxCameraSettings.height, GL_RGB);
+
+	bufferDir = "buffer";
+	//uiBackground.init("ui.png");
+	timeZero = ofGetElapsedTimeMicros();
+	frameNumber = 0;
+	slotRecording = 255;
+	slotAmount = 4;
+	if (dirSRC.doesDirectoryExist(bufferDir)) {
+		dirSRC.removeDirectory(bufferDir, true);
+	}
+	if (!dirSRC.doesDirectoryExist("slot1")) {
+		dirSRC.createDirectory("slot1");
+	}
+	if (!dirSRC.doesDirectoryExist("slot2")) {
+		dirSRC.createDirectory("slot2");
+	}
+	if (!dirSRC.doesDirectoryExist("slot3")) {
+		dirSRC.createDirectory("slot3");
+	}
+	if (!dirSRC.doesDirectoryExist("slot4")) {
+		dirSRC.createDirectory("slot4");
+	}
+	if (!dirSRC.doesDirectoryExist("tmp")) {
+		dirSRC.createDirectory("tmp");
+	}
+	dirSRC.createDirectory(bufferDir);
+	indexSavedPhoto = 0;
+	isRecording = false;	
+	amountOfFrames = 10;
+	maxFrames = 10;
+
 }	
 
 //--------------------------------------------------------------
@@ -48,9 +79,57 @@ void ofApp::update()
 			videoGrabber.draw();
 		shader.end();
 	fbo.end();
+	if (isRecording == true) {
+		dirSRC.createDirectory(bufferDir);
+		dirSRC.listDir(bufferDir);
+		recordedFramesAmount = dirSRC.size();
+		ofLogNotice("AMOUNT OF FILES: "+ofToString(recordedFramesAmount)+"/"+ofToString(maxFrames));
+		if (recordedFramesAmount == maxFrames) {
+			isRecording = false;
+			indexSavedPhoto = 0;				
+		}
+		else {
+			if (videoGrabber.isFrameNew()) {
+				string filename;
+				if (indexSavedPhoto < 10) filename = "seq00" + ofToString(indexSavedPhoto);
+				if (indexSavedPhoto >= 10 && indexSavedPhoto < 100) filename = "seq0" + ofToString(indexSavedPhoto);
+				if (indexSavedPhoto >= 100 && indexSavedPhoto < 1000) filename = "seq" + ofToString(indexSavedPhoto);
+				// FBO TODO GETTEXTURE? videoTexture = videoGrabber.getTextureReference();
+				fbo.readToPixels(pix);
+				fbo.draw(0,0, omxCameraSettings.width, omxCameraSettings.height);
+				//pix.resize(targetWidth, targetHeight, OF_INTERPOLATE_NEAREST_NEIGHBOR);
+				savedImage.setFromPixels(pix);
+				savedImage.setImageType(OF_IMAGE_COLOR);
+				savedImage.saveImage("buffer//" + filename + ".tga");
+				
+				// add frame to gif encoder
+				colorGifEncoder.addFrame(
+					pix.getPixels(),
+					pix.getWidth(),
+					pix.getHeight(),
+					pix.getBitsPerPixel()/*,
+										 .1f duration */
+				);
 
+				pix.clear();
+				savedImage.clear();
+				indexSavedPhoto++;
+				if (indexSavedPhoto == (amountOfFrames + 1)) {
+					isRecording = false;
+					indexSavedPhoto = 0;
+					saveGif();
+				}
+			}
+
+		}
+	}
 }
+void ofApp::saveGif()
+{
 
+	string fileName = ofToString(ofGetMonth()) + "-" + ofToString(ofGetDay()) + "-" + ofToString(ofGetHours()) + "-" + ofToString(ofGetMinutes()) + "-" + ofToString(ofGetSeconds());
+	colorGifEncoder.save("gif//" + fileName + ".gif");
+}
 
 //--------------------------------------------------------------
 void ofApp::draw(){
@@ -87,10 +166,24 @@ void ofApp::draw(){
 void ofApp::keyPressed  (int key)
 {
 	ofLog(OF_LOG_VERBOSE, "%c keyPressed", key);
-	
-	if (key == 'e')
+	ofLogNotice("PRESSED KEY: " + ofToString(key));
+		/*RED 13
+			WHITE 127
+			YELLOW 54
+			GREEN 357
+			BLUE 50*/
+		
+	if (key == 357)
 	{
 		videoGrabber.setImageFilter(filterCollection.getNextFilter());
+	}
+	if (key == 13)
+	{
+		if (!isRecording) {			
+			isRecording = true;	
+			indexSavedPhoto = 0;
+			bufferDir = ofToString(ofGetMonth()) + "-" + ofToString(ofGetDay()) + "-" + ofToString(ofGetHours()) + "-" + ofToString(ofGetMinutes()) + "-" + ofToString(ofGetSeconds());		
+		}	
 	}
 	
 	if (key == 'g')
