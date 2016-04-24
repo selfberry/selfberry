@@ -2,36 +2,36 @@
 
 videoSlot::videoSlot()
 {
-    //ctor
+	//ctor
 }
 
 videoSlot::~videoSlot()
 {
-    //dtor
+	//dtor
 }
 
-void videoSlot::init(int idNumber, int xx, int yy, std::string* directoreee, int kk ) {
-    id = idNumber;
-    x = xx;
-    y = yy;
-    key = kk;
-    dirString = *directoreee + ofToString(id);
+void videoSlot::init(int idNumber, int xx, int yy, std::string* directoreee, int kk) {
+	id = idNumber;
+	x = xx;
+	y = yy;
+	key = kk;
+	dirString = *directoreee + ofToString(id);
 }
 
 void videoSlot::loadFrameNumber(int numbah) {
-    std::string filename;
+	std::string filename;
 
-    if (numbah < 10) filename = dirString +"//seq00" + ofToString(numbah)+".tga";
-    if (numbah >= 10 && numbah < 100) filename = dirString +"//seq0" + ofToString(numbah)+".tga";
-    if (numbah >= 100 && numbah < 1000) filename = dirString +"//seq" + ofToString(numbah)+".tga";
- 
-    img.loadImage(filename);
-     //ofLogNotice("load: "+ofToString(numbah)+":"+filename);
+	if (numbah < 10) filename = dirString + "//seq00" + ofToString(numbah) + ".tga";
+	if (numbah >= 10 && numbah < 100) filename = dirString + "//seq0" + ofToString(numbah) + ".tga";
+	if (numbah >= 100 && numbah < 1000) filename = dirString + "//seq" + ofToString(numbah) + ".tga";
+
+	img.loadImage(filename);
+	//ofLogNotice("load: "+ofToString(numbah)+":"+filename);
 
 }
 
 void videoSlot::xchangeWithBuffer() {
-   // change directory file names
+	// change directory file names
 }
 
 void videoSlot::update() {
@@ -39,7 +39,7 @@ void videoSlot::update() {
 }
 
 void videoSlot::draw() {
-    img.draw(x, y);
+	img.draw(x, y);
 }
 
 

@@ -11,31 +11,31 @@
 #endif
 int main()
 {
-    ofSetLogLevel(OF_LOG_VERBOSE);
+	ofSetLogLevel(OF_LOG_VERBOSE);
 #if defined(TARGET_OPENGLES)
 #if (OF_VERSION_MINOR == 9)
-    ofGLESWindowSettings settings;
-    settings.width = 1280;
-    settings.height = 960;
-    settings.setGLESVersion(2);
-    ofCreateWindow(settings);
+	ofGLESWindowSettings settings;
+	settings.width = 1280;
+	settings.height = 960;
+	settings.setGLESVersion(2);
+	ofCreateWindow(settings);
 #else
-    ofSetLogLevel("ofThread", OF_LOG_ERROR);
-    ofSetCurrentRenderer(ofGLProgrammableRenderer::TYPE);
-    ofSetupOpenGL(1280, 720, OF_WINDOW);
+	ofSetLogLevel("ofThread", OF_LOG_ERROR);
+	ofSetCurrentRenderer(ofGLProgrammableRenderer::TYPE);
+	ofSetupOpenGL(1280, 720, OF_WINDOW);
 #endif
 #else
 #ifdef FORCE_PROGRAMMMABLE
-    ofGLWindowSettings glWindowSettings;
-    glWindowSettings.width = 1280;
-    glWindowSettings.height = 720;
-    glWindowSettings.setGLVersion(3, 2);
-    ofCreateWindow(glWindowSettings);
+	ofGLWindowSettings glWindowSettings;
+	glWindowSettings.width = 1280;
+	glWindowSettings.height = 720;
+	glWindowSettings.setGLVersion(3, 2);
+	ofCreateWindow(glWindowSettings);
 #else
-    ofSetLogLevel("ofThread", OF_LOG_ERROR);
-    ofSetupOpenGL(1280, 720, OF_WINDOW);
+	ofSetLogLevel("ofThread", OF_LOG_ERROR);
+	ofSetupOpenGL(1280, 720, OF_WINDOW);
 #endif
-    
+
 #endif
-    ofRunApp( new ofApp());
+	ofRunApp(new ofApp());
 }
