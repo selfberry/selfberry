@@ -30,6 +30,8 @@ void ofApp::setup()
 	fbo.end();
 	// selfberry
 	colorGifEncoder.setup(omxCameraSettings.width, omxCameraSettings.height, .2, 256);
+	ofAddListener(ofxGifEncoder::OFX_GIF_SAVE_FINISHED, this, &ofApp::onGifSaved);
+
 	videoTexture.allocate(omxCameraSettings.width, omxCameraSettings.height, GL_RGB);
 
 	bufferDir = "buffer";
@@ -136,6 +138,7 @@ void ofApp::update()
 						savedImage.saveImage("slot4//" + filename + ".tga");
 					break;
 				}
+				savedImage.saveImage(bufferDir + "//" + filename + ".tga");
 				//omxCameraSettings.width, omxCameraSettings.height
 				// add frame to gif encoder
 				colorGifEncoder.addFrame(
@@ -169,11 +172,13 @@ void ofApp::update()
 }
 void ofApp::saveGif()
 {
-
 	string fileName = ofToString(ofGetMonth()) + "-" + ofToString(ofGetDay()) + "-" + ofToString(ofGetHours()) + "-" + ofToString(ofGetMinutes()) + "-" + ofToString(ofGetSeconds());
 	colorGifEncoder.save("gif//" + fileName + ".gif");
 }
-
+void ofApp::onGifSaved(string & fileName) {
+	cout << "gif saved as " << fileName << endl;
+	colorGifEncoder.reset();
+}
 //--------------------------------------------------------------
 void ofApp::draw(){
 	

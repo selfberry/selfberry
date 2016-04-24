@@ -69,6 +69,7 @@ class ofApp : public ofBaseApp, public KeyListener {
     // gif encoder
     void						saveGif();
 	ofxGifEncoder				colorGifEncoder;
+	void						onGifSaved(string & fileName);
     int currentDisplaySlot;
 };
 
