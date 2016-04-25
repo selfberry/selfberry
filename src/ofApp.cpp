@@ -153,7 +153,8 @@ void ofApp::update()
 				pix.clear();
 				savedImage.clear();
 				indexSavedPhoto++;
-				if (indexSavedPhoto == (amountOfFrames + 1)) {
+				if (indexSavedPhoto == amountOfFrames) {
+					ofLogNotice("Stop recording: " + ofToString(indexSavedPhoto) + "/" + ofToString(amountOfFrames));
 					isRecording = false;
 					indexSavedPhoto = 0;
 					saveGif();
@@ -173,10 +174,12 @@ void ofApp::update()
 void ofApp::saveGif()
 {
 	string fileName = ofToString(ofGetMonth()) + "-" + ofToString(ofGetDay()) + "-" + ofToString(ofGetHours()) + "-" + ofToString(ofGetMinutes()) + "-" + ofToString(ofGetSeconds());
+	ofLogNotice("saveGif: " + fileName);
 	colorGifEncoder.save("gif//" + fileName + ".gif");
 }
 void ofApp::onGifSaved(string & fileName) {
 	cout << "gif saved as " << fileName << endl;
+	ofLogNotice("onGifSaved: " + fileName);
 	colorGifEncoder.reset();
 }
 //--------------------------------------------------------------
