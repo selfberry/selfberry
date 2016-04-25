@@ -184,6 +184,7 @@ void ofApp::onGifSaved(string & fileName) {
 }
 //--------------------------------------------------------------
 void ofApp::draw() {
+	ofClear(0, 0, 0, 0);
 
 	if (doShader)
 	{
