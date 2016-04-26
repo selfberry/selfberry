@@ -25,8 +25,9 @@ public:
 #if defined(TARGET_OPENGLES)
 	ofxRPiCameraVideoGrabber videoGrabber;
     OMXCameraSettings omxCameraSettings;
-
 	ImageFilterCollection filterCollection;
+#else
+    ofVideoGrabber 		videoGrabber;
 #endif
 	bool doDrawInfo;
 
