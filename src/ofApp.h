@@ -3,7 +3,9 @@
 #include "ofMain.h"
 #include "ofAppEGLWindow.h"
 #include "TerminalListener.h"
+#if defined(TARGET_OPENGLES)
 #include "ofxRPiCameraVideoGrabber.h"
+#endif
 #include "ImageFilterCollection.h"
 #include "ofxXmlSettings.h"
 #include "ofxGifEncoder.h"
@@ -20,17 +22,18 @@ public:
 
 	void onCharacterReceived(KeyListenerEventData& e);
 	TerminalListener consoleListener;
+#if defined(TARGET_OPENGLES)
 	ofxRPiCameraVideoGrabber videoGrabber;
+    OMXCameraSettings omxCameraSettings;
 
 	ImageFilterCollection filterCollection;
-
+#endif
 	bool doDrawInfo;
 
 	ofFbo fbo;
 	ofShader shader;
 	bool doShader;
-
-	OMXCameraSettings omxCameraSettings;
+    int targetWidth, targetHeight;
 	// selfberry
 	ofDirectory dirSRC;
 	ofDirectory dirDST;
@@ -53,13 +56,13 @@ public:
 	std::string slotDir;
 	std::string outputDir;
 
-	int slotRecording;
-	int recordedFramesAmount;
-	int processedFramesAmount;
+    int                         slotRecording;
+    int                         recordedFramesAmount;
+    int                         processedFramesAmount;
 
-	videoSlot videoGrid[4];
-	int lastSpot;
-	int i;
+    videoSlot                   videoGrid[4];
+    int                         lastSpot;
+    int                         i;
 	//recorder
 	ofTexture					videoTexture;
 	ofPixels pix;
@@ -70,6 +73,6 @@ public:
 	void						saveGif();
 	ofxGifEncoder				colorGifEncoder;
 	void						onGifSaved(string & fileName);
-	int currentDisplaySlot;
+    int                         currentDisplaySlot;
 };
 

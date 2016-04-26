@@ -11,28 +11,29 @@ void ofApp::setup()
 	doDrawInfo = true;
 
 	consoleListener.setup(this);
-
-	omxCameraSettings.width = 640;
-	omxCameraSettings.height = 480;
+    targetWidth = 640;
+    targetHeight = 480;
+#if defined(TARGET_OPENGLES)
+    omxCameraSettings.width = targetWidth;
+    omxCameraSettings.height = targetHeight;
 	omxCameraSettings.framerate = 15;
 	omxCameraSettings.enableTexture = true;
 
 	videoGrabber.setup(omxCameraSettings);
 	filterCollection.setup();
-
+#endif
 	doShader = true;
 	shader.load("shaderExample");
 
-	//fbo.allocate(omxCameraSettings.width, omxCameraSettings.height);
-	fbo.allocate(omxCameraSettings.width, omxCameraSettings.height);
+    fbo.allocate(targetWidth, targetHeight);
 	fbo.begin();
 	ofClear(0, 0, 0, 0);
 	fbo.end();
 	// selfberry
-	colorGifEncoder.setup(omxCameraSettings.width, omxCameraSettings.height, .2, 256);
+    colorGifEncoder.setup(targetWidth, targetHeight, .2, 256);
 	ofAddListener(ofxGifEncoder::OFX_GIF_SAVE_FINISHED, this, &ofApp::onGifSaved);
 
-	videoTexture.allocate(omxCameraSettings.width, omxCameraSettings.height, GL_RGB);
+    videoTexture.allocate(targetWidth, targetHeight, GL_RGB);
 
 	bufferDir = "buffer";
 	//uiBackground.init("ui.png");
