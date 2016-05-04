@@ -13,12 +13,12 @@ fi
 
 ${PREFIX}videodromm/ofxGifEncoder.git
 
-echo "IMPORTANT WARNING: If you're using Linux, please make sure you checkout the develop branch of ofxTextInputField"
-
 ${PREFIX}jvcleave/ofxImGui.git
 
 ${PREFIX}videodromm/ofxRPiCameraVideoGrabber.git
 
 ${PREFIX}videodromm/ofxVideodromm.git
+
+${PREFIX}pelayomendez/ofxTwitter.git
 
 echo "Done cloning addons! :)"
