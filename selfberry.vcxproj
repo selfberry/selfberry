@@ -184,8 +184,6 @@ C:\cpp\openFrameworks\addons\ofxVideodromm\src</AdditionalIncludeDirectories>
     <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxmlerror.cpp" />
     <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxmlparser.cpp" />
     <ClCompile Include="..\..\..\addons\ofxGifEncoder\src\ofxGifEncoder.cpp" />
-    <ClCompile Include="src\recorder.cpp" />
-    <ClCompile Include="src\saver.cpp" />
     <ClCompile Include="src\uig.cpp" />
     <ClCompile Include="src\videoSlot.cpp" />
   </ItemGroup>
@@ -204,8 +202,6 @@ C:\cpp\openFrameworks\addons\ofxVideodromm\src</AdditionalIncludeDirectories>
     <ClInclude Include="..\..\..\addons\ofxGifEncoder\src\ofxGifDitherTypes.h" />
     <ClInclude Include="..\..\..\addons\ofxGifEncoder\src\ofxGifEncoder.h" />
     <ClInclude Include="..\..\..\addons\ofxGifEncoder\src\ofxGifFrame.h" />
-    <ClInclude Include="src\recorder.h" />
-    <ClInclude Include="src\saver.h" />
     <ClInclude Include="src\threadedObject.h" />
     <ClInclude Include="src\uig.h" />
     <ClInclude Include="src\videoSlot.h" />

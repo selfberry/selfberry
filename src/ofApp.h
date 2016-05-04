@@ -2,8 +2,8 @@
 
 #include "ofMain.h"
 #include "ofAppEGLWindow.h"
-#include "TerminalListener.h"
 #if defined(TARGET_OPENGLES)
+#include "TerminalListener.h"
 #include "ofxRPiCameraVideoGrabber.h"
 #endif
 #include "ImageFilterCollection.h"
@@ -11,8 +11,11 @@
 #include "ofxGifEncoder.h"
 #include "videoSlot.h"
 
+#if defined(TARGET_OPENGLES)
 class ofApp : public ofBaseApp, public KeyListener {
-
+#else
+class ofApp : public ofBaseApp {
+#endif
 public:
 
 	void setup();
@@ -20,12 +23,13 @@ public:
 	void draw();
 	void keyPressed(int key);
 
-	void onCharacterReceived(KeyListenerEventData& e);
-	TerminalListener consoleListener;
+
 #if defined(TARGET_OPENGLES)
 	ofxRPiCameraVideoGrabber videoGrabber;
     OMXCameraSettings omxCameraSettings;
 	ImageFilterCollection filterCollection;
+	void onCharacterReceived(KeyListenerEventData& e);
+	TerminalListener consoleListener;
 #else
     ofVideoGrabber 		videoGrabber;
 #endif

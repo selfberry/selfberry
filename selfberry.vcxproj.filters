@@ -40,12 +40,6 @@
     <ClCompile Include="..\..\..\addons\ofxVideodromm\src\VDLog.cpp">
       <Filter>addons\ofxVideodromm\src</Filter>
     </ClCompile>
-    <ClCompile Include="src\recorder.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\saver.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\uig.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -136,12 +130,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\addons\ofxVideodromm\src\VDLog.h">
       <Filter>addons\ofxVideodromm\src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\recorder.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\saver.h">
-      <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\threadedObject.h">
       <Filter>src</Filter>

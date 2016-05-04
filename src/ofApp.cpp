@@ -10,10 +10,10 @@ void ofApp::setup()
 
 	doDrawInfo = true;
 
-	consoleListener.setup(this);
     targetWidth = 640;
     targetHeight = 480;
 #if defined(TARGET_OPENGLES)
+	consoleListener.setup(this);
     omxCameraSettings.width = targetWidth;
     omxCameraSettings.height = targetHeight;
 	omxCameraSettings.framerate = 15;
@@ -274,9 +274,9 @@ void ofApp::keyPressed(int key)
 	}*/
 
 }
-
+#if defined(TARGET_OPENGLES)
 void ofApp::onCharacterReceived(KeyListenerEventData& e)
 {
 	keyPressed((int)e.character);
 }
-
+#endif	
