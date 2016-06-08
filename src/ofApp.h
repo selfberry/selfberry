@@ -1,12 +1,12 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofAppEGLWindow.h"
 #if defined(TARGET_OPENGLES)
+#include "ofAppEGLWindow.h"
 #include "TerminalListener.h"
 #include "ofxRPiCameraVideoGrabber.h"
-#endif
 #include "ImageFilterCollection.h"
+#endif
 #include "ofxXmlSettings.h"
 #include "ofxGifEncoder.h"
 #include "videoSlot.h"
