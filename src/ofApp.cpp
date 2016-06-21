@@ -104,7 +104,7 @@ void ofApp::update()
 		return;
 	}
 	fbo.begin();
-	ofClear(0, 0, 0, 0);
+	ofClear(1, 1, 0, 0);
 	shader.begin();
 #if defined(TARGET_OPENGLES)
     shader.setUniform1f("time", ofGetElapsedTimef());
@@ -114,7 +114,7 @@ void ofApp::update()
 
 #else
     shader.setUniformTexture("tex0", videoGrabber.getTexture(), 1);// 0 or 1?
-    videoGrabber.draw(0,0);
+    videoGrabber.draw(10,10);
 
 #endif
 	shader.end();
