@@ -1,21 +1,16 @@
 #pragma once
-
+ 
 #include "ofMain.h"
-#if defined(TARGET_OPENGLES)
 #include "ofAppEGLWindow.h"
 #include "TerminalListener.h"
 #include "ofxRPiCameraVideoGrabber.h"
 #include "ImageFilterCollection.h"
-#endif
 #include "ofxXmlSettings.h"
 #include "ofxGifEncoder.h"
 #include "videoSlot.h"
 
-#if defined(TARGET_OPENGLES)
 class ofApp : public ofBaseApp, public KeyListener {
-#else
-class ofApp : public ofBaseApp {
-#endif
+
 public:
 
 	void setup();
@@ -23,22 +18,19 @@ public:
 	void draw();
 	void keyPressed(int key);
 
-
-#if defined(TARGET_OPENGLES)
-	ofxRPiCameraVideoGrabber videoGrabber;
-    OMXCameraSettings omxCameraSettings;
-	ImageFilterCollection filterCollection;
 	void onCharacterReceived(KeyListenerEventData& e);
 	TerminalListener consoleListener;
-#else
-    ofVideoGrabber 		videoGrabber;
-#endif
+	ofxRPiCameraVideoGrabber videoGrabber;
+
+	ImageFilterCollection filterCollection;
+
 	bool doDrawInfo;
 
 	ofFbo fbo;
 	ofShader shader;
 	bool doShader;
-    int targetWidth, targetHeight;
+
+	OMXCameraSettings omxCameraSettings;
 	// selfberry
 	ofDirectory dirSRC;
 	ofDirectory dirDST;
@@ -61,13 +53,13 @@ public:
 	std::string slotDir;
 	std::string outputDir;
 
-    int                         slotRecording;
-    int                         recordedFramesAmount;
-    int                         processedFramesAmount;
+	int slotRecording;
+	int recordedFramesAmount;
+	int processedFramesAmount;
 
-    videoSlot                   videoGrid[4];
-    int                         lastSpot;
-    int                         i;
+	videoSlot videoGrid[4];
+	int lastSpot;
+	int i;
 	//recorder
 	ofTexture					videoTexture;
 	ofPixels pix;
@@ -78,6 +70,6 @@ public:
 	void						saveGif();
 	ofxGifEncoder				colorGifEncoder;
 	void						onGifSaved(string & fileName);
-    int                         currentDisplaySlot;
+	int currentDisplaySlot;
 };
 
