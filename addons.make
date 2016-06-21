@@ -2,4 +2,3 @@ ofxRPiCameraVideoGrabber
 ofxThreadedImageLoader
 ofxXmlSettings
 ofxGifEncoder
-ofxTwitter
