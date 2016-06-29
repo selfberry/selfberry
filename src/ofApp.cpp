@@ -5,7 +5,7 @@ void ofApp::setup()
 {
 	ofSetLogLevel(OF_LOG_VERBOSE);
 	ofSetLogLevel("ofThread", OF_LOG_ERROR);
-	ofSetVerticalSync(false);
+
 	ofEnableAlphaBlending();
 
 	doDrawInfo = true;
@@ -13,7 +13,7 @@ void ofApp::setup()
     targetWidth = 640;
     targetHeight = 480;
 #if defined(TARGET_OPENGLES)
-	consoleListener.setup(this);
+	//consoleListener.setup(this);
     omxCameraSettings.width = targetWidth;
     omxCameraSettings.height = targetHeight;
 	omxCameraSettings.framerate = 15;
@@ -21,8 +21,12 @@ void ofApp::setup()
 
 	videoGrabber.setup(omxCameraSettings);
 	filterCollection.setup();
+	ofSetVerticalSync(false);
 #else
+	videoGrabber.setDeviceID(0);
+	videoGrabber.setDesiredFrameRate(30);
     videoGrabber.setup(targetWidth,targetHeight);
+	ofSetVerticalSync(true);
 #endif
 	doShader = true;
 	shader.load("shaderExample");
@@ -107,9 +111,9 @@ void ofApp::update()
 	fbo.begin();
 	ofClear(1, 1, 0, 0);
 	shader.begin();
-#if defined(TARGET_OPENGLES)
     shader.setUniform1f("time", ofGetElapsedTimef());
     shader.setUniform2f("resolution", ofGetWidth(), ofGetHeight());
+#if defined(TARGET_OPENGLES)
     shader.setUniformTexture("tex0", videoGrabber.getTextureReference(), videoGrabber.getTextureID());
     videoGrabber.draw();
 #else

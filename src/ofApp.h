@@ -3,7 +3,7 @@
 #include "ofMain.h"
 #if defined(TARGET_OPENGLES)
 #include "ofAppEGLWindow.h"
-#include "TerminalListener.h"
+//#include "TerminalListener.h"
 #include "ofxRPiCameraVideoGrabber.h"
 #include "ImageFilterCollection.h"
 #endif
@@ -29,9 +29,10 @@ public:
     OMXCameraSettings omxCameraSettings;
 	ImageFilterCollection filterCollection;
 	void onCharacterReceived(KeyListenerEventData& e);
-	TerminalListener consoleListener;
+	//TerminalListener consoleListener;
 #else
-    ofVideoGrabber 		videoGrabber;
+
+	ofVideoGrabber 		videoGrabber;
 #endif
 	bool doDrawInfo;
 
