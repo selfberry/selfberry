@@ -177,7 +177,7 @@ void ofApp::update()
 
 		}
 	}
-	for (i = 0; i < slotAmount; i++) {
+	for (i = 1; i < slotAmount; i++) {
 		videoGrid[i].loadFrameNumber(frameNumber);
 	}
 	frameNumber++;
