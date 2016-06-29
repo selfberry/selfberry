@@ -38,7 +38,7 @@ void ofApp::setup()
     videoTexture.allocate(targetWidth, targetHeight, GL_RGB);
 
 	bufferDir = "buffer";
-	//uiBackground.init("ui.png");
+
 	timeZero = ofGetElapsedTimeMicros();
 	frameNumber = 0;
 	slotRecording = 255;
@@ -89,6 +89,7 @@ void ofApp::setup()
 	}
 	lastSpot = 0;
 	currentDisplaySlot = 2;
+	bkgLayer.loadImage("ui.png");
 }
 
 //--------------------------------------------------------------
@@ -111,11 +112,9 @@ void ofApp::update()
     shader.setUniform2f("resolution", ofGetWidth(), ofGetHeight());
     shader.setUniformTexture("tex0", videoGrabber.getTextureReference(), videoGrabber.getTextureID());
     videoGrabber.draw();
-
 #else
     shader.setUniformTexture("tex0", videoGrabber.getTexture(), 1);// 0 or 1?
     videoGrabber.draw(10,10);
-
 #endif
 	shader.end();
 	fbo.end();
@@ -226,7 +225,7 @@ void ofApp::draw() {
 	info << "\n";
 	info << "VERT: changement de filtre" << "\n";
 	info << "ROUGE: enregistrer" << "\n";
-
+	bkgLayer.draw(0, 0);
 	if (doDrawInfo)
 	{
 		ofDrawBitmapStringHighlight(info.str(), 500, 400, ofColor::black, ofColor::yellow);
@@ -258,7 +257,7 @@ void ofApp::keyPressed(int key)
 			isRecording = true;
 			indexSavedPhoto = 0;
 			currentDisplaySlot++;
-			if (currentDisplaySlot > 4) currentDisplaySlot = 2;
+			if (currentDisplaySlot > 4) currentDisplaySlot = 1; 
 			bufferDir = ofToString(ofGetMonth()) + "-" + ofToString(ofGetDay()) + "-" + ofToString(ofGetHours()) + "-" + ofToString(ofGetMinutes()) + "-" + ofToString(ofGetSeconds());
 		}
 		break;

@@ -79,5 +79,6 @@ public:
 	ofxGifEncoder				colorGifEncoder;
 	void						onGifSaved(string & fileName);
     int                         currentDisplaySlot;
+	ofImage						bkgLayer;
 };
 

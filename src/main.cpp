@@ -15,8 +15,8 @@ int main()
 #if defined(TARGET_OPENGLES)
 #if (OF_VERSION_MINOR == 9)
 	ofGLESWindowSettings settings;
-	settings.width = 1280;
-	settings.height = 960;
+	settings.width = 1920;
+	settings.height = 1080;
 	settings.setGLESVersion(2);
 	ofCreateWindow(settings);
 #else
@@ -27,13 +27,13 @@ int main()
 #else
 #ifdef FORCE_PROGRAMMMABLE
 	ofGLWindowSettings glWindowSettings;
-	glWindowSettings.width = 1280;
-	glWindowSettings.height = 720;
+	glWindowSettings.width = 1920;
+	glWindowSettings.height = 1080;
 	glWindowSettings.setGLVersion(3, 2);
 	ofCreateWindow(glWindowSettings);
 #else
 	ofSetLogLevel("ofThread", OF_LOG_ERROR);
-	ofSetupOpenGL(1280, 720, OF_WINDOW);
+	ofSetupOpenGL(1920, 1080, OF_WINDOW);
 #endif
 
 #endif

@@ -19,9 +19,19 @@
 
 <slot>
 <key>357</key> <!-- green was 43 -->
+<id>0</id>
+<x>64</x>
+<y>10</y>
+
+<directory>slot2</directory>
+ <highlight>high2.png</highlight>
+</slot>
+
+<slot>
+<key>357</key> <!-- green was 43 -->
 <id>1</id>
-<x>640</x>
-<y>0</y>
+<x>740</x>
+<y>20</y>
 
 <directory>slot2</directory>
  <highlight>high2.png</highlight>
