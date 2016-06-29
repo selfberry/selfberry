@@ -228,7 +228,7 @@ void ofApp::draw() {
 	bkgLayer.draw(0, 0);
 	if (doDrawInfo)
 	{
-		ofDrawBitmapStringHighlight(info.str(), 500, 400, ofColor::black, ofColor::yellow);
+		ofDrawBitmapStringHighlight(info.str(), 50, 940, ofColor::black, ofColor::yellow);
 	}
 
 	//
