@@ -117,8 +117,8 @@ void ofApp::update()
 	shader.setUniformTexture("tex0", videoGrabber.getTextureReference(), videoGrabber.getTextureID());
 	videoGrabber.draw();
 #else
-	videoGrabber.draw(0, 0);
 	shader.setUniformTexture("tex0", videoGrabber.getTexture(),0 );// 0 or 1?
+	videoGrabber.draw(0, 0);
 #endif
 	shader.end();
 	fbo.end();
@@ -225,10 +225,9 @@ void ofApp::draw() {
 		videoGrabber.draw(0, 0);
 #endif
 	}
-	for (int i = 0; i < slotAmount; i++) {
+	for (int i = 1; i < slotAmount; i++) {
 		videoGrid[i].draw();
 	}
-	//info <<	filterCollection.filterList << "\n";
 
 	info << "\n";
 	info << "VERT: changement de filtre" << "\n";
@@ -245,7 +244,7 @@ void ofApp::draw() {
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key)
 {
-	ofLog(OF_LOG_VERBOSE, "%c keyPressed", key);
+	//ofLog(OF_LOG_VERBOSE, "%c keyPressed", key);
 	ofLogNotice("PRESSED KEY: " + ofToString(key));
 	/*RED 13 10
 		WHITE 127 126
@@ -254,10 +253,10 @@ void ofApp::keyPressed(int key)
 		BLUE 50*/
 	switch (key) {
 	case 65:
+	case 357:
 #if defined(TARGET_OPENGLES)
 		videoGrabber.setImageFilter(filterCollection.getNextFilter());
 #endif
-
 		break;
 	case 10:
 	case 13:
@@ -272,12 +271,16 @@ void ofApp::keyPressed(int key)
 	case 126:
 		doDrawInfo = !doDrawInfo;
 		break;
+	case 50:
+	case 359:
+		doShader = !doShader;
+		break;
 	}
 
 	/*
 	if (key == 's')
 	{
-		doShader = !doShader;
+		
 	}*/
 
 }
