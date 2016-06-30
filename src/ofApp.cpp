@@ -65,6 +65,9 @@ void ofApp::setup()
 	if (!dirSRC.doesDirectoryExist("tmp")) {
 		dirSRC.createDirectory("tmp");
 	}
+	if (!dirSRC.doesDirectoryExist("gif")) {
+		dirSRC.createDirectory("gif");
+	}
 	dirSRC.createDirectory(bufferDir);
 	indexSavedPhoto = 0;
 	isRecording = false;
@@ -171,6 +174,8 @@ void ofApp::update()
 					savedImage.saveImage("slot4//" + filename + ".tga");
 					break;
 				}
+				ofLogNotice("update() currentDisplaySlot " + ofToString(currentDisplaySlot));
+
 				savedImage.saveImage(bufferDir + "//" + filename + ".tga");
 				//omxCameraSettings.width, omxCameraSettings.height
 				// add frame to gif encoder
