@@ -284,9 +284,3 @@ void ofApp::keyPressed(int key)
 	}*/
 
 }
-#if defined(TARGET_OPENGLES)
-void ofApp::onCharacterReceived(KeyListenerEventData& e)
-{
-	keyPressed((int)e.character);
-}
-#endif	

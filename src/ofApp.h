@@ -11,11 +11,9 @@
 #include "ofxGifEncoder.h"
 #include "videoSlot.h"
 
-#if defined(TARGET_OPENGLES)
-class ofApp : public ofBaseApp, public KeyListener {
-#else
+
 class ofApp : public ofBaseApp {
-#endif
+
 public:
 
 	void setup();
@@ -28,8 +26,7 @@ public:
 	ofxRPiCameraVideoGrabber videoGrabber;
     OMXCameraSettings omxCameraSettings;
 	ImageFilterCollection filterCollection;
-	void onCharacterReceived(KeyListenerEventData& e);
-	//TerminalListener consoleListener;
+	
 #else
 
 	ofVideoGrabber 		videoGrabber;
