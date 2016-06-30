@@ -95,7 +95,7 @@ void ofApp::setup()
 		settings.popTag();
 	}
 	lastSpot = 0;
-	currentDisplaySlot = 2;
+	currentDisplaySlot = 1;
 	bkgLayer.loadImage("ui.png");
 }
 
@@ -164,17 +164,7 @@ void ofApp::update()
 				savedImage.setFromPixels(pix);
 				savedImage.setImageType(OF_IMAGE_COLOR);		
 				savedImage.saveImage(filename);
-				/*switch (currentDisplaySlot) {
-				case 2:
-					savedImage.saveImage("slot2//" + filename + ".tga");
-					break;
-				case 3:
-					savedImage.saveImage("slot3//" + filename + ".tga");
-					break;
-				case 4:
-					savedImage.saveImage("slot4//" + filename + ".tga");
-					break;
-				}		 */
+
 				ofLogNotice("update() currentDisplaySlot " + ofToString(currentDisplaySlot));
 
 				savedImage.saveImage(bufferDir + "//" + filename + ".tga");
@@ -285,25 +275,23 @@ void ofApp::keyPressed(int key)
 			isRecording = true;
 			indexSavedPhoto = 0;
 			currentDisplaySlot++;
-			if (currentDisplaySlot > 4) currentDisplaySlot = 2;
+			if (currentDisplaySlot > 4) currentDisplaySlot = 1;
 			bufferDir = ofToString(ofGetMonth()) + "-" + ofToString(ofGetDay()) + "-" + ofToString(ofGetHours()) + "-" + ofToString(ofGetMinutes()) + "-" + ofToString(ofGetSeconds());
 		}
 		break;
 	case 126:
 		doDrawInfo = !doDrawInfo;
 		currentDisplaySlot++;
-		if (currentDisplaySlot > 4) currentDisplaySlot = 2;
+		if (currentDisplaySlot > 4) currentDisplaySlot = 1;
 		break;
 	case 67: // jaune		
 		currentDisplaySlot = 3;
 	case 66: // bleu		
 		currentDisplaySlot = 4;
-#if defined(TARGET_OPENGLES)
-		videoGrabber.setImageFilter(filterCollection.getNextFilter());
-#endif
 	case 50:
 	case 359:
-		doShader = !doShader;
+		currentDisplaySlot = 1;
+		//doShader = !doShader;
 		break;
 	}
 }
