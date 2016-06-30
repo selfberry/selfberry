@@ -13,7 +13,7 @@ void ofApp::setup()
 	targetWidth = 640;
 	targetHeight = 480;
 #if defined(TARGET_OPENGLES)
-	//consoleListener.setup(this);
+	consoleListener.setup(this);
 	omxCameraSettings.width = targetWidth;
 	omxCameraSettings.height = targetHeight;
 	omxCameraSettings.framerate = 15;
@@ -117,7 +117,7 @@ void ofApp::update()
 	shader.setUniformTexture("tex0", videoGrabber.getTextureReference(), videoGrabber.getTextureID());
 	videoGrabber.draw();
 #else
-	shader.setUniformTexture("tex0", videoGrabber.getTexture(),0 );// 0 or 1?
+	shader.setUniformTexture("tex0", videoGrabber.getTexture(), 0 );// 0 or 1?
 	videoGrabber.draw(0, 0);
 #endif
 	shader.end();
@@ -276,11 +276,10 @@ void ofApp::keyPressed(int key)
 		doShader = !doShader;
 		break;
 	}
-
-	/*
-	if (key == 's')
-	{
-		
-	}*/
-
 }
+#if defined(TARGET_OPENGLES)
+void ofApp::onCharacterReceived(KeyListenerEventData& e)
+{
+	keyPressed((int)e.character);
+}
+#endif	
