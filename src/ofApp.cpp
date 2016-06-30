@@ -99,18 +99,22 @@ void ofApp::setup()
 //--------------------------------------------------------------
 void ofApp::update()
 {
-	ofLogNotice("update() begin");
-
 #if defined(TARGET_OPENGLES)
 
 #else
 	videoGrabber.update();
 #endif
-	if (!doShader || !videoGrabber.isFrameNew())
+	if (!doShader )
 	{
+		ofLogNotice("update() !doShader return");
 		return;
 	}
-	ofLogNotice("update() fbo begin");
+	if (!videoGrabber.isFrameNew())
+	{
+		ofLogNotice("update() !videoGrabber.isFrameNew return");
+		return;
+	}
+	//ofLogNotice("update() fbo begin");
 
 	fbo.begin();
 	ofClear(1, 1, 0, 0);
@@ -126,7 +130,7 @@ void ofApp::update()
 #endif
 	shader.end();
 	fbo.end();
-	ofLogNotice("update() fbo end");
+	//ofLogNotice("update() fbo end");
 
 	if (isRecording == true) {
 		ofLogNotice("update() rec");
@@ -138,6 +142,7 @@ void ofApp::update()
 		if (recordedFramesAmount == maxFrames) {
 			isRecording = false;
 			indexSavedPhoto = 0;
+			ofLogNotice("update() stop recording");
 		}
 		else {
 			if (videoGrabber.isFrameNew()) {
@@ -188,7 +193,6 @@ void ofApp::update()
 					saveGif();
 				}
 			}
-
 		}
 	}
 	for (i = 1; i < slotAmount; i++) {
@@ -198,23 +202,22 @@ void ofApp::update()
 	if (frameNumber == maxFrames) {
 		frameNumber = 0;
 	}
-	ofLogNotice("update() end");
-
 }
 void ofApp::saveGif()
 {
 	string fileName = ofToString(ofGetMonth()) + "-" + ofToString(ofGetDay()) + "-" + ofToString(ofGetHours()) + "-" + ofToString(ofGetMinutes()) + "-" + ofToString(ofGetSeconds());
 	ofLogNotice("saveGif: " + fileName);
 	colorGifEncoder.save("gif//" + fileName + ".gif");
+	ofLogNotice("saveGif end");
 }
 void ofApp::onGifSaved(string & fileName) {
 	cout << "gif saved as " << fileName << endl;
 	ofLogNotice("onGifSaved: " + fileName);
 	colorGifEncoder.reset();
+	ofLogNotice("onGifSaved reset");
 }
 //--------------------------------------------------------------
 void ofApp::draw() {
-	ofLogNotice("draw() begin");
 
 	ofClear(0, 0, 0, 0);
 	stringstream info;
@@ -251,8 +254,6 @@ void ofApp::draw() {
 	{
 		ofDrawBitmapStringHighlight(info.str(), 50, 940, ofColor::black, ofColor::yellow);
 	}
-	ofLogNotice("draw() end");
-
 }
 
 //--------------------------------------------------------------
