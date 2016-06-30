@@ -134,7 +134,6 @@ void ofApp::update()
 	shader.end();
 	fbo.end();
 	//ofLogNotice("update() fbo end");
-	ofLogNotice("update() currentDisplaySlot " + ofToString(currentDisplaySlot));
 
 	if (isRecording == true) {
 		ofLogNotice("update() rec");
@@ -153,9 +152,9 @@ void ofApp::update()
 				ofLogNotice("update() isFrameNew");
 
 				string filename;
-				if (indexSavedPhoto < 10) filename = "seq00" + ofToString(indexSavedPhoto);
-				if (indexSavedPhoto >= 10 && indexSavedPhoto < 100) filename = "seq0" + ofToString(indexSavedPhoto);
-				if (indexSavedPhoto >= 100 && indexSavedPhoto < 1000) filename = "seq" + ofToString(indexSavedPhoto);
+				if (indexSavedPhoto < 10) filename = "slot" + ofToString(currentDisplaySlot) + "//seq00" + ofToString(indexSavedPhoto) + ".tga";
+				if (indexSavedPhoto >= 10 && indexSavedPhoto < 100) filename = "slot" + ofToString(currentDisplaySlot) + "//seq0" + ofToString(indexSavedPhoto) + ".tga";
+				if (indexSavedPhoto >= 100 && indexSavedPhoto < 1000) filename = "slot" + ofToString(currentDisplaySlot) + "//seq" + ofToString(indexSavedPhoto) + ".tga";
 				// fbo to pixels
 				fbo.readToPixels(pix);
 				fbo.draw(0, 0, targetWidth, targetHeight);
@@ -163,8 +162,9 @@ void ofApp::update()
 
 				//pix.resize(targetWidth, targetHeight, OF_INTERPOLATE_NEAREST_NEIGHBOR);
 				savedImage.setFromPixels(pix);
-				savedImage.setImageType(OF_IMAGE_COLOR);
-				switch (currentDisplaySlot) {
+				savedImage.setImageType(OF_IMAGE_COLOR);		
+				savedImage.saveImage(filename);
+				/*switch (currentDisplaySlot) {
 				case 2:
 					savedImage.saveImage("slot2//" + filename + ".tga");
 					break;
@@ -174,7 +174,7 @@ void ofApp::update()
 				case 4:
 					savedImage.saveImage("slot4//" + filename + ".tga");
 					break;
-				}
+				}		 */
 				ofLogNotice("update() currentDisplaySlot " + ofToString(currentDisplaySlot));
 
 				savedImage.saveImage(bufferDir + "//" + filename + ".tga");
@@ -298,6 +298,9 @@ void ofApp::keyPressed(int key)
 		currentDisplaySlot = 3;
 	case 66: // bleu		
 		currentDisplaySlot = 4;
+#if defined(TARGET_OPENGLES)
+		videoGrabber.setImageFilter(filterCollection.getNextFilter());
+#endif
 	case 50:
 	case 359:
 		doShader = !doShader;
