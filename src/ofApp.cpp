@@ -134,6 +134,7 @@ void ofApp::update()
 	shader.end();
 	fbo.end();
 	//ofLogNotice("update() fbo end");
+	ofLogNotice("update() currentDisplaySlot " + ofToString(currentDisplaySlot));
 
 	if (isRecording == true) {
 		ofLogNotice("update() rec");
@@ -290,7 +291,13 @@ void ofApp::keyPressed(int key)
 		break;
 	case 126:
 		doDrawInfo = !doDrawInfo;
+		currentDisplaySlot++;
+		if (currentDisplaySlot > 4) currentDisplaySlot = 2;
 		break;
+	case 67: // jaune		
+		currentDisplaySlot = 3;
+	case 66: // bleu		
+		currentDisplaySlot = 4;
 	case 50:
 	case 359:
 		doShader = !doShader;
