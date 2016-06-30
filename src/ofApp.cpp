@@ -99,6 +99,8 @@ void ofApp::setup()
 //--------------------------------------------------------------
 void ofApp::update()
 {
+	ofLogNotice("update() begin");
+
 #if defined(TARGET_OPENGLES)
 
 #else
@@ -108,6 +110,8 @@ void ofApp::update()
 	{
 		return;
 	}
+	ofLogNotice("update() fbo begin");
+
 	fbo.begin();
 	ofClear(1, 1, 0, 0);
 	shader.begin();
@@ -122,7 +126,11 @@ void ofApp::update()
 #endif
 	shader.end();
 	fbo.end();
+	ofLogNotice("update() fbo end");
+
 	if (isRecording == true) {
+		ofLogNotice("update() rec");
+
 		dirSRC.createDirectory(bufferDir);
 		dirSRC.listDir(bufferDir);
 		recordedFramesAmount = dirSRC.size();
@@ -133,6 +141,8 @@ void ofApp::update()
 		}
 		else {
 			if (videoGrabber.isFrameNew()) {
+				ofLogNotice("update() isFrameNew");
+
 				string filename;
 				if (indexSavedPhoto < 10) filename = "seq00" + ofToString(indexSavedPhoto);
 				if (indexSavedPhoto >= 10 && indexSavedPhoto < 100) filename = "seq0" + ofToString(indexSavedPhoto);
@@ -188,6 +198,8 @@ void ofApp::update()
 	if (frameNumber == maxFrames) {
 		frameNumber = 0;
 	}
+	ofLogNotice("update() end");
+
 }
 void ofApp::saveGif()
 {
@@ -202,6 +214,8 @@ void ofApp::onGifSaved(string & fileName) {
 }
 //--------------------------------------------------------------
 void ofApp::draw() {
+	ofLogNotice("draw() begin");
+
 	ofClear(0, 0, 0, 0);
 	stringstream info;
 	info << "APP FPS: " << ofGetFrameRate() << "\n";
@@ -237,8 +251,8 @@ void ofApp::draw() {
 	{
 		ofDrawBitmapStringHighlight(info.str(), 50, 940, ofColor::black, ofColor::yellow);
 	}
+	ofLogNotice("draw() end");
 
-	//
 }
 
 //--------------------------------------------------------------
@@ -264,7 +278,7 @@ void ofApp::keyPressed(int key)
 			isRecording = true;
 			indexSavedPhoto = 0;
 			currentDisplaySlot++;
-			if (currentDisplaySlot > 4) currentDisplaySlot = 1;
+			if (currentDisplaySlot > 4) currentDisplaySlot = 2;
 			bufferDir = ofToString(ofGetMonth()) + "-" + ofToString(ofGetDay()) + "-" + ofToString(ofGetHours()) + "-" + ofToString(ofGetMinutes()) + "-" + ofToString(ofGetSeconds());
 		}
 		break;
