@@ -10,12 +10,12 @@ void ofApp::setup()
 
 	doDrawInfo = true;
 
-    targetWidth = 640;
-    targetHeight = 480;
+	targetWidth = 640;
+	targetHeight = 480;
 #if defined(TARGET_OPENGLES)
 	//consoleListener.setup(this);
-    omxCameraSettings.width = targetWidth;
-    omxCameraSettings.height = targetHeight;
+	omxCameraSettings.width = targetWidth;
+	omxCameraSettings.height = targetHeight;
 	omxCameraSettings.framerate = 15;
 	omxCameraSettings.enableTexture = true;
 
@@ -25,28 +25,28 @@ void ofApp::setup()
 #else
 	videoGrabber.setDeviceID(0);
 	videoGrabber.setDesiredFrameRate(30);
-    videoGrabber.setup(targetWidth,targetHeight);
+	videoGrabber.setup(targetWidth, targetHeight);
 	ofSetVerticalSync(true);
 #endif
 	doShader = true;
 	shader.load("shaderExample");
 
-    fbo.allocate(targetWidth, targetHeight);
+	fbo.allocate(targetWidth, targetHeight);
 	fbo.begin();
 	ofClear(0, 0, 0, 0);
 	fbo.end();
 	// selfberry
-    colorGifEncoder.setup(targetWidth, targetHeight, .2, 256);
+	colorGifEncoder.setup(targetWidth, targetHeight, .2, 256);
 	ofAddListener(ofxGifEncoder::OFX_GIF_SAVE_FINISHED, this, &ofApp::onGifSaved);
 
-    videoTexture.allocate(targetWidth, targetHeight, GL_RGB);
+	videoTexture.allocate(targetWidth, targetHeight, GL_RGB);
 
 	bufferDir = "buffer";
 
 	timeZero = ofGetElapsedTimeMicros();
 	frameNumber = 0;
 	slotRecording = 255;
-	slotAmount = 3;
+	slotAmount = 4;
 	if (dirSRC.doesDirectoryExist(bufferDir)) {
 		dirSRC.removeDirectory(bufferDir, true);
 	}
@@ -102,7 +102,7 @@ void ofApp::update()
 #if defined(TARGET_OPENGLES)
 
 #else
-    videoGrabber.update();
+	videoGrabber.update();
 #endif
 	if (!doShader || !videoGrabber.isFrameNew())
 	{
@@ -111,14 +111,14 @@ void ofApp::update()
 	fbo.begin();
 	ofClear(1, 1, 0, 0);
 	shader.begin();
-    shader.setUniform1f("time", ofGetElapsedTimef());
-    shader.setUniform2f("resolution", ofGetWidth(), ofGetHeight());
+	shader.setUniform1f("time", ofGetElapsedTimef());
+	shader.setUniform2f("resolution", ofGetWidth(), ofGetHeight());
 #if defined(TARGET_OPENGLES)
-    shader.setUniformTexture("tex0", videoGrabber.getTextureReference(), videoGrabber.getTextureID());
-    videoGrabber.draw();
+	shader.setUniformTexture("tex0", videoGrabber.getTextureReference(), videoGrabber.getTextureID());
+	videoGrabber.draw();
 #else
-    shader.setUniformTexture("tex0", videoGrabber.getTexture(), 1);// 0 or 1?
-    videoGrabber.draw(10,10);
+	videoGrabber.draw(0, 0);
+	shader.setUniformTexture("tex0", videoGrabber.getTexture(),0 );// 0 or 1?
 #endif
 	shader.end();
 	fbo.end();
@@ -139,7 +139,7 @@ void ofApp::update()
 				if (indexSavedPhoto >= 100 && indexSavedPhoto < 1000) filename = "seq" + ofToString(indexSavedPhoto);
 				// fbo to pixels
 				fbo.readToPixels(pix);
-                fbo.draw(0, 0, targetWidth, targetHeight);
+				fbo.draw(0, 0, targetWidth, targetHeight);
 				ofLogNotice("AMOUNT OF FILES: " + ofToString(recordedFramesAmount) + "/" + ofToString(maxFrames));
 
 				//pix.resize(targetWidth, targetHeight, OF_INTERPOLATE_NEAREST_NEIGHBOR);
@@ -161,8 +161,8 @@ void ofApp::update()
 				// add frame to gif encoder
 				colorGifEncoder.addFrame(
 					pix.getPixels(),
-                    targetWidth,
-                    targetHeight,
+					targetWidth,
+					targetHeight,
 					pix.getBitsPerPixel()/*,
 										 .1f duration */
 				);
@@ -203,24 +203,28 @@ void ofApp::onGifSaved(string & fileName) {
 //--------------------------------------------------------------
 void ofApp::draw() {
 	ofClear(0, 0, 0, 0);
-    stringstream info;
-    info << "APP FPS: " << ofGetFrameRate() << "\n";
-    info << "SHADER ENABLED: " << doShader << "\n";
+	stringstream info;
+	info << "APP FPS: " << ofGetFrameRate() << "\n";
+	info << "SHADER ENABLED: " << doShader << "\n";
 
 	if (doShader)
 	{
-		fbo.draw(0, 0);
+#if defined(TARGET_OPENGLES)
+		fbo.draw(330, 13);
+#else
+		videoGrabber.draw(330, 13);
+#endif
 	}
 	else
 	{
 #if defined(TARGET_OPENGLES)
-        videoGrabber.draw();
-        info << "Camera Resolution: " << videoGrabber.getWidth() << "x" << videoGrabber.getHeight() << " @ " << videoGrabber.getFrameRate() << "FPS" << "\n";
-        info << "CURRENT FILTER: " << filterCollection.getCurrentFilterName() << "\n";
+		videoGrabber.draw();
+		info << "Camera Resolution: " << videoGrabber.getWidth() << "x" << videoGrabber.getHeight() << " @ " << videoGrabber.getFrameRate() << "FPS" << "\n";
+		info << "CURRENT FILTER: " << filterCollection.getCurrentFilterName() << "\n";
 #else
-        videoGrabber.draw(0,0);
+		videoGrabber.draw(0, 0);
 #endif
-    }
+	}
 	for (int i = 0; i < slotAmount; i++) {
 		videoGrid[i].draw();
 	}
@@ -251,7 +255,7 @@ void ofApp::keyPressed(int key)
 	switch (key) {
 	case 65:
 #if defined(TARGET_OPENGLES)
-        videoGrabber.setImageFilter(filterCollection.getNextFilter());
+		videoGrabber.setImageFilter(filterCollection.getNextFilter());
 #endif
 
 		break;
@@ -261,7 +265,7 @@ void ofApp::keyPressed(int key)
 			isRecording = true;
 			indexSavedPhoto = 0;
 			currentDisplaySlot++;
-			if (currentDisplaySlot > 4) currentDisplaySlot = 1; 
+			if (currentDisplaySlot > 4) currentDisplaySlot = 1;
 			bufferDir = ofToString(ofGetMonth()) + "-" + ofToString(ofGetDay()) + "-" + ofToString(ofGetHours()) + "-" + ofToString(ofGetMinutes()) + "-" + ofToString(ofGetSeconds());
 		}
 		break;

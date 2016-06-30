@@ -18,7 +18,7 @@
 
 
 <slot>
-<key>357</key> <!-- green was 43 -->
+<key>357</key> 
 <id>0</id>
 <x>64</x>
 <y>10</y>
@@ -48,8 +48,8 @@
 
 <slot>
 <id>3</id>
-<x>640</x>
-<y>480</y>
+<x>940</x>
+<y>440</y>
 <directory>slot4</directory>
 <key>50</key> <!-- blue was 47 -->
  <highlight>high4.png</highlight>
