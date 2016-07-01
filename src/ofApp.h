@@ -36,6 +36,7 @@ class ofApp : public ofBaseApp{
 		int targetWidth, targetHeight;
 		bool doDrawInfo;
 		ofFbo fbo;
+		int iEffect;
 		ofShader shader;
 		bool doShader;
 };

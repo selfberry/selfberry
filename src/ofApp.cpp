@@ -39,6 +39,7 @@ void ofApp::setup(){
 	ofSetVerticalSync(true);
 	shader.load("shaderDesktop");
 #endif
+	iEffect = 2;
 
 	fbo.allocate(targetWidth, targetHeight);
 	fbo.begin();
@@ -72,6 +73,15 @@ void ofApp::update(){
 #endif
 		shader.setUniform1f("time", ofGetElapsedTimef());
 		shader.setUniform2f("resolution", ofGetWidth(), ofGetHeight());
+		shader.setUniform3f("iResolution", ofGetWidth(), ofGetHeight(), 0);
+		//shader.setUniform2f("iMouse", indexSavedPhoto, indexSavedPhoto);
+		shader.setUniform1f("iGlobalTime", ofGetElapsedTimef());
+		shader.setUniform4f("iDate", ofGetYear(), ofGetMonth(), ofGetDay(), ofGetSeconds());
+		shader.setUniform1i("iEffect", iEffect);// floor(ofRandom(0, 4.9)));
+		shader.setUniform1f("iChromatic", ofRandom(-1, 1));
+		shader.setUniform1f("iShift", ofRandom(-1.0, 1.0));
+		shader.setUniform1f("iGlitch", ofRandom(0.0, 1.0));
+		shader.setUniform1f("iPixelate", ofRandom(0.7, 1.0));
 		videoGrabber.draw(0,0);
 		shader.end();
 		fbo.end();
@@ -89,19 +99,32 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-    // in fullscreen mode, on a pc at least, the 
-    // first time video settings the come up
-    // they come up *under* the fullscreen window
-    // use alt-tab to navigate to the settings
-    // window. we are working on a fix for this...
+	ofLogNotice("PRESSED KEY: " + ofToString(key));
+	switch (key) {
+	case 65:  // vert 65 357
+			  //case 357:
 
-    // Video settings no longer works in 10.7
-    // You'll need to compile with the 10.6 SDK for this
-    // For Xcode 4.4 and greater, see this forum post on instructions on installing the SDK
-    // http://forum.openframeworks.cc/index.php?topic=10343
-    if(key == 's' || key == 'S'){
-		videoGrabber.videoSettings();
-    }
+		break;
+	case 10: // rouge 10
+	case 13: //	Entree
+		
+		break;
+	case 126: //blanc 126 127
+			  
+		iEffect = 0;
+		
+		break;
+	case 67: // jaune 67 0		
+		iEffect = 1;
+	case 66: // bleu 66 0		
+		iEffect = 2;
+	case 50:
+	case 359:
+		
+		iEffect = 3;
+		break;
+	}
+
 }
 
 //--------------------------------------------------------------
