@@ -38,6 +38,7 @@ public:
 
 	ofFbo fbo;
 	ofShader shader;
+	int iEffect;
 	bool doShader;
     int targetWidth, targetHeight;
 	// selfberry

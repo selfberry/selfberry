@@ -221,8 +221,10 @@ C:\cpp\openFrameworks\addons\ofxVideodromm\src</AdditionalIncludeDirectories>
   <ItemGroup>
     <None Include="bin\data\PostProcessing.frag" />
     <None Include="bin\data\PostProcessing.vert" />
-    <None Include="bin\data\shaderExample.frag" />
-    <None Include="bin\data\shaderExample.vert" />
+    <None Include="bin\data\shaderDesktop.frag" />
+    <None Include="bin\data\shaderDesktop.vert" />
+    <None Include="bin\data\shaderRpi.frag" />
+    <None Include="bin\data\shaderRpi.vert" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="bin\data\settings.xml" />

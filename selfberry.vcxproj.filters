@@ -154,10 +154,16 @@
     <None Include="bin\data\PostProcessing.vert">
       <Filter>shaders</Filter>
     </None>
-    <None Include="bin\data\shaderExample.frag">
+    <None Include="bin\data\shaderDesktop.frag">
       <Filter>shaders</Filter>
     </None>
-    <None Include="bin\data\shaderExample.vert">
+    <None Include="bin\data\shaderDesktop.vert">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="bin\data\shaderRpi.frag">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="bin\data\shaderRpi.vert">
       <Filter>shaders</Filter>
     </None>
   </ItemGroup>

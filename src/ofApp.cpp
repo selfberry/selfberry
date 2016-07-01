@@ -31,6 +31,7 @@ void ofApp::setup()
 	shader.load("shaderDesktop");
 #endif
 	doShader = true;
+	iEffect = 2;
 
 	fbo.allocate(targetWidth, targetHeight);
 	fbo.begin();
@@ -102,23 +103,26 @@ void ofApp::update()
 #else
 	videoGrabber.update();
 #endif
-	if (!doShader)
+	if (!doShader || !videoGrabber.isFrameNew())
 	{
-		ofLogNotice("update() !doShader return");
-		return;
-	}
-	if (!videoGrabber.isFrameNew())
-	{
-		ofLogNotice("update() !videoGrabber.isFrameNew return");
+		//ofLogNotice("update() !videoGrabber.isFrameNew return");
 		return;
 	}
 	//ofLogNotice("update() fbo begin");
-
 	fbo.begin();
 	ofClear(1, 1, 0, 0);
 	shader.begin();
 	shader.setUniform1f("time", ofGetElapsedTimef());
 	shader.setUniform2f("resolution", ofGetWidth(), ofGetHeight());
+	shader.setUniform3f("iResolution", ofGetWidth(), ofGetHeight(), 0);
+	shader.setUniform2f("iMouse", indexSavedPhoto, indexSavedPhoto);
+	shader.setUniform1f("iGlobalTime", ofGetElapsedTimef());
+	shader.setUniform4f("iDate", ofGetYear(), ofGetMonth(), ofGetDay(), ofGetSeconds());
+	shader.setUniform1i("iEffect", iEffect);// floor(ofRandom(0, 4.9)));
+	shader.setUniform1f("iChromatic", ofRandom(-1, 1));
+	shader.setUniform1f("iShift", ofRandom(-1.0, 1.0));
+	shader.setUniform1f("iGlitch", ofRandom(0.0, 1.0));
+	shader.setUniform1f("iPixelate", ofRandom(0.7, 1.0));
 #if defined(TARGET_OPENGLES)
 	shader.setUniformTexture("tex0", videoGrabber.getTextureReference(), videoGrabber.getTextureID());
 	videoGrabber.draw();
@@ -297,13 +301,14 @@ void ofApp::keyPressed(int key)
 		break;
 	case 126:
 		doDrawInfo = !doDrawInfo;
+		iEffect = 3;
 		currentDisplaySlot++;
 		if (currentDisplaySlot > 4) currentDisplaySlot = 1;
 		break;
 	case 67: // jaune		
-		currentDisplaySlot = 3;
+		iEffect = 1;
 	case 66: // bleu		
-		currentDisplaySlot = 4;
+		iEffect = 2;
 	case 50:
 	case 359:
 		currentDisplaySlot = 1;

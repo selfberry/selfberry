@@ -20,6 +20,15 @@ uniform vec2        resolution;
 //shader.setUniform1f("time", ofGetElapsedTimef());
 uniform float       time;
 
+uniform vec3			iResolution;
+uniform float 			iGlobalTime;
+uniform vec4			iMouse;              	// mouse pixel coords. xy: current (if MLB down), zw: click
+uniform vec4			iDate;
+uniform int				iEffect;
+uniform float 			iChromatic;
+uniform float 			iShift;
+uniform float			iGlitch;
+uniform float			iPixelate;
 
 //Each shader has one main() function you can use
 //Below are a few implementations. Make sure you have all but one commented out
@@ -49,27 +58,40 @@ uniform float       time;
 // let's wobble the image channels around independently, a bit Fear and Loathing in Las Vegas style
 void main()
 {
-    mediump float newTime = time * 2.0;
+	if ( iEffect == 0 )
+	{
+		gl_FragColor = texture2D(tex0, texcoord0);
+	}
+	if ( iEffect == 2 )
+	{
+		vec4 texColor = texture2D(tex0, texcoord0);  
+		gl_FragColor = vec4(1.0-texColor.r, 1.0-texColor.g, 1.0-texColor.b, texColor.a);
+	}
+	if ( iEffect == 1 )
+	{
+		mediump float newTime = time * 2.0;
 
-    vec2 newTexCoord;
-    newTexCoord.s = texcoord0.s + (cos(newTime + (texcoord0.s*20.0)) * 0.01);
-    newTexCoord.t = texcoord0.t + (sin(newTime + (texcoord0.t*20.0)) * 0.01);
+		vec2 newTexCoord;
+		newTexCoord.s = texcoord0.s + (cos(newTime + (texcoord0.s*20.0)) * 0.01);
+		newTexCoord.t = texcoord0.t + (sin(newTime + (texcoord0.t*20.0)) * 0.01);
 
-    mediump vec2 texCoordRed    = newTexCoord;
-    mediump vec2 texCoordGreen  = newTexCoord;
-    mediump vec2 texCoordBlue   = newTexCoord;
+		mediump vec2 texCoordRed    = newTexCoord;
+		mediump vec2 texCoordGreen  = newTexCoord;
+		mediump vec2 texCoordBlue   = newTexCoord;
 
-    texCoordRed     += vec2( cos((newTime * 2.76)), sin((newTime * 2.12)) )* 0.01;
-    texCoordGreen   += vec2( cos((newTime * 2.23)), sin((newTime * 2.40)) )* 0.01;
-    texCoordBlue    += vec2( cos((newTime * 2.98)), sin((newTime * 2.82)) )* 0.01;  
+		texCoordRed     += vec2( cos((newTime * 2.76)), sin((newTime * 2.12)) )* 0.01;
+		texCoordGreen   += vec2( cos((newTime * 2.23)), sin((newTime * 2.40)) )* 0.01;
+		texCoordBlue    += vec2( cos((newTime * 2.98)), sin((newTime * 2.82)) )* 0.01;  
 
-    mediump float colorR = texture2D( tex0, texCoordRed ).r;
-    mediump float colorG = texture2D( tex0, texCoordGreen).g;
-    mediump float colorB = texture2D( tex0, texCoordBlue).b;  
-	mediump float colorA = texture2D( tex0, texCoordBlue).a;     
-    mediump vec4 outColor = vec4( colorR, colorG, colorB, colorA);
+		mediump float colorR = texture2D( tex0, texCoordRed ).r;
+		mediump float colorG = texture2D( tex0, texCoordGreen).g;
+		mediump float colorB = texture2D( tex0, texCoordBlue).b;  
+		mediump float colorA = texture2D( tex0, texCoordBlue).a;     
+		mediump vec4 outColor = vec4( colorR, colorG, colorB, colorA);
 
-    gl_FragColor = outColor;
+		gl_FragColor = outColor;
+	}
+
 }
 
 
