@@ -66,10 +66,10 @@ void ofApp::update(){
 		shader.begin();	  		  				  
 #if defined(TARGET_OPENGLES)
 		shader.setUniformTexture("tex0", videoGrabber.getTextureReference(), 1);
-		videoGrabber.draw(0, 0);
+		//videoGrabber.draw(0, 0);
 #else
 		shader.setUniformTexture("tex0", videoGrabber.getTexture(), 0);// 0 or 1?
-		videoGrabber.draw(0, 0);
+		//videoGrabber.draw(0, 0);
 #endif
 		shader.setUniform1f("time", ofGetElapsedTimef());
 		shader.setUniform2f("resolution", ofGetWidth(), ofGetHeight());
@@ -82,7 +82,7 @@ void ofApp::update(){
 		shader.setUniform1f("iShift", ofRandom(-1.0, 1.0));
 		shader.setUniform1f("iGlitch", ofRandom(0.0, 1.0));
 		shader.setUniform1f("iPixelate", ofRandom(0.7, 1.0));
-		videoGrabber.draw(0,0);
+
 		shader.end();
 		fbo.end();
     }
