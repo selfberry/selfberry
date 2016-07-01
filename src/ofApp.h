@@ -27,9 +27,15 @@ class ofApp : public ofBaseApp{
         void dragEvent(ofDragInfo dragInfo);
         void gotMessage(ofMessage msg);        
 
-        ofVideoGrabber vidGrabber;
+        ofVideoGrabber videoGrabber;
         ofPixels videoInverted;
         ofTexture videoTexture;
-        int camWidth;
-        int camHeight;
+
+
+		// 1
+		int targetWidth, targetHeight;
+		bool doDrawInfo;
+		ofFbo fbo;
+		ofShader shader;
+		bool doShader;
 };

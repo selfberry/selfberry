@@ -2,11 +2,16 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    camWidth = 320;  // try to grab at this size.
-    camHeight = 240;
+	ofSetLogLevel(OF_LOG_VERBOSE);
+	ofSetLogLevel("ofThread", OF_LOG_ERROR);
 
+	ofEnableAlphaBlending();
+
+	doDrawInfo = true;
+	targetWidth = 640;
+	targetHeight = 480;
     //get back a list of devices.
-    vector<ofVideoDevice> devices = vidGrabber.listDevices();
+    vector<ofVideoDevice> devices = videoGrabber.listDevices();
 
     for(int i = 0; i < devices.size(); i++){
         if(devices[i].bAvailable){
@@ -18,37 +23,61 @@ void ofApp::setup(){
         }
     }
 
-    vidGrabber.setDeviceID(0);
-    vidGrabber.setDesiredFrameRate(60);
-    vidGrabber.initGrabber(camWidth, camHeight);
+	videoGrabber.setDeviceID(0);
+	videoGrabber.setDesiredFrameRate(60);
+	videoGrabber.initGrabber(targetWidth, targetHeight);
 
-    videoInverted.allocate(camWidth, camHeight, OF_PIXELS_RGB);
+    videoInverted.allocate(targetWidth, targetHeight, OF_PIXELS_RGB);
     videoTexture.allocate(videoInverted);
     ofSetVerticalSync(true);
+
+	// 1
+	shader.load("shaderDesktop");
+
+	fbo.allocate(targetWidth, targetHeight);
+	fbo.begin();
+	ofClear(0, 0, 0, 0);
+	fbo.end();
 }
 
 
 //--------------------------------------------------------------
 void ofApp::update(){
     ofBackground(100, 100, 100);
-    vidGrabber.update();
+	videoGrabber.update();
 
-    if(vidGrabber.isFrameNew()){
-        ofPixels & pixels = vidGrabber.getPixels();
+    if(videoGrabber.isFrameNew()){
+        ofPixels & pixels = videoGrabber.getPixels();
         for(int i = 0; i < pixels.size(); i++){
             //invert the color of the pixel
             videoInverted[i] = 255 - pixels[i];
         }
         //load the inverted pixels
         videoTexture.loadData(videoInverted);
+		fbo.begin();
+		ofClear(0, 0, 0, 0);
+		shader.begin();
+#if defined(TARGET_OPENGLES)
+		shader.setUniformTexture("tex0", videoGrabber.getTextureReference(), videoGrabber.getTextureID());
+		videoGrabber.draw();
+#else
+		shader.setUniformTexture("tex0", videoGrabber.getTexture(), 0);// 0 or 1?
+		videoGrabber.draw(0, 0);
+#endif
+		shader.setUniform1f("time", ofGetElapsedTimef());
+		shader.setUniform2f("resolution", ofGetWidth(), ofGetHeight());
+		videoGrabber.draw(0,0);
+		shader.end();
+		fbo.end();
     }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     ofSetHexColor(0xffffff);
-    vidGrabber.draw(20, 20);
-    videoTexture.draw(20 + camWidth, 20, camWidth, camHeight);
+	videoGrabber.draw(20, 20);
+    videoTexture.draw(20 + targetWidth, 20, targetWidth, targetHeight);
+	fbo.draw(20 + targetWidth*2, 0);
 }
 
 
@@ -65,7 +94,7 @@ void ofApp::keyPressed(int key){
     // For Xcode 4.4 and greater, see this forum post on instructions on installing the SDK
     // http://forum.openframeworks.cc/index.php?topic=10343
     if(key == 's' || key == 'S'){
-        vidGrabber.videoSettings();
+		videoGrabber.videoSettings();
     }
 }
 
