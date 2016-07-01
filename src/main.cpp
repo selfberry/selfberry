@@ -1,41 +1,14 @@
 #include "ofMain.h"
 #include "ofApp.h"
-#if (OF_VERSION_MINOR != 9) && defined(TARGET_OPENGLES)
-#include "ofGLProgrammableRenderer.h"
-#endif
 
-#define FORCE_PROGRAMMMABLE 1
+//========================================================================
+int main( ){
 
-#ifdef FORCE_PROGRAMMMABLE
-#include "ofGLProgrammableRenderer.h"
-#endif
-int main()
-{
-	ofSetLogLevel(OF_LOG_VERBOSE);
-#if defined(TARGET_OPENGLES)
-#if (OF_VERSION_MINOR == 9)
-	ofGLESWindowSettings settings;
-	settings.width = 1920;
-	settings.height = 1080;
-	settings.setGLESVersion(2);
-	ofCreateWindow(settings);
-#else
-	ofSetLogLevel("ofThread", OF_LOG_ERROR);
-	ofSetCurrentRenderer(ofGLProgrammableRenderer::TYPE);
-	ofSetupOpenGL(1280, 720, OF_WINDOW);
-#endif
-#else
-#ifdef FORCE_PROGRAMMMABLE
-	ofGLWindowSettings glWindowSettings;
-	glWindowSettings.width = 1920;
-	glWindowSettings.height = 1080;
-	glWindowSettings.setGLVersion(3, 2);
-	ofCreateWindow(glWindowSettings);
-#else
-	ofSetLogLevel("ofThread", OF_LOG_ERROR);
-	ofSetupOpenGL(1920, 1080, OF_WINDOW);
-#endif
+	ofSetupOpenGL(1024,768, OF_WINDOW);			// <-------- setup the GL context
 
-#endif
-	ofRunApp(new ofApp());
+	// this kicks off the running of my app
+	// can be OF_WINDOW or OF_FULLSCREEN
+	// pass in width and height too:
+	ofRunApp( new ofApp());
+
 }
