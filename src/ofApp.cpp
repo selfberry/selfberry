@@ -58,7 +58,7 @@ void ofApp::update(){
 		ofClear(0, 0, 0, 0);
 		shader.begin();	  		  				  
 #if defined(TARGET_OPENGLES)
-		shader.setUniformTexture("tex0", &videoTexture.texData, videoTexture.texData.textureID);
+		shader.setUniformTexture("tex0", videoGrabber.getTextureReference(), 1);
 		videoGrabber.draw(0, 0);
 #else
 		shader.setUniformTexture("tex0", videoGrabber.getTexture(), 0);// 0 or 1?
