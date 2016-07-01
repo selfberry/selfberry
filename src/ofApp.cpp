@@ -135,11 +135,9 @@ void ofApp::update()
 	//ofLogNotice("update() fbo end");
 
 	if (isRecording == true) {
-		ofLogNotice("update() rec");
 		finalCountdown = ofGetSeconds() - currentSecond;
+		ofLogNotice("update() rec " + ofToString(finalCountdown) + "=" + ofToString(ofGetSeconds()) + "-" + ofToString(currentSecond));
 		if (finalCountdown > 2) {
-
-
 			dirSRC.createDirectory(bufferDir);
 			dirSRC.listDir(bufferDir);
 			recordedFramesAmount = dirSRC.size();
