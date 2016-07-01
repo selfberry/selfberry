@@ -22,14 +22,15 @@ void ofApp::setup()
 	videoGrabber.setup(omxCameraSettings);
 	filterCollection.setup();
 	ofSetVerticalSync(false);
+	shader.load("shaderRpi");
 #else
 	videoGrabber.setDeviceID(0);
 	videoGrabber.setDesiredFrameRate(30);
 	videoGrabber.setup(targetWidth, targetHeight);
 	ofSetVerticalSync(true);
+	shader.load("shaderDesktop");
 #endif
 	doShader = true;
-	shader.load("shaderExample");
 
 	fbo.allocate(targetWidth, targetHeight);
 	fbo.begin();
