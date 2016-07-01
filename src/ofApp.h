@@ -86,7 +86,7 @@ public:
 	ofImage						trois;
 	ofImage						deux;
 	ofImage						un;
-	int							currentSecond;
+	int							startSecond;
 	int							finalCountdown;
 };
 

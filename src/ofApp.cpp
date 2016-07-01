@@ -135,8 +135,8 @@ void ofApp::update()
 	//ofLogNotice("update() fbo end");
 
 	if (isRecording == true) {
-		finalCountdown = ofGetSeconds() - currentSecond;
-		ofLogNotice("update() rec " + ofToString(finalCountdown) + "=" + ofToString(ofGetSeconds()) + "-" + ofToString(currentSecond));
+		finalCountdown = ofGetSeconds() - startSecond;
+		ofLogNotice("update() rec " + ofToString(finalCountdown) + "=" + ofToString(ofGetSeconds()) + "-" + ofToString(startSecond));
 		if (finalCountdown > 2) {
 			dirSRC.createDirectory(bufferDir);
 			dirSRC.listDir(bufferDir);
@@ -219,8 +219,9 @@ void ofApp::draw() {
 
 	ofClear(0, 0, 0, 0);
 	stringstream info;
-	info << "APP FPS: " << ofGetFrameRate() << " sec: " << ofGetSeconds() << " st: " << currentSecond << " fin: " << finalCountdown << "\n";
+	info << "APP FPS: " << ofToString(ofGetFrameRate()) << " sec: " << ofToString(ofGetSeconds()) << " st: " << ofToString(startSecond) << " fin: " << ofToString(finalCountdown) << "\n";
 	info << "SHADER ENABLED: " << doShader << "\n";
+	info << "Display slot: " << ofToString(currentDisplaySlot) << "\n";
 
 	if (doShader)
 	{
@@ -275,37 +276,37 @@ void ofApp::keyPressed(int key)
 	//ofLog(OF_LOG_VERBOSE, "%c keyPressed", key);
 	ofLogNotice("PRESSED KEY: " + ofToString(key));
 	/*RED 13 10
-		WHITE 127 126
+		
 		YELLOW 54
 		GREEN 357 65
 		BLUE 50*/
 	switch (key) {
-	case 65:
-	case 357:
+	case 65:  // vert 65 357
+	//case 357:
 #if defined(TARGET_OPENGLES)
 		videoGrabber.setImageFilter(filterCollection.getNextFilter());
 #endif
 		break;
-	case 10:
-	case 13:
+	case 10: // rouge 10
+	case 13: //	Entree
 		if (!isRecording) {
 			isRecording = true;
 			indexSavedPhoto = 0;
 			currentDisplaySlot++;
 			if (currentDisplaySlot > 4) currentDisplaySlot = 1;
 			bufferDir = ofToString(ofGetMonth()) + "-" + ofToString(ofGetDay()) + "-" + ofToString(ofGetHours()) + "-" + ofToString(ofGetMinutes()) + "-" + ofToString(ofGetSeconds());
-			currentSecond = ofGetSeconds();
+			startSecond = ofGetSeconds();
 		}
 		break;
-	case 126:
+	case 126: //blanc 126 127
 		//doDrawInfo = !doDrawInfo;
 		iEffect = 0;
 		currentDisplaySlot++;
 		if (currentDisplaySlot > 4) currentDisplaySlot = 1;
 		break;
-	case 67: // jaune		
+	case 67: // jaune 67 0		
 		iEffect = 1;
-	case 66: // bleu		
+	case 66: // bleu 66 0		
 		iEffect = 2;
 	case 50:
 	case 359:

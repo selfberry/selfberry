@@ -55,12 +55,11 @@ void main()
 {
 	if ( iEffect == 0 )
 	{
-		gl_FragColor = texture2D(tex0, texcoord0);
+		gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
 	}
 	if ( iEffect == 2 )
 	{
-		vec4 texColor = texture2D(tex0, texcoord0);  
-		gl_FragColor = vec4(1.0-texColor.r, 1.0-texColor.g, 1.0-texColor.b, texColor.a);
+		gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0);
 	}
 	if ( iEffect == 1 )
 	{
