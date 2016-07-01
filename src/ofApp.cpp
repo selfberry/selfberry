@@ -219,7 +219,7 @@ void ofApp::draw() {
 
 	ofClear(0, 0, 0, 0);
 	stringstream info;
-	info << "APP FPS: " << ofGetFrameRate() << "\n";
+	info << "APP FPS: " << ofGetFrameRate() << " sec: " << ofGetSeconds() << " st: " << currentSecond << " fin: " << finalCountdown << "\n";
 	info << "SHADER ENABLED: " << doShader << "\n";
 
 	if (doShader)
