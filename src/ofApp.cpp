@@ -169,7 +169,7 @@ void ofApp::update()
 
 					ofLogNotice("update() currentDisplaySlot " + ofToString(currentDisplaySlot));
 
-					savedImage.saveImage(bufferDir + "//" + filename + ".tga");
+					// TODO verif chemin + fichier savedImage.saveImage(bufferDir + "//" + filename + ".tga");
 					//omxCameraSettings.width, omxCameraSettings.height
 					// add frame to gif encoder
 					colorGifEncoder.addFrame(
