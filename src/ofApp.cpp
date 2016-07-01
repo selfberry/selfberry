@@ -31,8 +31,14 @@ void ofApp::setup(){
     videoTexture.allocate(videoInverted);
     ofSetVerticalSync(true);
 
-	// 1
+#if defined(TARGET_OPENGLES)
+
+	ofSetVerticalSync(false);
+	shader.load("shaderRpi");
+#else
+	ofSetVerticalSync(true);
 	shader.load("shaderDesktop");
+#endif
 
 	fbo.allocate(targetWidth, targetHeight);
 	fbo.begin();
@@ -77,7 +83,7 @@ void ofApp::draw(){
     ofSetHexColor(0xffffff);
 	videoGrabber.draw(20, 20);
     videoTexture.draw(20 + targetWidth, 20, targetWidth, targetHeight);
-	fbo.draw(20 + targetWidth*2, 0);
+	fbo.draw(0, targetHeight);
 }
 
 
