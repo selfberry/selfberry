@@ -56,9 +56,9 @@ void ofApp::update(){
         videoTexture.loadData(videoInverted);
 		fbo.begin();
 		ofClear(0, 0, 0, 0);
-		shader.begin();	  		  
+		shader.begin();	  		  				  
 #if defined(TARGET_OPENGLES)
-		shader.setUniformTexture("tex0", videoTexture.texData, videoTexture.texData.textureID);
+		shader.setUniformTexture("tex0", &videoTexture.texData, videoTexture.texData.textureID);
 		videoGrabber.draw(0, 0);
 #else
 		shader.setUniformTexture("tex0", videoGrabber.getTexture(), 0);// 0 or 1?
