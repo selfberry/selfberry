@@ -218,6 +218,15 @@ C:\cpp\openFrameworks\addons\ofxVideodromm\src</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>$(OF_ROOT)\libs\openFrameworksCompiled\project\vs</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\data\PostProcessing.frag" />
+    <None Include="bin\data\PostProcessing.vert" />
+    <None Include="bin\data\shaderExample.frag" />
+    <None Include="bin\data\shaderExample.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="bin\data\settings.xml" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ProjectExtensions>
     <VisualStudio>

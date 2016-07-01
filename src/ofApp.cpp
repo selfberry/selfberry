@@ -78,16 +78,6 @@ void ofApp::setup()
 	}
 	settings.pushTag("settings");
 
-	/*if (settings.getValue("log", 1) == 0) {
-		ofLogLevel(OF_LOG_SILENT);
-	}
-	fps = settings.getValue("fps", 15);
-	maxFrames = settings.getValue("frameAmount", 15);
-	bufferDir = settings.getValue("bufferDir", "buffer");
-	outputDir = settings.getValue("outputDir", "output");
-	if (settings.getValue("fullScreen", 0) == 1) {
-		ofToggleFullscreen();
-	}*/
 	slotDir = "slot";
 	for (int i = 0; i < settings.getNumTags("slot"); i++) {
 		settings.pushTag("slot", i);
@@ -97,6 +87,10 @@ void ofApp::setup()
 	lastSpot = 0;
 	currentDisplaySlot = 1;
 	bkgLayer.loadImage("ui.png");
+	sourisitepajoli.loadImage("sourisitepajoli.png");
+	trois.loadImage("trois.png");
+	deux.loadImage("deux.png");
+	un.loadImage("un.png");
 }
 
 //--------------------------------------------------------------
@@ -107,7 +101,7 @@ void ofApp::update()
 #else
 	videoGrabber.update();
 #endif
-	if (!doShader )
+	if (!doShader)
 	{
 		ofLogNotice("update() !doShader return");
 		return;
@@ -128,7 +122,7 @@ void ofApp::update()
 	shader.setUniformTexture("tex0", videoGrabber.getTextureReference(), videoGrabber.getTextureID());
 	videoGrabber.draw();
 #else
-	shader.setUniformTexture("tex0", videoGrabber.getTexture(), 0 );// 0 or 1?
+	shader.setUniformTexture("tex0", videoGrabber.getTexture(), 0);// 0 or 1?
 	videoGrabber.draw(0, 0);
 #endif
 	shader.end();
@@ -137,59 +131,64 @@ void ofApp::update()
 
 	if (isRecording == true) {
 		ofLogNotice("update() rec");
+		finalCountdown = ofGetSeconds() - currentSecond;
+		if (finalCountdown > 2) {
 
-		dirSRC.createDirectory(bufferDir);
-		dirSRC.listDir(bufferDir);
-		recordedFramesAmount = dirSRC.size();
-		ofLogNotice("AMOUNT OF FILES: " + ofToString(recordedFramesAmount) + "/" + ofToString(maxFrames));
-		if (recordedFramesAmount == maxFrames) {
-			isRecording = false;
-			indexSavedPhoto = 0;
-			ofLogNotice("update() stop recording");
-		}
-		else {
-			if (videoGrabber.isFrameNew()) {
-				ofLogNotice("update() isFrameNew");
 
-				string filename;
-				if (indexSavedPhoto < 10) filename = "slot" + ofToString(currentDisplaySlot) + "//seq00" + ofToString(indexSavedPhoto) + ".tga";
-				if (indexSavedPhoto >= 10 && indexSavedPhoto < 100) filename = "slot" + ofToString(currentDisplaySlot) + "//seq0" + ofToString(indexSavedPhoto) + ".tga";
-				if (indexSavedPhoto >= 100 && indexSavedPhoto < 1000) filename = "slot" + ofToString(currentDisplaySlot) + "//seq" + ofToString(indexSavedPhoto) + ".tga";
-				// fbo to pixels
-				fbo.readToPixels(pix);
-				fbo.draw(0, 0, targetWidth, targetHeight);
-				ofLogNotice("AMOUNT OF FILES: " + ofToString(recordedFramesAmount) + "/" + ofToString(maxFrames));
+			dirSRC.createDirectory(bufferDir);
+			dirSRC.listDir(bufferDir);
+			recordedFramesAmount = dirSRC.size();
+			ofLogNotice("AMOUNT OF FILES: " + ofToString(recordedFramesAmount) + "/" + ofToString(maxFrames));
+			if (recordedFramesAmount == maxFrames) {
+				isRecording = false;
+				indexSavedPhoto = 0;
+				ofLogNotice("update() stop recording");
+			}
+			else {
+				if (videoGrabber.isFrameNew()) {
+					ofLogNotice("update() isFrameNew");
 
-				//pix.resize(targetWidth, targetHeight, OF_INTERPOLATE_NEAREST_NEIGHBOR);
-				savedImage.setFromPixels(pix);
-				savedImage.setImageType(OF_IMAGE_COLOR);		
-				savedImage.saveImage(filename);
+					string filename;
+					if (indexSavedPhoto < 10) filename = "slot" + ofToString(currentDisplaySlot) + "//seq00" + ofToString(indexSavedPhoto) + ".tga";
+					if (indexSavedPhoto >= 10 && indexSavedPhoto < 100) filename = "slot" + ofToString(currentDisplaySlot) + "//seq0" + ofToString(indexSavedPhoto) + ".tga";
+					if (indexSavedPhoto >= 100 && indexSavedPhoto < 1000) filename = "slot" + ofToString(currentDisplaySlot) + "//seq" + ofToString(indexSavedPhoto) + ".tga";
+					// fbo to pixels
+					fbo.readToPixels(pix);
+					fbo.draw(0, 0, targetWidth, targetHeight);
+					ofLogNotice("AMOUNT OF FILES: " + ofToString(recordedFramesAmount) + "/" + ofToString(maxFrames));
 
-				ofLogNotice("update() currentDisplaySlot " + ofToString(currentDisplaySlot));
+					//pix.resize(targetWidth, targetHeight, OF_INTERPOLATE_NEAREST_NEIGHBOR);
+					savedImage.setFromPixels(pix);
+					savedImage.setImageType(OF_IMAGE_COLOR);
+					savedImage.saveImage(filename);
 
-				savedImage.saveImage(bufferDir + "//" + filename + ".tga");
-				//omxCameraSettings.width, omxCameraSettings.height
-				// add frame to gif encoder
-				colorGifEncoder.addFrame(
-					pix.getPixels(),
-					targetWidth,
-					targetHeight,
-					pix.getBitsPerPixel()/*,
-										 .1f duration */
-				);
+					ofLogNotice("update() currentDisplaySlot " + ofToString(currentDisplaySlot));
 
-				recordedFramesAmount++;
-				pix.clear();
-				savedImage.clear();
-				indexSavedPhoto++;
-				if (indexSavedPhoto == amountOfFrames) {
-					ofLogNotice("Stop recording: " + ofToString(indexSavedPhoto) + "/" + ofToString(amountOfFrames));
-					isRecording = false;
-					indexSavedPhoto = 0;
-					saveGif();
+					savedImage.saveImage(bufferDir + "//" + filename + ".tga");
+					//omxCameraSettings.width, omxCameraSettings.height
+					// add frame to gif encoder
+					colorGifEncoder.addFrame(
+						pix.getPixels(),
+						targetWidth,
+						targetHeight,
+						pix.getBitsPerPixel()/*,
+											 .1f duration */
+					);
+
+					recordedFramesAmount++;
+					pix.clear();
+					savedImage.clear();
+					indexSavedPhoto++;
+					if (indexSavedPhoto == amountOfFrames) {
+						ofLogNotice("Stop recording: " + ofToString(indexSavedPhoto) + "/" + ofToString(amountOfFrames));
+						isRecording = false;
+						indexSavedPhoto = 0;
+						saveGif();
+					}
 				}
 			}
 		}
+
 	}
 	for (i = 1; i < slotAmount; i++) {
 		videoGrid[i].loadFrameNumber(frameNumber);
@@ -227,30 +226,45 @@ void ofApp::draw() {
 #else
 		videoGrabber.draw(330, 13);
 #endif
-	}
+}
 	else
 	{
 #if defined(TARGET_OPENGLES)
 		videoGrabber.draw();
-		info << "Camera Resolution: " << videoGrabber.getWidth() << "x" << videoGrabber.getHeight() << " @ " << videoGrabber.getFrameRate() << "FPS" << "\n";
-		info << "CURRENT FILTER: " << filterCollection.getCurrentFilterName() << "\n";
 #else
-		videoGrabber.draw(0, 0);
+		videoGrabber.draw(330, 13);
 #endif
 	}
 	for (int i = 1; i < slotAmount; i++) {
 		videoGrid[i].draw();
 	}
+#if defined(TARGET_OPENGLES)
+	info << "Resolution Camera: " << videoGrabber.getWidth() << "x" << videoGrabber.getHeight() << " @ " << videoGrabber.getFrameRate() << "FPS" << "\n";
+	info << "FILTRE: " << filterCollection.getCurrentFilterName() << "\n";
+#endif
 
 	info << "\n";
 	info << "VERT: changement de filtre" << "\n";
 	info << "ROUGE: enregistrer" << "\n";
 	bkgLayer.draw(0, 0);
-	if (doDrawInfo)
-	{
+	if (isRecording) {
+		sourisitepajoli.draw(400, 0);
+		switch (finalCountdown) {
+		case 0:
+			trois.draw(400, 0);
+			break;
+		case 1:
+			deux.draw(400, 0);
+			break;
+		case 2:
+			un.draw(400, 0);
+			break;
+		}
+	}
+	if (doDrawInfo) {
 		ofDrawBitmapStringHighlight(info.str(), 50, 940, ofColor::black, ofColor::yellow);
 	}
-}
+	}
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key)
@@ -277,6 +291,7 @@ void ofApp::keyPressed(int key)
 			currentDisplaySlot++;
 			if (currentDisplaySlot > 4) currentDisplaySlot = 1;
 			bufferDir = ofToString(ofGetMonth()) + "-" + ofToString(ofGetDay()) + "-" + ofToString(ofGetHours()) + "-" + ofToString(ofGetMinutes()) + "-" + ofToString(ofGetSeconds());
+			currentSecond = ofGetSeconds();
 		}
 		break;
 	case 126:
@@ -299,5 +314,5 @@ void ofApp::keyPressed(int key)
 void ofApp::onCharacterReceived(KeyListenerEventData& e)
 {
 	keyPressed((int)e.character);
-}
+	}
 #endif	

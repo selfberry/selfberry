@@ -81,5 +81,11 @@ public:
 	void						onGifSaved(string & fileName);
     int                         currentDisplaySlot;
 	ofImage						bkgLayer;
+	ofImage						sourisitepajoli;
+	ofImage						trois;
+	ofImage						deux;
+	ofImage						un;
+	int							currentSecond;
+	int							finalCountdown;
 };
 

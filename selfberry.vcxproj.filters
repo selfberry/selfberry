@@ -87,6 +87,9 @@
     <Filter Include="addons\ofxVideodromm\src">
       <UniqueIdentifier>{35279bee-575b-42f2-847a-77f55a58e267}</UniqueIdentifier>
     </Filter>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{ac2c297f-f1c4-4cb9-ac62-482c84a2d121}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ofApp.h">
@@ -143,5 +146,24 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\data\PostProcessing.frag">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="bin\data\PostProcessing.vert">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="bin\data\shaderExample.frag">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="bin\data\shaderExample.vert">
+      <Filter>shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="bin\data\settings.xml">
+      <Filter>shaders</Filter>
+    </Xml>
   </ItemGroup>
 </Project>
