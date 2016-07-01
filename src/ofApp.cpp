@@ -222,6 +222,7 @@ void ofApp::draw() {
 	info << "APP FPS: " << ofToString(ofGetFrameRate()) << " sec: " << ofToString(ofGetSeconds()) << " st: " << ofToString(startSecond) << " fin: " << ofToString(finalCountdown) << "\n";
 	info << "SHADER ENABLED: " << doShader << "\n";
 	info << "Display slot: " << ofToString(currentDisplaySlot) << "\n";
+	info << "Effet: " << ofToString(iEffect) << "\n";
 
 	if (doShader)
 	{
@@ -275,11 +276,7 @@ void ofApp::keyPressed(int key)
 {
 	//ofLog(OF_LOG_VERBOSE, "%c keyPressed", key);
 	ofLogNotice("PRESSED KEY: " + ofToString(key));
-	/*RED 13 10
-		
-		YELLOW 54
-		GREEN 357 65
-		BLUE 50*/
+
 	switch (key) {
 	case 65:  // vert 65 357
 	//case 357:
