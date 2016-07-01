@@ -43,17 +43,12 @@ uniform float			iPixelate;
     gl_FragColor = texture2D(tex0, texcoord0);
 }*/
 
-
-
 // draw the texture to screen, inverted
 /*void main()
 {
     vec4 texColor = texture2D(tex0, texcoord0);  
     gl_FragColor = vec4(1.0-texColor.r, 1.0-texColor.g, 1.0-texColor.b, texColor.a);
 }*/
-
-
-
 
 // let's wobble the image channels around independently, a bit Fear and Loathing in Las Vegas style
 void main()
@@ -93,31 +88,3 @@ void main()
 	}
 
 }
-
-
-/*
-//This is the internal RPi vert shader for reference
-precision lowp float;
-
-uniform sampler2D src_tex_unit0;
-
-uniform float usingTexture;
-uniform float bitmapText;
-
-varying vec4 colorVarying;
-varying vec2 texCoordVarying;
-
-void main(){
-	vec4 tex;
-	if(usingTexture>.5){
-		tex = texture2D(src_tex_unit0, texCoordVarying);
-		if(bitmapText>.5 && tex.a < 0.5){
-			discard;
-		}else{
-			gl_FragColor = colorVarying*tex;
-		}
-	}else{
-		gl_FragColor = colorVarying;
-	}
-}
-*/

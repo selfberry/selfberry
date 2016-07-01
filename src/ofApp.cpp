@@ -300,8 +300,8 @@ void ofApp::keyPressed(int key)
 		}
 		break;
 	case 126:
-		doDrawInfo = !doDrawInfo;
-		iEffect = 3;
+		//doDrawInfo = !doDrawInfo;
+		iEffect = 0;
 		currentDisplaySlot++;
 		if (currentDisplaySlot > 4) currentDisplaySlot = 1;
 		break;
@@ -313,6 +313,7 @@ void ofApp::keyPressed(int key)
 	case 359:
 		currentDisplaySlot = 1;
 		//doShader = !doShader;
+		iEffect = 3;
 		break;
 	}
 }
