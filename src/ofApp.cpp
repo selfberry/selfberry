@@ -92,6 +92,7 @@ void ofApp::setup()
 	trois.loadImage("trois.png");
 	deux.loadImage("deux.png");
 	un.loadImage("un.png");
+	qrcode.loadImage("qrcode.jpg");
 	ftpClient.setup("videodromm.com", "u39314325-selfberry", "tocs2016!");
 	ftpClient.setVerbose(true);
 }
@@ -275,11 +276,38 @@ void ofApp::draw() {
 			break;
 		}
 	}
+	qrcode.draw(914, 450);
 	if (doDrawInfo) {
 		ofDrawBitmapStringHighlight(info.str(), 50, 940, ofColor::black, ofColor::yellow);
 	}
 }
+void ofApp::fetch(const std::string& data, size_t size, size_t margin)
+{
+	std::stringstream googleChartsQRurl;
+	googleChartsQRurl
+		<< "http://chart.googleapis.com/chart?"   // Google Charts Endpoint
+		<< "chs=" << size << "x" << size << "&"   // chart size
+		<< "cht=qr&"                              // chart type: QR Code
+		<< "chld=L|" << margin << "&"             // Error correction [L,M,Q,H], margin
+		<< "choe=UTF-8&"                          // Encoding
+		<< "chl=" << data;                        // QR code data
 
+	ofRegisterURLNotification(this);
+	ofLoadURLAsync(googleChartsQRurl.str(), "qrcode");
+}
+
+void ofApp::urlResponse(ofHttpResponse& response)
+{
+	if (response.request.name == "qrcode")
+	{
+		if (response.status == 200) {
+			qrcode.loadImage(response.data);
+			qrcode.saveImage("qrcode.jpg");
+		}
+
+		ofUnregisterURLNotification(this);
+	}
+}
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key)
 {
@@ -326,7 +354,7 @@ void ofApp::keyPressed(int key)
 			if (ftpClient.send(gifFileName, ofToDataPath("gif"), "/gif/") > 0) {
 				ofLogNotice("Transfert ftp reussi\n" + gifFileName + ", creation fichier html");
 				gifValides.push_back(gifFileName);
-				html << "<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"30\"><style>body{background-color: #111111;}</style></head><body>";
+				html << "<!DOCTYPE html><html><head><title>Selfberry</title><meta http-equiv=\"refresh\" content=\"30\"><style>body{background-color: #111111;}</style></head><body>";
 				for (unsigned int i = 0; i < 60; i++) {
 					html << "<a href=\"" << i << ".html\">" << i << " </a>";
 				}
@@ -338,20 +366,17 @@ void ofApp::keyPressed(int key)
 				htmlFileName = "index.html";
 				ofBufferToFile(htmlFileName, html);
 				if (ftpClient.send(htmlFileName, ofToDataPath(""), "/") > 0) {
-					// copie car le buffer s'efface après ofBufferToFile!
-					html2 << "<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"30\"><style>body{background-color: #111111;}</style></head><body>";
-					for (unsigned int i = 0; i < 60; i++) {
-						html2 << "<a href=\"" << i << ".html\">" << i << " </a>";
-					}
-					for (auto gifFile : gifValides) {
-						html2 << "<img src=\"gif/" << gifFile << "\" />";
-					}
+					// 
+					htmlFileName2 = gifFileName + ".html";
+					html2 << "<!DOCTYPE html><html><head><title>Selfberry</title><style>body{background-color: #111111;}</style></head><body>";
+					html2 << "<img src=\"gif/" << gifFileName << "\" />";
+					html2 << "<a href = \"http://www.facebook.com/share.php?u=http://videodromm.com/selfberry/" << htmlFileName2 << "\" target=\"_blank\"><button class=\"btn btn-social btn-facebook\"><span class =\"icon icon-facebook\"></span> Share on Facebook</button></a>";
 					html2 << "</body></html>";
 
-					// ecriture seconde.html
-					htmlFileName2 = ofToString(ofGetSeconds() % 60) + ".html";
 					ofBufferToFile(htmlFileName2, html2);
-					ftpClient.send(htmlFileName2, ofToDataPath(""), "/");
+					if (ftpClient.send(htmlFileName2, ofToDataPath(""), "/") > 0) {
+						fetch("videodromm.com/selfberry/" + htmlFileName2, 80, 1);
+					}
 				}
 			}
 		}
