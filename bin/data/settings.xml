@@ -21,7 +21,7 @@
 <key>357</key> 
 <id>0</id>
 <x>64</x>
-<y>10</y>
+<y>15</y>
 
 <directory>slot2</directory>
  <highlight>high2.png</highlight>
@@ -31,7 +31,7 @@
 <key>357</key> <!-- green was 43 -->
 <id>1</id>
 <x>940</x>
-<y>10</y>
+<y>15</y>
 
 <directory>slot2</directory>
  <highlight>high2.png</highlight>
@@ -40,7 +40,7 @@
 <slot>
 <id>2</id>
 <x>330</x>
-<y>440</y>
+<y>500</y>
 <directory>slot3</directory>
  <key>127</key> <!-- white was -1 -->
  <highlight>high3.png</highlight>
@@ -49,7 +49,7 @@
 <slot>
 <id>3</id>
 <x>940</x>
-<y>440</y>
+<y>500</y>
 <directory>slot4</directory>
 <key>50</key> <!-- blue was 47 -->
  <highlight>high4.png</highlight>

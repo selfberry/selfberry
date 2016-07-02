@@ -61,9 +61,9 @@ void ofApp::setup()
 	if (!dirSRC.doesDirectoryExist("slot3")) {
 		dirSRC.createDirectory("slot3");
 	}
-	if (!dirSRC.doesDirectoryExist("slot4")) {
+	/*if (!dirSRC.doesDirectoryExist("slot4")) {
 		dirSRC.createDirectory("slot4");
-	}
+	}*/
 	if (!dirSRC.doesDirectoryExist("tmp")) {
 		dirSRC.createDirectory("tmp");
 	}
@@ -137,7 +137,7 @@ void ofApp::update()
 	if (isRecording == true) {
 		finalCountdown = ofGetSeconds() - startSecond;
 		ofLogNotice("update() rec " + ofToString(finalCountdown) + "=" + ofToString(ofGetSeconds()) + "-" + ofToString(startSecond));
-		if (finalCountdown > 2) {
+		if (finalCountdown > 2 || finalCountdown < 0) {
 			dirSRC.createDirectory(bufferDir);
 			dirSRC.listDir(bufferDir);
 			recordedFramesAmount = dirSRC.size();
@@ -152,9 +152,11 @@ void ofApp::update()
 					ofLogNotice("update() isFrameNew");
 
 					string filename;
-					if (indexSavedPhoto < 10) filename = "slot" + ofToString(currentDisplaySlot) + "//seq00" + ofToString(indexSavedPhoto) + ".tga";
-					if (indexSavedPhoto >= 10 && indexSavedPhoto < 100) filename = "slot" + ofToString(currentDisplaySlot) + "//seq0" + ofToString(indexSavedPhoto) + ".tga";
-					if (indexSavedPhoto >= 100 && indexSavedPhoto < 1000) filename = "slot" + ofToString(currentDisplaySlot) + "//seq" + ofToString(indexSavedPhoto) + ".tga";
+					string path;
+					if (indexSavedPhoto < 10) filename = "seq00" + ofToString(indexSavedPhoto) + ".tga";
+					if (indexSavedPhoto >= 10 && indexSavedPhoto < 100) filename = "seq0" + ofToString(indexSavedPhoto) + ".tga";
+					if (indexSavedPhoto >= 100 && indexSavedPhoto < 1000) filename = "seq" + ofToString(indexSavedPhoto) + ".tga";
+					path = "slot" + ofToString(currentDisplaySlot) + "//";
 					// fbo to pixels
 					fbo.readToPixels(pix);
 					fbo.draw(0, 0, targetWidth, targetHeight);
@@ -163,12 +165,12 @@ void ofApp::update()
 					//pix.resize(targetWidth, targetHeight, OF_INTERPOLATE_NEAREST_NEIGHBOR);
 					savedImage.setFromPixels(pix);
 					savedImage.setImageType(OF_IMAGE_COLOR);
-					savedImage.saveImage(filename);
+					savedImage.saveImage(path + filename);
 
 					ofLogNotice("update() currentDisplaySlot " + ofToString(currentDisplaySlot));
 
-					// TODO verif chemin + fichier savedImage.saveImage(bufferDir + "//" + filename + ".tga");
-					//omxCameraSettings.width, omxCameraSettings.height
+					savedImage.saveImage(bufferDir + "//" + filename);
+
 					// add frame to gif encoder
 					colorGifEncoder.addFrame(
 						pix.getPixels(),
