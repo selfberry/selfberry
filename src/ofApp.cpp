@@ -155,7 +155,7 @@ void ofApp::update()
 					string path;
 					if (indexSavedPhoto < 10) filename = "seq00" + ofToString(indexSavedPhoto) + ".tga";
 					if (indexSavedPhoto >= 10 && indexSavedPhoto < 100) filename = "seq0" + ofToString(indexSavedPhoto) + ".tga";
-					if (indexSavedPhoto >= 100 && indexSavedPhoto < 1000) filename = "seq" + ofToString(indexSavedPhoto) + ".tga";
+					if (indexSavedPhoto >= 100) filename = "seq" + ofToString(indexSavedPhoto) + ".tga";
 					path = "slot" + ofToString(currentDisplaySlot) + "//";
 					// fbo to pixels
 					fbo.readToPixels(pix);
@@ -292,21 +292,29 @@ void ofApp::keyPressed(int key)
 			isRecording = true;
 			indexSavedPhoto = 0;
 			currentDisplaySlot++;
-			if (currentDisplaySlot > 4) currentDisplaySlot = 1;
+			if (currentDisplaySlot > 3) currentDisplaySlot = 1;
 			bufferDir = ofToString(ofGetMonth()) + "-" + ofToString(ofGetDay()) + "-" + ofToString(ofGetHours()) + "-" + ofToString(ofGetMinutes()) + "-" + ofToString(ofGetSeconds());
 			startSecond = ofGetSeconds();
 		}
 		break;
 	case 126: //blanc 126 127
-		//doDrawInfo = !doDrawInfo;
+	case 120: // x
+	case 88: // X
+			  //doDrawInfo = !doDrawInfo;
 		iEffect = 0;
 		currentDisplaySlot++;
-		if (currentDisplaySlot > 4) currentDisplaySlot = 1;
+		if (currentDisplaySlot > 3) currentDisplaySlot = 1;
 		break;
 	case 67: // jaune 67 0		
+	case 118: // v		
+	case 86: // V		
 		iEffect = 1;
+		break;
 	case 66: // bleu 66 0		
+	case 112: // p		
+	case 80: // P		
 		iEffect = 2;
+		break;
 	case 50:
 	case 359:
 		currentDisplaySlot = 1;
