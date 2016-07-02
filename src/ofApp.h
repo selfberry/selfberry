@@ -82,6 +82,7 @@ public:
 	ofxGifEncoder				colorGifEncoder;
 	void						onGifSaved(string & fileName);
 	string						gifFileName;
+	vector<string>				gifValides;
     int                         currentDisplaySlot;
 	ofImage						bkgLayer;
 	ofImage						sourisitepajoli;

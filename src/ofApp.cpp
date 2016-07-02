@@ -276,7 +276,8 @@ void ofApp::draw() {
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key)
 {
-	//ofLog(OF_LOG_VERBOSE, "%c keyPressed", key);
+	stringstream html;
+
 	ofLogNotice("PRESSED KEY: " + ofToString(key));
 
 	switch (key) {
@@ -311,8 +312,17 @@ void ofApp::keyPressed(int key)
 	case 86: // V		
 		iEffect = 1;
 		if (gifFileName.length() > 0) {
-			if (ftpClient.send(gifFileName, ofToDataPath("gif"), "/") > 0) {
-				ofLogNotice("Transfert ftp reussi\n" + gifFileName);				
+			if (ftpClient.send(gifFileName, ofToDataPath("gif"), "/gif/") > 0) {
+				ofLogNotice("Transfert ftp reussi\n" + gifFileName + ", creation fichier html");
+				gifValides.push_back(gifFileName);
+				html << "<!DOCTYPE html><html><head><meta http-equiv = \"refresh\" content = \"30\"><style>body{background - color: #111111;}</style></head><body>";
+				for( auto gifFile : gifValides) {
+					html << "<img src=\"gif/" << gifFile << "\" />";
+				}
+				html << "</body></html>";
+				
+				bool fileWritten = ofBufferToFile("index.html", html);
+				ftpClient.send("index.html", ofToDataPath(""), "/");
 			}
 		}
 		break;
