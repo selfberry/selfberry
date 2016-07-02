@@ -89,8 +89,10 @@ public:
 	ofImage						trois;
 	ofImage						deux;
 	ofImage						un;
+	ofImage						valideLayer;
 	int							startSecond;
 	int							finalCountdown;
 	ofxFTPClient				ftpClient;
+	bool						validationMode;
 };
 

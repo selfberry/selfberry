@@ -9,7 +9,7 @@ void ofApp::setup()
 	ofEnableAlphaBlending();
 
 	doDrawInfo = true;
-
+	validationMode = false;
 	targetWidth = 640;
 	targetHeight = 480;
 #if defined(TARGET_OPENGLES)
@@ -87,6 +87,7 @@ void ofApp::setup()
 	lastSpot = 0;
 	currentDisplaySlot = 1;
 	bkgLayer.loadImage("ui.png");
+	valideLayer.loadImage("valide.png");
 	sourisitepajoli.loadImage("sourisitepajoli.png");
 	trois.loadImage("trois.png");
 	deux.loadImage("deux.png");
@@ -207,7 +208,7 @@ void ofApp::saveGif()
 {
 	gifFileName = ofToString(ofGetMonth()) + "-" + ofToString(ofGetDay()) + "-" + ofToString(ofGetHours()) + "-" + ofToString(ofGetMinutes()) + "-" + ofToString(ofGetSeconds()) + ".gif";
 	ofLogNotice("saveGif: " + gifFileName);
-	colorGifEncoder.save( "gif//" + gifFileName);
+	colorGifEncoder.save("gif//" + gifFileName);
 	ofLogNotice("saveGif end");
 }
 void ofApp::onGifSaved(string & fileName) {
@@ -215,6 +216,7 @@ void ofApp::onGifSaved(string & fileName) {
 	ofLogNotice("onGifSaved: " + fileName);
 	colorGifEncoder.reset();
 	ofLogNotice("onGifSaved reset");
+	validationMode = true;
 }
 //--------------------------------------------------------------
 void ofApp::draw() {
@@ -253,7 +255,12 @@ void ofApp::draw() {
 	info << "\n";
 	info << "VERT: changement de filtre" << "\n";
 	info << "ROUGE: enregistrer" << "\n";
+	info << "BLANC: annuler" << "\n";
+	info << "JAUNE: partager" << "\n";
 	bkgLayer.draw(0, 0);
+	if (validationMode) {
+		valideLayer.draw(0, 0);
+	}
 	if (isRecording) {
 		sourisitepajoli.draw(400, 0);
 		switch (finalCountdown) {
@@ -277,7 +284,9 @@ void ofApp::draw() {
 void ofApp::keyPressed(int key)
 {
 	stringstream html;
-
+	stringstream html2;
+	string htmlFileName;
+	string htmlFileName2;
 	ofLogNotice("PRESSED KEY: " + ofToString(key));
 
 	switch (key) {
@@ -302,6 +311,7 @@ void ofApp::keyPressed(int key)
 	case 120: // x
 	case 88: // X
 			  //doDrawInfo = !doDrawInfo;
+		validationMode = false;
 		iEffect = 0;
 		currentDisplaySlot++;
 		if (currentDisplaySlot > 3) currentDisplaySlot = 1;
@@ -310,19 +320,39 @@ void ofApp::keyPressed(int key)
 	case 67: // jaune 67 0		
 	case 118: // v		
 	case 86: // V		
+		validationMode = false;
 		iEffect = 1;
 		if (gifFileName.length() > 0) {
 			if (ftpClient.send(gifFileName, ofToDataPath("gif"), "/gif/") > 0) {
 				ofLogNotice("Transfert ftp reussi\n" + gifFileName + ", creation fichier html");
 				gifValides.push_back(gifFileName);
-				html << "<!DOCTYPE html><html><head><meta http-equiv = \"refresh\" content = \"30\"><style>body{background-color: #111111;}</style></head><body>";
-				for( auto gifFile : gifValides) {
+				html << "<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"30\"><style>body{background-color: #111111;}</style></head><body>";
+				for (unsigned int i = 0; i < 60; i++) {
+					html << "<a href=\"" << i << ".html\">" << i << " </a>";
+				}
+				for (auto gifFile : gifValides) {
 					html << "<img src=\"gif/" << gifFile << "\" />";
 				}
 				html << "</body></html>";
-				
-				bool fileWritten = ofBufferToFile("index.html", html);
-				ftpClient.send("index.html", ofToDataPath(""), "/");
+				// ecriture index.html
+				htmlFileName = "index.html";
+				ofBufferToFile(htmlFileName, html);
+				if (ftpClient.send(htmlFileName, ofToDataPath(""), "/") > 0) {
+					// copie car le buffer s'efface après ofBufferToFile!
+					html2 << "<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"30\"><style>body{background-color: #111111;}</style></head><body>";
+					for (unsigned int i = 0; i < 60; i++) {
+						html2 << "<a href=\"" << i << ".html\">" << i << " </a>";
+					}
+					for (auto gifFile : gifValides) {
+						html2 << "<img src=\"gif/" << gifFile << "\" />";
+					}
+					html2 << "</body></html>";
+
+					// ecriture seconde.html
+					htmlFileName2 = ofToString(ofGetSeconds() % 60) + ".html";
+					ofBufferToFile(htmlFileName2, html2);
+					ftpClient.send(htmlFileName2, ofToDataPath(""), "/");
+				}
 			}
 		}
 		break;
