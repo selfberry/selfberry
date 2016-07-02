@@ -315,7 +315,7 @@ void ofApp::keyPressed(int key)
 			if (ftpClient.send(gifFileName, ofToDataPath("gif"), "/gif/") > 0) {
 				ofLogNotice("Transfert ftp reussi\n" + gifFileName + ", creation fichier html");
 				gifValides.push_back(gifFileName);
-				html << "<!DOCTYPE html><html><head><meta http-equiv = \"refresh\" content = \"30\"><style>body{background - color: #111111;}</style></head><body>";
+				html << "<!DOCTYPE html><html><head><meta http-equiv = \"refresh\" content = \"30\"><style>body{background-color: #111111;}</style></head><body>";
 				for( auto gifFile : gifValides) {
 					html << "<img src=\"gif/" << gifFile << "\" />";
 				}
