@@ -61,9 +61,6 @@ void ofApp::setup()
 	if (!dirSRC.doesDirectoryExist("slot3")) {
 		dirSRC.createDirectory("slot3");
 	}
-	/*if (!dirSRC.doesDirectoryExist("slot4")) {
-		dirSRC.createDirectory("slot4");
-	}*/
 	if (!dirSRC.doesDirectoryExist("tmp")) {
 		dirSRC.createDirectory("tmp");
 	}
@@ -86,6 +83,7 @@ void ofApp::setup()
 		videoGrid[i].init(settings.getValue("id", i), settings.getValue("x", 700), settings.getValue("y", 500), &slotDir, settings.getValue("key", 0));
 		settings.popTag();
 	}
+	gifFileName = "";
 	lastSpot = 0;
 	currentDisplaySlot = 1;
 	bkgLayer.loadImage("ui.png");
@@ -93,6 +91,8 @@ void ofApp::setup()
 	trois.loadImage("trois.png");
 	deux.loadImage("deux.png");
 	un.loadImage("un.png");
+	ftpClient.setup("videodromm.com", "u39314325-selfberry", "tocs2016!");
+	ftpClient.setVerbose(true);
 }
 
 //--------------------------------------------------------------
@@ -205,9 +205,9 @@ void ofApp::update()
 }
 void ofApp::saveGif()
 {
-	string fileName = ofToString(ofGetMonth()) + "-" + ofToString(ofGetDay()) + "-" + ofToString(ofGetHours()) + "-" + ofToString(ofGetMinutes()) + "-" + ofToString(ofGetSeconds());
-	ofLogNotice("saveGif: " + fileName);
-	colorGifEncoder.save("gif//" + fileName + ".gif");
+	gifFileName = ofToString(ofGetMonth()) + "-" + ofToString(ofGetDay()) + "-" + ofToString(ofGetHours()) + "-" + ofToString(ofGetMinutes()) + "-" + ofToString(ofGetSeconds()) + ".gif";
+	ofLogNotice("saveGif: " + gifFileName);
+	colorGifEncoder.save( "gif//" + gifFileName);
 	ofLogNotice("saveGif end");
 }
 void ofApp::onGifSaved(string & fileName) {
@@ -233,7 +233,7 @@ void ofApp::draw() {
 #else
 		videoGrabber.draw(330, 13);
 #endif
-}
+	}
 	else
 	{
 #if defined(TARGET_OPENGLES)
@@ -271,7 +271,7 @@ void ofApp::draw() {
 	if (doDrawInfo) {
 		ofDrawBitmapStringHighlight(info.str(), 50, 940, ofColor::black, ofColor::yellow);
 	}
-	}
+}
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key)
@@ -304,16 +304,23 @@ void ofApp::keyPressed(int key)
 		iEffect = 0;
 		currentDisplaySlot++;
 		if (currentDisplaySlot > 3) currentDisplaySlot = 1;
+
 		break;
 	case 67: // jaune 67 0		
 	case 118: // v		
 	case 86: // V		
 		iEffect = 1;
+		if (gifFileName.length() > 0) {
+			if (ftpClient.send(gifFileName, ofToDataPath("gif"), "/") > 0) {
+				ofLogNotice("Transfert ftp reussi\n" + gifFileName);				
+			}
+		}
 		break;
 	case 66: // bleu 66 0		
 	case 112: // p		
 	case 80: // P		
 		iEffect = 2;
+		ofSaveScreen(ofToString(ofGetSeconds()) + ".jpg");
 		break;
 	case 50:
 	case 359:
@@ -327,5 +334,5 @@ void ofApp::keyPressed(int key)
 void ofApp::onCharacterReceived(KeyListenerEventData& e)
 {
 	keyPressed((int)e.character);
-	}
+}
 #endif	

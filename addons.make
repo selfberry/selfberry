@@ -1,4 +1,5 @@
-ofxRPiCameraVideoGrabber
 ofxThreadedImageLoader
 ofxXmlSettings
+ofxFTP
 ofxGifEncoder
+ofxRPiCameraVideoGrabber

@@ -21,4 +21,6 @@ ${PREFIX}videodromm/ofxVideodromm.git
 
 ${PREFIX}pelayomendez/ofxTwitter.git
 
+${PREFIX}fishkingsin/ofxFTP.git
+
 echo "Done cloning addons! :)"

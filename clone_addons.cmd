@@ -10,4 +10,6 @@ git clone https://github.com/videodromm/ofxVideodromm.git
 
 git clone https://github.com/pelayomendez/ofxTwitter.git
 
+git clone https://github.com/fishkingsin/ofxFTP.git
+
 echo "Done cloning addons! :)"

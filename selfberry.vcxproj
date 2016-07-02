@@ -95,8 +95,9 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);..\..\..\addons\ofxNetwork\src;..\..\..\addons\ofxThreadedImageLoader\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxGifEncoder\src;
-C:\cpp\openFrameworks\addons\ofxVideodromm\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);..\..\..\addons\ofxNetwork\src;..\..\..\addons\ofxThreadedImageLoader\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxGifEncoder\src;C:\cpp\openFrameworks\addons\ofxVideodromm\src;
+C:\cpp\openFrameworks\addons\ofxFTP\src;
+C:\cpp\openFrameworks\addons\ofxFTP\libs\CFtpServer</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
@@ -117,7 +118,8 @@ C:\cpp\openFrameworks\addons\ofxVideodromm\src</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalIncludeDirectories>
-C:\cpp\openFrameworks\addons\ofxVideodromm\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+C:\cpp\openFrameworks\addons\ofxFTP\src;
+C:\cpp\openFrameworks\addons\ofxFTP\libs\CFtpServer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -133,8 +135,9 @@ C:\cpp\openFrameworks\addons\ofxVideodromm\src;%(AdditionalIncludeDirectories)</
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);..\..\..\addons\ofxNetwork\src;..\..\..\addons\ofxThreadedImageLoader\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxGifEncoder\src;
-C:\cpp\openFrameworks\addons\ofxVideodromm\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);..\..\..\addons\ofxNetwork\src;..\..\..\addons\ofxThreadedImageLoader\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxGifEncoder\src;C:\cpp\openFrameworks\addons\ofxVideodromm\src;
+C:\cpp\openFrameworks\addons\ofxFTP\src;
+C:\cpp\openFrameworks\addons\ofxFTP\libs\CFtpServer</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -155,8 +158,9 @@ C:\cpp\openFrameworks\addons\ofxVideodromm\src</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);..\..\..\addons\ofxNetwork\src;..\..\..\addons\ofxThreadedImageLoader\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxGifEncoder\src;
-C:\cpp\openFrameworks\addons\ofxVideodromm\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);..\..\..\addons\ofxNetwork\src;..\..\..\addons\ofxThreadedImageLoader\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxGifEncoder\src;C:\cpp\openFrameworks\addons\ofxVideodromm\src;
+C:\cpp\openFrameworks\addons\ofxFTP\src;
+C:\cpp\openFrameworks\addons\ofxFTP\libs\CFtpServer</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
@@ -171,6 +175,8 @@ C:\cpp\openFrameworks\addons\ofxVideodromm\src</AdditionalIncludeDirectories>
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\addons\ofxFTP\libs\CFtpServer\CFtpServer.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxFTP\src\ofxFTP.cpp" />
     <ClCompile Include="..\..\..\addons\ofxVideodromm\src\VDLog.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
@@ -188,6 +194,9 @@ C:\cpp\openFrameworks\addons\ofxVideodromm\src</AdditionalIncludeDirectories>
     <ClCompile Include="src\videoSlot.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\addons\ofxFTP\libs\CFtpServer\CFtpServer.h" />
+    <ClInclude Include="..\..\..\addons\ofxFTP\libs\CFtpServer\CFtpServerGlobal.h" />
+    <ClInclude Include="..\..\..\addons\ofxFTP\src\ofxFTP.h" />
     <ClInclude Include="..\..\..\addons\ofxVideodromm\src\VDLog.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="..\..\..\addons\ofxNetwork\src\ofxNetwork.h" />

@@ -46,6 +46,12 @@
     <ClCompile Include="src\videoSlot.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxFTP\src\ofxFTP.cpp">
+      <Filter>addons\ofxFTP\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxFTP\libs\CFtpServer\CFtpServer.cpp">
+      <Filter>addons\ofxFTP\libs\CFtpServer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -89,6 +95,18 @@
     </Filter>
     <Filter Include="shaders">
       <UniqueIdentifier>{ac2c297f-f1c4-4cb9-ac62-482c84a2d121}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxFTP">
+      <UniqueIdentifier>{e9f1ac74-0043-48c2-9894-a03626770f53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxFTP\src">
+      <UniqueIdentifier>{eb0411b8-b222-4ecf-a223-579c9c34d1fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxFTP\libs">
+      <UniqueIdentifier>{d497681e-7e78-4925-bca4-1f734e7b3f4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxFTP\libs\CFtpServer">
+      <UniqueIdentifier>{f874e280-945d-41ff-96e1-7d2e32879c9f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +160,15 @@
     </ClInclude>
     <ClInclude Include="src\videoSlot.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxFTP\src\ofxFTP.h">
+      <Filter>addons\ofxFTP\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxFTP\libs\CFtpServer\CFtpServer.h">
+      <Filter>addons\ofxFTP\libs\CFtpServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxFTP\libs\CFtpServer\CFtpServerGlobal.h">
+      <Filter>addons\ofxFTP\libs\CFtpServer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

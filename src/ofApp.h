@@ -10,6 +10,7 @@
 #include "ofxXmlSettings.h"
 #include "ofxGifEncoder.h"
 #include "videoSlot.h"
+#include "ofxFTP.h"
 
 #if defined(TARGET_OPENGLES)
 class ofApp : public ofBaseApp, public KeyListener {
@@ -80,6 +81,7 @@ public:
 	void						saveGif();
 	ofxGifEncoder				colorGifEncoder;
 	void						onGifSaved(string & fileName);
+	string						gifFileName;
     int                         currentDisplaySlot;
 	ofImage						bkgLayer;
 	ofImage						sourisitepajoli;
@@ -88,5 +90,6 @@ public:
 	ofImage						un;
 	int							startSecond;
 	int							finalCountdown;
+	ofxFTPClient				ftpClient;
 };
 
