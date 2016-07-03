@@ -360,7 +360,8 @@ void ofApp::keyPressed(int key)
 				}
 				for (auto gifFile : gifValides) {
 					html << "<img src=\"gif/" << gifFile << "\" /><br />";
-					html << "<a href = \"http://www.facebook.com/share.php?u=http://videodromm.com/selfberry/" << gifFile << "\" target=\"_blank\"><button class=\"btn btn-social btn-facebook\"><span class =\"icon icon-facebook\"></span>Partager sur Facebook</button></a><br />";
+					html << "<a href=\"http://www.facebook.com/share.php?u=http://videodromm.com/selfberry/" << gifFile << ".html\" target=\"_blank\"><button class=\"btn btn-social btn-facebook\"><span class =\"icon icon-facebook\"></span>Partager sur Facebook</button></a>";
+					html << "<a href=\"https://twitter.com/home?status=#selfberry%20http://videodromm.com/selfberry/" << gifFile << ".html\">Twitter</a><br />";
 				}
 				html << "</body></html>";
 				// ecriture index.html
