@@ -276,9 +276,9 @@ void ofApp::draw() {
 			break;
 		}
 	}
-	qrcode.draw(914, 450);
+	qrcode.draw(10, 700 );//914, 450
 	if (doDrawInfo) {
-		ofDrawBitmapStringHighlight(info.str(), 50, 940, ofColor::black, ofColor::yellow);
+		ofDrawBitmapStringHighlight(info.str(), 950, 940, ofColor::black, ofColor::yellow);
 	}
 }
 void ofApp::fetch(const std::string& data, size_t size, size_t margin)
@@ -359,7 +359,8 @@ void ofApp::keyPressed(int key)
 					html << "<a href=\"" << i << ".html\">" << i << " </a>";
 				}
 				for (auto gifFile : gifValides) {
-					html << "<img src=\"gif/" << gifFile << "\" />";
+					html << "<img src=\"gif/" << gifFile << "\" /><br />";
+					html << "<a href = \"http://www.facebook.com/share.php?u=http://videodromm.com/selfberry/" << gifFile << "\" target=\"_blank\"><button class=\"btn btn-social btn-facebook\"><span class =\"icon icon-facebook\"></span>Partager sur Facebook</button></a><br />";
 				}
 				html << "</body></html>";
 				// ecriture index.html
@@ -369,13 +370,13 @@ void ofApp::keyPressed(int key)
 					// 
 					htmlFileName2 = gifFileName + ".html";
 					html2 << "<!DOCTYPE html><html><head><title>Selfberry</title><style>body{background-color: #111111;}</style></head><body>";
-					html2 << "<img src=\"gif/" << gifFileName << "\" />";
-					html2 << "<a href = \"http://www.facebook.com/share.php?u=http://videodromm.com/selfberry/" << htmlFileName2 << "\" target=\"_blank\"><button class=\"btn btn-social btn-facebook\"><span class =\"icon icon-facebook\"></span> Share on Facebook</button></a>";
+					html2 << "<img src=\"gif/" << gifFileName << "\" /><br />";
+					html2 << "<a href = \"http://www.facebook.com/share.php?u=http://videodromm.com/selfberry/" << htmlFileName2 << "\" target=\"_blank\"><button class=\"btn btn-social btn-facebook\"><span class =\"icon icon-facebook\"></span>Partager sur Facebook</button></a>";
 					html2 << "</body></html>";
 
 					ofBufferToFile(htmlFileName2, html2);
 					if (ftpClient.send(htmlFileName2, ofToDataPath(""), "/") > 0) {
-						fetch("videodromm.com/selfberry/" + htmlFileName2, 80, 1);
+						fetch("videodromm.com/selfberry/" + htmlFileName2, 300, 1);
 					}
 				}
 			}
