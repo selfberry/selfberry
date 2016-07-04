@@ -311,8 +311,8 @@ void ofApp::urlResponse(ofHttpResponse& response)
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key)
 {
-	stringstream html;
-	stringstream html2;
+	//stringstream html;
+	//stringstream html2;
 	string htmlFileName;
 	string htmlFileName2;
 	ofLogNotice("PRESSED KEY: " + ofToString(key));
@@ -354,6 +354,7 @@ void ofApp::keyPressed(int key)
 			if (ftpClient.send(gifFileName, ofToDataPath("gif"), "/gif/") > 0) {
 				ofLogNotice("Transfert ftp reussi\n" + gifFileName + ", creation fichier html");
 				gifValides.push_back(gifFileName);
+				ofFile html(htmlFileName, ofFile::WriteOnly);
 				html << "<!DOCTYPE html><html><head><title>Selfberry</title><meta http-equiv=\"refresh\" content=\"30\"><style>body{background-color: #111111;}</style></head><body>";
 				for (unsigned int i = 0; i < 60; i++) {
 					html << "<a href=\"" << i << ".html\">" << i << " </a>";
@@ -366,10 +367,12 @@ void ofApp::keyPressed(int key)
 				html << "</body></html>";
 				// ecriture index.html
 				htmlFileName = "index.html";
-				ofBufferToFile(htmlFileName, html);
+				// pas sur rpi.. ofBufferToFile(htmlFileName, html);
+
 				if (ftpClient.send(htmlFileName, ofToDataPath(""), "/") > 0) {
 					// 
 					htmlFileName2 = gifFileName + ".html";
+					ofFile html2(htmlFileName2, ofFile::WriteOnly);
 					html2 << "<!DOCTYPE html><html><head><title>Selfberry</title><style>body{background-color: #111111;}</style></head><body>";
 					html2 << "<img src=\"gif/" << gifFileName << "\" /><br />";
 					html2 << "<a href = \"http://www.facebook.com/share.php?u=http://videodromm.com/selfberry/" << htmlFileName2 << "\" target=\"_blank\"><button class=\"btn btn-social btn-facebook\"><span class =\"icon icon-facebook\"></span>Partager sur Facebook</button></a>";
