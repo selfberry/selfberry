@@ -253,7 +253,7 @@ void ofApp::draw() {
 	for (int i = 1; i < slotAmount; i++) {
 		videoGrid[i].draw();
 	}
-	videoGrid[2].drawAtOrigin();
+	//videoGrid[2].drawAtOrigin();
 	bkgLayer.draw(0, 0);
 	if (validationMode) {
 		valideLayer.draw(736, 580);
