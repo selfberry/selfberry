@@ -54,19 +54,18 @@ void main()
 {
 	if ( iEffect == 0 )
 	{
-		// https://www.shadertoy.com/view/Mlj3Dw
-
-		/*vec4 c = tex0;
-		uv.xy+=c.bg;//*(iMouse.x/iResolution.x-.5);
-		uv-=.5;
-		float a = atan(uv.y,uv.x);
-		float d = length(uv);
-		a+=c.r*(iMouse.y/iResolution.y-.5)*12.0;
-		uv.x = cos(a)*d;
-		uv.y = sin(a)*d;
-		uv+=.5;
-		c = texture2D(tex0,uv)*2.0;
-		gl_FragColor = vec4(c.rgb,1.0);*/
+		// https://www.shadertoy.com/view/ldX3Ds
+		float scaleX = 60.0;
+		vec2 scale = vec2(scaleX, scaleX / iResolution.x * iResolution.y);
+		float width = 0.3;
+		float scaleY = scaleX / iResolution.x * iResolution.y;
+		vec2 pos = fract(uv * scale);
+		vec2 coord = floor(uv * scale) / scale;
+		float xb = dot(texture2D(tex0, vec2(coord.x, uv.y)).xyz, vec3(1.0 / 3.0));
+		float yb = dot(texture2D(tex0, vec2(uv.x, coord.y)).xyz, vec3(1.0 / 3.0));
+		float lit = float(abs(pos.y - width / 2.0 - (1.0 - width) * yb) < width / 2.0 || abs(pos.x - width / 2.0 - (1.0 - width) * xb) < width / 2.0);
+		float b = (yb + xb) / 2.0;
+		gl_FragColor = vec4(0.0, lit * b + (1.0 - lit) * b * 0.3, 0.0, 1.0);
 	}
 	if ( iEffect == 1 )
 	{
