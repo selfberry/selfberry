@@ -56,7 +56,7 @@ void main()
 	{
 		// https://www.shadertoy.com/view/Mlj3Dw
 
-		vec4 c = tex0;
+		/*vec4 c = tex0;
 		uv.xy+=c.bg;//*(iMouse.x/iResolution.x-.5);
 		uv-=.5;
 		float a = atan(uv.y,uv.x);
@@ -66,7 +66,7 @@ void main()
 		uv.y = sin(a)*d;
 		uv+=.5;
 		c = texture2D(tex0,uv)*2.0;
-		gl_FragColor = vec4(c.rgb,1.0);
+		gl_FragColor = vec4(c.rgb,1.0);*/
 	}
 	if ( iEffect == 1 )
 	{
