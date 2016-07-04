@@ -169,6 +169,10 @@ void ofApp::update()
 					savedImage.setImageType(OF_IMAGE_COLOR);
 					savedImage.saveImage(path + filename);
 
+					//jpg 
+					if (indexSavedPhoto < 10) filename = "seq00" + ofToString(indexSavedPhoto) + ".jpg";
+					savedImage.saveImage(path + filename);
+
 					ofLogNotice("update() currentDisplaySlot " + ofToString(currentDisplaySlot));
 
 					savedImage.saveImage(bufferDir + "//" + filename);
