@@ -203,7 +203,7 @@ void ofApp::update()
 	}
 	for (i = 1; i < slotAmount; i++) {
 		videoGrid[i].loadFrameNumber(frameNumber);
-		ofLogNotice("loadFrameNumber: " + ofToString(frameNumber) + " slot " + ofToString(i));
+		//ofLogNotice("loadFrameNumber: " + ofToString(frameNumber) + " slot " + ofToString(i));
 	}
 	frameNumber++;
 	if (frameNumber == maxFrames) {
@@ -231,7 +231,7 @@ void ofApp::draw() {
 	stringstream info;
 	info << "VERT:changement de filtre ROUGE:enregistrer BLANC:annuler JAUNE:partager" << "\n";
 	info << "\n";
-	info << "APP FPS: " << ofToString(ofGetFrameRate()) << " sec: " << ofToString(ofGetSeconds()) << " st: " << ofToString(startSecond) << " fin: " << ofToString(finalCountdown) << " slot: " << ofToString(currentDisplaySlot) << " Effet: " << ofToString(iEffect) << "\n";
+	info << "sec: " << ofToString(ofGetSeconds()) << " st: " << ofToString(startSecond) << " fin: " << ofToString(finalCountdown) << " slot: " << ofToString(currentDisplaySlot) << " Effet: " << ofToString(iEffect) << "FPS: " << ofToString(ofGetFrameRate()) << "\n";
 
 	if (doShader)
 	{
@@ -257,7 +257,7 @@ void ofApp::draw() {
 
 	for (i = 1; i < slotAmount; i++) {
 		videoGrid[i].draw();
-		info << "d: " << i << "\n";
+		//info << "d: " << i << "\n";
 	}
 	//string filename = "slot2//seq002.tga";
 	//img.loadImage(filename);
