@@ -10,6 +10,7 @@ void ofApp::setup()
 
 	doDrawInfo = true;
 	validationMode = false;
+	showQrcode = false;
 	targetWidth = 640;
 	targetHeight = 480;
 #if defined(TARGET_OPENGLES)
@@ -266,8 +267,8 @@ void ofApp::draw() {
 	if (validationMode) {
 		valideLayer.draw(736, 580);
 	}
-	else {
-		if (!isRecording) qrcode.draw(860, 390);
+	if (showQrcode) {
+		qrcode.draw(860, 390);
 	}
 	if (isRecording) {
 		sourisitepajoli.draw(400, 0);
@@ -309,6 +310,7 @@ void ofApp::urlResponse(ofHttpResponse& response)
 		if (response.status == 200) {
 			qrcode.loadImage(response.data);
 			qrcode.saveImage("qrcode.jpg");
+			showQrcode = true;
 		}
 
 		ofUnregisterURLNotification(this);
@@ -334,6 +336,7 @@ void ofApp::keyPressed(int key)
 	case 13: //	Entree
 		if (!isRecording) {
 			isRecording = true;
+			showQrcode = false;
 			indexSavedPhoto = 0;
 			currentDisplaySlot++;
 			if (currentDisplaySlot > 3) currentDisplaySlot = 1;
