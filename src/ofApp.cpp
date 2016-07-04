@@ -224,7 +224,7 @@ void ofApp::draw() {
 
 	ofClear(0, 0, 0, 0);
 	stringstream info;
-	info << "VERT: changement de filtre ROUGE: enregistrer BLANC: annuler JAUNE: partager" << "\n";
+	info << "VERT:changement de filtre ROUGE:enregistrer BLANC:annuler JAUNE:partager" << "\n";
 	info << "\n";
 	info << "APP FPS: " << ofToString(ofGetFrameRate()) << " sec: " << ofToString(ofGetSeconds()) << " st: " << ofToString(startSecond) << " fin: " << ofToString(finalCountdown) << " slot: " << ofToString(currentDisplaySlot) << " Effet: " << ofToString(iEffect) << "\n";
 
@@ -253,9 +253,9 @@ void ofApp::draw() {
 	for (int i = 1; i < slotAmount; i++) {
 		videoGrid[i].draw();
 	}
-	string filename = "slot2//seq002.tga";
-	img.loadImage(filename);
-	img.draw(0, 0);
+	//string filename = "slot2//seq002.tga";
+	//img.loadImage(filename);
+	//img.draw(0, 0);
 	bkgLayer.draw(0, 0);
 	if (validationMode) {
 		valideLayer.draw(736, 580);
@@ -364,7 +364,7 @@ void ofApp::keyPressed(int key)
 				for (vector<string>::reverse_iterator gifFile = gifValides.rbegin(); gifFile != gifValides.rend(); ++gifFile) {
 					html << "<img src=\"gif/" << *gifFile << "\" /><br />";
 					html << "<a href=\"http://www.facebook.com/share.php?u=http://videodromm.com/selfberry/" << *gifFile << ".html\" target=\"_blank\"><button class=\"btn btn-social btn-facebook\"><span class =\"icon icon-facebook\"></span>Partager sur Facebook</button></a>";
-					html << "<a href=\"https://twitter.com/intent/tweet?text=#selfberry%20http://videodromm.com/selfberry/" << *gifFile << ".html\">Twitter</a><br />";			
+					html << "<a href=\"https://twitter.com/intent/tweet?text=http://videodromm.com/selfberry/" << *gifFile << ".html\">Twitter</a><br />";			
 				}
 				html << "</body></html>";
 				html.close();
