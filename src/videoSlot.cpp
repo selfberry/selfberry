@@ -21,7 +21,7 @@ void videoSlot::init(int idNumber, int xx, int yy, std::string* directoreee, int
 void videoSlot::loadFrameNumber(int numbah) {
 	std::string filename;
 
-	if (numbah < 10) filename = dirString + "/seq00" + ofToString(numbah) + ".tga";
+	if (numbah < 10) filename = ofToString(numbah) + ".tga";
 	if (numbah >= 10 && numbah < 100) filename = dirString + "//seq0" + ofToString(numbah) + ".tga";
 	if (numbah >= 100 && numbah < 1000) filename = dirString + "//seq" + ofToString(numbah) + ".tga";
 

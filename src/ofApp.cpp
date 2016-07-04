@@ -201,7 +201,7 @@ void ofApp::update()
 		}
 
 	}
-	for (i = 0; i < slotAmount; i++) {
+	for (i = 1; i < slotAmount; i++) {
 		videoGrid[i].loadFrameNumber(frameNumber);
 		ofLogNotice("loadFrameNumber: " + ofToString(frameNumber) + " slot " + ofToString(i));
 	}
@@ -255,7 +255,7 @@ void ofApp::draw() {
 	info << "FILTRE: " << filterCollection.getCurrentFilterName() << "\n";
 #endif
 
-	for (i = 0; i < slotAmount; i++) {
+	for (i = 1; i < slotAmount; i++) {
 		videoGrid[i].draw();
 		info << "d: " << i << "\n";
 	}
