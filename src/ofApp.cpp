@@ -87,7 +87,7 @@ void ofApp::setup()
 	lastSpot = 0;
 	currentDisplaySlot = 1;
 	bkgLayer.loadImage("ui.png");
-	valideLayer.loadImage("valide.png");
+	valideLayer.loadImage("partage.png");
 	sourisitepajoli.loadImage("sourisitepajoli.png");
 	trois.loadImage("trois.png");
 	deux.loadImage("deux.png");
@@ -224,8 +224,9 @@ void ofApp::draw() {
 
 	ofClear(0, 0, 0, 0);
 	stringstream info;
-	info << "APP FPS: " << ofToString(ofGetFrameRate()) << " sec: " << ofToString(ofGetSeconds()) << " st: " << ofToString(startSecond) << " fin: " << ofToString(finalCountdown) << "\n";
-	info << "SHADER ENABLED: " << doShader << " Display slot: " << ofToString(currentDisplaySlot) << " Effet: " << ofToString(iEffect) << "\n";
+	info << "VERT: changement de filtre ROUGE: enregistrer BLANC: annuler JAUNE: partager" << "\n";
+	info << "\n";
+	info << "APP FPS: " << ofToString(ofGetFrameRate()) << " sec: " << ofToString(ofGetSeconds()) << " st: " << ofToString(startSecond) << " fin: " << ofToString(finalCountdown) << " slot: " << ofToString(currentDisplaySlot) << " Effet: " << ofToString(iEffect) << "\n";
 
 	if (doShader)
 	{
@@ -251,11 +252,12 @@ void ofApp::draw() {
 	info << "FILTRE: " << filterCollection.getCurrentFilterName() << "\n";
 #endif
 
-	info << "\n";
-	info << "VERT: changement de filtre ROUGE: enregistrer BLANC: annuler JAUNE: partager" << "\n";
 	bkgLayer.draw(0, 0);
 	if (validationMode) {
-		valideLayer.draw(10, 10);
+		valideLayer.draw(736, 580);
+	}
+	else {
+		qrcode.draw(10, 940);//914, 450
 	}
 	if (isRecording) {
 		sourisitepajoli.draw(400, 0);
@@ -271,7 +273,6 @@ void ofApp::draw() {
 			break;
 		}
 	}
-	qrcode.draw(10, 940 );//914, 450
 	if (doDrawInfo) {
 		ofDrawBitmapStringHighlight(info.str(), 1350, 1016, ofColor::black, ofColor::yellow);
 	}
@@ -356,7 +357,7 @@ void ofApp::keyPressed(int key)
 				/*for (unsigned int i = 0; i < 60; i++) {
 					html << "<a href=\"" << i << ".html\">" << i << " </a>"; for (auto gifFile : gifValides) {
 				}*/
-				for (vector<string>::reverse_iterator gifFile = gifValides.rbegin(); gifFile != gifValides.rend(); ++gifFile) {		
+				for (vector<string>::reverse_iterator gifFile = gifValides.rbegin(); gifFile != gifValides.rend(); ++gifFile) {
 					html << "<img src=\"gif/" << *gifFile << "\" /><br />";
 					html << "<a href=\"http://www.facebook.com/share.php?u=http://videodromm.com/selfberry/" << *gifFile << ".html\" target=\"_blank\"><button class=\"btn btn-social btn-facebook\"><span class =\"icon icon-facebook\"></span>Partager sur Facebook</button></a>";
 					html << "<a href=\"https://twitter.com/home?status=#selfberry%20http://videodromm.com/selfberry/" << *gifFile << ".html\">Twitter</a><br />";
