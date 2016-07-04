@@ -362,7 +362,11 @@ void ofApp::keyPressed(int key)
 				for (vector<string>::reverse_iterator gifFile = gifValides.rbegin(); gifFile != gifValides.rend(); ++gifFile) {
 					html << "<img src=\"gif/" << *gifFile << "\" /><br />";
 					html << "<a href=\"http://www.facebook.com/share.php?u=http://videodromm.com/selfberry/" << *gifFile << ".html\" target=\"_blank\"><button class=\"btn btn-social btn-facebook\"><span class =\"icon icon-facebook\"></span>Partager sur Facebook</button></a>";
-					html << "<a href=\"https://twitter.com/home?status=#selfberry%20http://videodromm.com/selfberry/" << *gifFile << ".html\">Twitter</a><br />";
+					html << "<a href=\"https://twitter.com/intent/tweet?text=#selfberry%20http://videodromm.com/selfberry/" << *gifFile << ".html\">Twitter</a><br />";
+
+					<a class = "twitter-share-button"
+						href = "https://twitter.com/intent/tweet?text=Hello%20world">
+						Tweet< / a>
 				}
 				html << "</body></html>";
 				html.close();
