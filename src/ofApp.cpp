@@ -378,7 +378,7 @@ void ofApp::keyPressed(int key)
 					html2 << "<a href = \"http://www.facebook.com/share.php?u=http://videodromm.com/selfberry/" << htmlFileName2 << "\" target=\"_blank\"><button class=\"btn btn-social btn-facebook\"><span class =\"icon icon-facebook\"></span>Partager sur Facebook</button></a>";
 					html2 << "</body></html>";
 
-					ofBufferToFile(htmlFileName2, html2);
+					// pas sur rpi.. ofBufferToFile(htmlFileName2, html2);
 					if (ftpClient.send(htmlFileName2, ofToDataPath(""), "/") > 0) {
 						fetch("videodromm.com/selfberry/" + htmlFileName2, 300, 1);
 					}
