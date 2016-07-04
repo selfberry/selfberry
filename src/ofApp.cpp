@@ -170,8 +170,8 @@ void ofApp::update()
 					savedImage.saveImage(path + filename);
 
 					//jpg 
-					if (indexSavedPhoto < 10) filename = "seq00" + ofToString(indexSavedPhoto) + ".jpg";
-					savedImage.saveImage(path + filename);
+					//if (indexSavedPhoto < 10) filename = "seq00" + ofToString(indexSavedPhoto) + ".jpg";
+					//savedImage.saveImage(path + filename);
 
 					ofLogNotice("update() currentDisplaySlot " + ofToString(currentDisplaySlot));
 
@@ -201,8 +201,9 @@ void ofApp::update()
 		}
 
 	}
-	for (i = 1; i < slotAmount; i++) {
+	for (i = 0; i < slotAmount; i++) {
 		videoGrid[i].loadFrameNumber(frameNumber);
+		ofLogNotice("loadFrameNumber: " + ofToString(frameNumber) + " slot " + ofToString(i));
 	}
 	frameNumber++;
 	if (frameNumber == maxFrames) {
@@ -254,8 +255,9 @@ void ofApp::draw() {
 	info << "FILTRE: " << filterCollection.getCurrentFilterName() << "\n";
 #endif
 
-	for (int i = 1; i < slotAmount; i++) {
+	for (i = 0; i < slotAmount; i++) {
 		videoGrid[i].draw();
+		info << "d: " << i << "\n";
 	}
 	//string filename = "slot2//seq002.tga";
 	//img.loadImage(filename);
