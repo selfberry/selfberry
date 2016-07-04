@@ -55,8 +55,8 @@ void main()
 	if ( iEffect == 0 )
 	{
 		// https://www.shadertoy.com/view/Mlj3Dw
-		vec4 c = tex0;
 
+		vec4 c = tex0;
 		uv.xy+=c.bg;//*(iMouse.x/iResolution.x-.5);
 		uv-=.5;
 		float a = atan(uv.y,uv.x);
