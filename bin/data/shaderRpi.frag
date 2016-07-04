@@ -52,6 +52,8 @@ uniform float			iPixelate;
 
 void main()
 {
+	vec2 uv = gl_FragCoord.xy / iResolution.xy;
+
 	if ( iEffect == 0 )
 	{
 		// https://www.shadertoy.com/view/ldX3Ds
