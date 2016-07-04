@@ -353,20 +353,21 @@ void ofApp::keyPressed(int key)
 		if (gifFileName.length() > 0) {
 			if (ftpClient.send(gifFileName, ofToDataPath("gif"), "/gif/") > 0) {
 				ofLogNotice("Transfert ftp reussi\n" + gifFileName + ", creation fichier html");
+				// ecriture index.html
+				htmlFileName = "index.html";
 				gifValides.push_back(gifFileName);
 				ofFile html(htmlFileName, ofFile::WriteOnly);
 				html << "<!DOCTYPE html><html><head><title>Selfberry</title><meta http-equiv=\"refresh\" content=\"30\"><style>body{background-color: #111111;}</style></head><body>";
-				for (unsigned int i = 0; i < 60; i++) {
+				/*for (unsigned int i = 0; i < 60; i++) {
 					html << "<a href=\"" << i << ".html\">" << i << " </a>";
-				}
+				}*/
 				for (auto gifFile : gifValides) {
 					html << "<img src=\"gif/" << gifFile << "\" /><br />";
 					html << "<a href=\"http://www.facebook.com/share.php?u=http://videodromm.com/selfberry/" << gifFile << ".html\" target=\"_blank\"><button class=\"btn btn-social btn-facebook\"><span class =\"icon icon-facebook\"></span>Partager sur Facebook</button></a>";
 					html << "<a href=\"https://twitter.com/home?status=#selfberry%20http://videodromm.com/selfberry/" << gifFile << ".html\">Twitter</a><br />";
 				}
 				html << "</body></html>";
-				// ecriture index.html
-				htmlFileName = "index.html";
+				html.close();
 				// pas sur rpi.. ofBufferToFile(htmlFileName, html);
 
 				if (ftpClient.send(htmlFileName, ofToDataPath(""), "/") > 0) {
@@ -377,7 +378,7 @@ void ofApp::keyPressed(int key)
 					html2 << "<img src=\"gif/" << gifFileName << "\" /><br />";
 					html2 << "<a href = \"http://www.facebook.com/share.php?u=http://videodromm.com/selfberry/" << htmlFileName2 << "\" target=\"_blank\"><button class=\"btn btn-social btn-facebook\"><span class =\"icon icon-facebook\"></span>Partager sur Facebook</button></a>";
 					html2 << "</body></html>";
-
+					html2.close();
 					// pas sur rpi.. ofBufferToFile(htmlFileName2, html2);
 					if (ftpClient.send(htmlFileName2, ofToDataPath(""), "/") > 0) {
 						fetch("videodromm.com/selfberry/" + htmlFileName2, 300, 1);

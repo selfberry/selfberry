@@ -55,11 +55,18 @@ void main()
 {
 	if ( iEffect == 0 )
 	{
-		gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
-	}
-	if ( iEffect == 2 )
-	{
-		gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0);
+		// https://www.shadertoy.com/view/Mlj3Dw
+		vec4 c = tex0;
+		uv.xy+=c.bg;//*(iMouse.x/iResolution.x-.5);
+		uv-=.5;
+		float a = atan(uv.y,uv.x);
+		float d = length(uv);
+		a+=c.r*(iMouse.y/iResolution.y-.5)*12.0;
+		uv.x = cos(a)*d;
+		uv.y = sin(a)*d;
+		uv+=.5;
+		c = texture2D(iChannel0,uv)*2.0;
+		gl_FragColor = vec4(c.rgb,1.0);
 	}
 	if ( iEffect == 1 )
 	{
@@ -84,6 +91,20 @@ void main()
 		mediump vec4 outColor = vec4( colorR, colorG, colorB, colorA);
 
 		gl_FragColor = outColor;
+	}
+	if ( iEffect == 2 )
+	{
+		// https://www.shadertoy.com/view/llS3Rc
+		vec2 p = (vec2(iResolution.x-gl_FragCoord.x, gl_FragCoord.y) / iResolution.xy);
+		float speed = 2.;
+		float pixelId = mod(floor(gl_FragCoord.x),2.) + 2.0 * mod(floor(gl_FragCoord.y),2.);
+		float timeId = mod(floor(iDate.w*speed),4.0);
+		if(pixelId != timeId) discard;
+		if(timeId == 3.) {
+			gl_FragColor = texture2D(tex0, p ) * 1.4;
+		} else {    
+			gl_FragColor = texture2D(tex0, p ) * 1.4 * vec4(timeId==0.?0.:1.,timeId==1.?0.:1.,timeId==2.?0.:1.,1.);
+		}
 	}
 
 }
