@@ -257,7 +257,7 @@ void ofApp::draw() {
 		valideLayer.draw(736, 580);
 	}
 	else {
-		qrcode.draw(10, 940);//914, 450
+		if (!isRecording) qrcode.draw(860, 390);
 	}
 	if (isRecording) {
 		sourisitepajoli.draw(400, 0);
