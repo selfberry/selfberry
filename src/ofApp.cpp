@@ -255,7 +255,7 @@ void ofApp::draw() {
 	info << "VERT: changement de filtre ROUGE: enregistrer BLANC: annuler JAUNE: partager" << "\n";
 	bkgLayer.draw(0, 0);
 	if (validationMode) {
-		valideLayer.draw(0, 0);
+		valideLayer.draw(10, 10);
 	}
 	if (isRecording) {
 		sourisitepajoli.draw(400, 0);
@@ -271,9 +271,9 @@ void ofApp::draw() {
 			break;
 		}
 	}
-	qrcode.draw(10, 700 );//914, 450
+	qrcode.draw(10, 940 );//914, 450
 	if (doDrawInfo) {
-		ofDrawBitmapStringHighlight(info.str(), 1350, 1100, ofColor::black, ofColor::yellow);
+		ofDrawBitmapStringHighlight(info.str(), 1350, 1016, ofColor::black, ofColor::yellow);
 	}
 }
 void ofApp::fetch(const std::string& data, size_t size, size_t margin)
@@ -376,7 +376,7 @@ void ofApp::keyPressed(int key)
 					html2.close();
 					// pas sur rpi.. ofBufferToFile(htmlFileName2, html2);
 					if (ftpClient.send(htmlFileName2, ofToDataPath(""), "/") > 0) {
-						fetch("videodromm.com/selfberry/" + htmlFileName2, 300, 1);
+						fetch("videodromm.com/selfberry/" + htmlFileName2, 200, 1);
 					}
 				}
 			}

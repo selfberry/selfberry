@@ -56,18 +56,7 @@ void main()
 
 	if ( iEffect == 0 )
 	{
-		// https://www.shadertoy.com/view/ldX3Ds
-		float scaleX = 60.0;
-		vec2 scale = vec2(scaleX, scaleX / iResolution.x * iResolution.y);
-		float width = 0.3;
-		float scaleY = scaleX / iResolution.x * iResolution.y;
-		vec2 pos = fract(uv * scale);
-		vec2 coord = floor(uv * scale) / scale;
-		float xb = dot(texture2D(tex0, vec2(coord.x, uv.y)).xyz, vec3(1.0 / 3.0));
-		float yb = dot(texture2D(tex0, vec2(uv.x, coord.y)).xyz, vec3(1.0 / 3.0));
-		float lit = float(abs(pos.y - width / 2.0 - (1.0 - width) * yb) < width / 2.0 || abs(pos.x - width / 2.0 - (1.0 - width) * xb) < width / 2.0);
-		float b = (yb + xb) / 2.0;
-		gl_FragColor = vec4(0.0, lit * b + (1.0 - lit) * b * 0.3, 0.0, 1.0);
+		gl_FragColor = texture2D(tex0, texcoord0);
 	}
 	if ( iEffect == 1 )
 	{
@@ -96,17 +85,8 @@ void main()
 	}
 	if ( iEffect == 2 )
 	{
-		// https://www.shadertoy.com/view/llS3Rc
-		vec2 p = (vec2(iResolution.x-gl_FragCoord.x, gl_FragCoord.y) / iResolution.xy);
-		float speed = 2.;
-		float pixelId = mod(floor(gl_FragCoord.x),2.) + 2.0 * mod(floor(gl_FragCoord.y),2.);
-		float timeId = mod(floor(iDate.w*speed),4.0);
-		if(pixelId != timeId) discard;
-		//if(timeId == 3.) {
-			gl_FragColor = texture2D(tex0, p ) * 1.4;
-		/*} else {    
-			gl_FragColor = texture2D(tex0, p ) * 1.4 * vec4(timeId==0.?0.:1.,timeId==1.?0.:1.,timeId==2.?0.:1.,1.);
-		}*/
+		vec4 texColor = texture2D(tex0, texcoord0);  
+		gl_FragColor = vec4(1.0-texColor.r, 1.0-texColor.g, 1.0-texColor.b, texColor.a);
 	}
 
 }

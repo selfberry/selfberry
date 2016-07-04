@@ -95,9 +95,7 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);..\..\..\addons\ofxNetwork\src;..\..\..\addons\ofxThreadedImageLoader\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxGifEncoder\src;C:\cpp\openFrameworks\addons\ofxVideodromm\src;
-C:\cpp\openFrameworks\addons\ofxFTP\src;
-C:\cpp\openFrameworks\addons\ofxFTP\libs\CFtpServer</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);..\..\..\addons\ofxNetwork\src;..\..\..\addons\ofxThreadedImageLoader\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxGifEncoder\src;..\..\..\addons\ofxVideodromm\src;..\..\..\addons\ofxFTP\src;..\..\..\addons\ofxFTP\libs\CFtpServer</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
@@ -135,9 +133,7 @@ C:\cpp\openFrameworks\addons\ofxFTP\libs\CFtpServer;%(AdditionalIncludeDirectori
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);..\..\..\addons\ofxNetwork\src;..\..\..\addons\ofxThreadedImageLoader\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxGifEncoder\src;C:\cpp\openFrameworks\addons\ofxVideodromm\src;
-C:\cpp\openFrameworks\addons\ofxFTP\src;
-C:\cpp\openFrameworks\addons\ofxFTP\libs\CFtpServer</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);..\..\..\addons\ofxNetwork\src;..\..\..\addons\ofxThreadedImageLoader\src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxGifEncoder\src;..\..\..\addons\ofxVideodromm\src;..\..\..\addons\ofxFTP\src;..\..\..\addons\ofxFTP\libs\CFtpServer</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
