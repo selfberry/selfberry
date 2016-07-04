@@ -225,9 +225,7 @@ void ofApp::draw() {
 	ofClear(0, 0, 0, 0);
 	stringstream info;
 	info << "APP FPS: " << ofToString(ofGetFrameRate()) << " sec: " << ofToString(ofGetSeconds()) << " st: " << ofToString(startSecond) << " fin: " << ofToString(finalCountdown) << "\n";
-	info << "SHADER ENABLED: " << doShader << "\n";
-	info << "Display slot: " << ofToString(currentDisplaySlot) << "\n";
-	info << "Effet: " << ofToString(iEffect) << "\n";
+	info << "SHADER ENABLED: " << doShader << " Display slot: " << ofToString(currentDisplaySlot) << " Effet: " << ofToString(iEffect) << "\n";
 
 	if (doShader)
 	{
@@ -254,10 +252,7 @@ void ofApp::draw() {
 #endif
 
 	info << "\n";
-	info << "VERT: changement de filtre" << "\n";
-	info << "ROUGE: enregistrer" << "\n";
-	info << "BLANC: annuler" << "\n";
-	info << "JAUNE: partager" << "\n";
+	info << "VERT: changement de filtre ROUGE: enregistrer BLANC: annuler JAUNE: partager" << "\n";
 	bkgLayer.draw(0, 0);
 	if (validationMode) {
 		valideLayer.draw(0, 0);
@@ -359,12 +354,12 @@ void ofApp::keyPressed(int key)
 				ofFile html(htmlFileName, ofFile::WriteOnly);
 				html << "<!DOCTYPE html><html><head><title>Selfberry</title><meta http-equiv=\"refresh\" content=\"30\"><style>body{background-color: #111111;}</style></head><body>";
 				/*for (unsigned int i = 0; i < 60; i++) {
-					html << "<a href=\"" << i << ".html\">" << i << " </a>";
+					html << "<a href=\"" << i << ".html\">" << i << " </a>"; for (auto gifFile : gifValides) {
 				}*/
-				for (auto gifFile : gifValides) {
-					html << "<img src=\"gif/" << gifFile << "\" /><br />";
-					html << "<a href=\"http://www.facebook.com/share.php?u=http://videodromm.com/selfberry/" << gifFile << ".html\" target=\"_blank\"><button class=\"btn btn-social btn-facebook\"><span class =\"icon icon-facebook\"></span>Partager sur Facebook</button></a>";
-					html << "<a href=\"https://twitter.com/home?status=#selfberry%20http://videodromm.com/selfberry/" << gifFile << ".html\">Twitter</a><br />";
+				for (vector<string>::reverse_iterator gifFile = gifValides.rbegin(); gifFile != gifValides.rend(); ++gifFile) {		
+					html << "<img src=\"gif/" << *gifFile << "\" /><br />";
+					html << "<a href=\"http://www.facebook.com/share.php?u=http://videodromm.com/selfberry/" << *gifFile << ".html\" target=\"_blank\"><button class=\"btn btn-social btn-facebook\"><span class =\"icon icon-facebook\"></span>Partager sur Facebook</button></a>";
+					html << "<a href=\"https://twitter.com/home?status=#selfberry%20http://videodromm.com/selfberry/" << *gifFile << ".html\">Twitter</a><br />";
 				}
 				html << "</body></html>";
 				html.close();
