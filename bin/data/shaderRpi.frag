@@ -56,17 +56,16 @@ void main()
 	if ( iEffect == 0 )
 	{
 		// https://www.shadertoy.com/view/Mlj3Dw
-		vec4 c = tex0;
-		uv.xy+=c.bg;//*(iMouse.x/iResolution.x-.5);
+		uv.xy+=tex0.bg;//*(iMouse.x/iResolution.x-.5);
 		uv-=.5;
 		float a = atan(uv.y,uv.x);
 		float d = length(uv);
-		a+=c.r*(iMouse.y/iResolution.y-.5)*12.0;
+		a+=tex0.r*(iMouse.y/iResolution.y-.5)*12.0;
 		uv.x = cos(a)*d;
 		uv.y = sin(a)*d;
 		uv+=.5;
-		c = texture2D(iChannel0,uv)*2.0;
-		gl_FragColor = vec4(c.rgb,1.0);
+		tex0 = texture2D(iChannel0,uv)*2.0;
+		gl_FragColor = vec4(tex0.rgb,1.0);
 	}
 	if ( iEffect == 1 )
 	{

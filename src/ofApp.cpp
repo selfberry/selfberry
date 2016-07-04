@@ -278,7 +278,7 @@ void ofApp::draw() {
 	}
 	qrcode.draw(10, 700 );//914, 450
 	if (doDrawInfo) {
-		ofDrawBitmapStringHighlight(info.str(), 950, 940, ofColor::black, ofColor::yellow);
+		ofDrawBitmapStringHighlight(info.str(), 1400, 940, ofColor::black, ofColor::yellow);
 	}
 }
 void ofApp::fetch(const std::string& data, size_t size, size_t margin)
