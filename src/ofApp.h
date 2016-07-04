@@ -90,6 +90,7 @@ public:
 	ofImage						deux;
 	ofImage						un;
 	ofImage						valideLayer;
+	//ofImage						img;
 	int							startSecond;
 	int							finalCountdown;
 	ofxFTPClient				ftpClient;

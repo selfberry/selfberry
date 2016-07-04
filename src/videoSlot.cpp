@@ -26,7 +26,7 @@ void videoSlot::loadFrameNumber(int numbah) {
 	if (numbah >= 100 && numbah < 1000) filename = dirString + "//seq" + ofToString(numbah) + ".tga";
 
 	img.loadImage(filename);
-	//ofLogNotice("load: "+ofToString(numbah)+":"+filename);
+	ofLogNotice("load: "+ofToString(numbah)+":"+filename);
 
 }
 

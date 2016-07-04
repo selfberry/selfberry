@@ -244,14 +244,16 @@ void ofApp::draw() {
 		videoGrabber.draw(330, 13);
 #endif
 	}
-	for (int i = 1; i < slotAmount; i++) {
-		videoGrid[i].draw();
-	}
+
 #if defined(TARGET_OPENGLES)
 	info << "Resolution Camera: " << videoGrabber.getWidth() << "x" << videoGrabber.getHeight() << " @ " << videoGrabber.getFrameRate() << "FPS" << "\n";
 	info << "FILTRE: " << filterCollection.getCurrentFilterName() << "\n";
 #endif
 
+	for (int i = 1; i < slotAmount; i++) {
+		videoGrid[i].draw();
+	}
+	videoGrid[2].drawAtOrigin();
 	bkgLayer.draw(0, 0);
 	if (validationMode) {
 		valideLayer.draw(736, 580);
@@ -274,7 +276,7 @@ void ofApp::draw() {
 		}
 	}
 	if (doDrawInfo) {
-		ofDrawBitmapStringHighlight(info.str(), 1350, 1016, ofColor::black, ofColor::yellow);
+		ofDrawBitmapStringHighlight(info.str(), 5, 1016, ofColor::black, ofColor::yellow);
 	}
 }
 void ofApp::fetch(const std::string& data, size_t size, size_t margin)
