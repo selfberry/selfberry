@@ -383,6 +383,7 @@ void ofApp::keyPressed(int key)
 					html2 << "<!DOCTYPE html><html><head><title>Selfberry</title><style>body{background-color: #111111;}</style></head><body>";
 					html2 << "<img src=\"gif/" << gifFileName << "\" /><br />";
 					html2 << "<a href = \"http://www.facebook.com/share.php?u=http://videodromm.com/selfberry/" << htmlFileName2 << "\" target=\"_blank\"><button class=\"btn btn-social btn-facebook\"><span class =\"icon icon-facebook\"></span>Partager sur Facebook</button></a>";
+					html2 << "<a href=\"https://twitter.com/intent/tweet?text=http://videodromm.com/selfberry/" << htmlFileName2 << ".html\">Twitter</a><br />";
 					html2 << "</body></html>";
 					html2.close();
 					// pas sur rpi.. ofBufferToFile(htmlFileName2, html2);
