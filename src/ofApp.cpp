@@ -224,6 +224,7 @@ void ofApp::onGifSaved(string & fileName) {
 	colorGifEncoder.reset();
 	ofLogNotice("onGifSaved reset");
 	validationMode = true;
+	ftpTransfer();
 }
 //--------------------------------------------------------------
 void ofApp::draw() {
@@ -316,13 +317,49 @@ void ofApp::urlResponse(ofHttpResponse& response)
 		ofUnregisterURLNotification(this);
 	}
 }
+void ofApp::ftpTransfer() {
+	string htmlFileName;
+	string htmlFileName2;
+	if (gifFileName.length() > 0) {
+		if (ftpClient.send(gifFileName, ofToDataPath("gif"), "/gif/") > 0) {
+			ofLogNotice("Transfert ftp reussi\n" + gifFileName + ", creation fichier html");
+			// ecriture index.html
+			htmlFileName = "index.html";
+			gifValides.push_back(gifFileName);
+			ofFile html(htmlFileName, ofFile::WriteOnly);
+			html << "<!DOCTYPE html><html><head><title>Selfberry</title><meta http-equiv=\"refresh\" content=\"30\"><style>body{background-color: #111111;}</style></head><body>";
+
+			for (vector<string>::reverse_iterator gifFile = gifValides.rbegin(); gifFile != gifValides.rend(); ++gifFile) {
+				html << "<img src=\"gif/" << *gifFile << "\" /><br />";
+				html << "<a href=\"http://www.facebook.com/share.php?u=http://videodromm.com/selfberry/" << *gifFile << ".html\" target=\"_blank\"><button class=\"btn btn-social btn-facebook\"><span class =\"icon icon-facebook\"></span>Partager sur Facebook</button></a>";
+				html << "<a href=\"https://twitter.com/intent/tweet?text=http://videodromm.com/selfberry/" << *gifFile << ".html\">Twitter</a><br />";
+			}
+			html << "</body></html>";
+			html.close();
+
+			if (ftpClient.send(htmlFileName, ofToDataPath(""), "/") > 0) {
+				// 
+				htmlFileName2 = gifFileName + ".html";
+				ofFile html2(htmlFileName2, ofFile::WriteOnly);
+				html2 << "<!DOCTYPE html><html><head><title>Selfberry</title><style>body{background-color: #111111;}</style></head><body>";
+				html2 << "<img src=\"gif/" << gifFileName << "\" /><br />";
+				html2 << "<a href = \"http://www.facebook.com/share.php?u=http://videodromm.com/selfberry/" << htmlFileName2 << "\" target=\"_blank\"><button class=\"btn btn-social btn-facebook\"><span class =\"icon icon-facebook\"></span>Partager sur Facebook</button></a>";
+				html2 << "<a href=\"https://twitter.com/intent/tweet?text=http://videodromm.com/selfberry/" << htmlFileName2 << ".html\">Twitter</a><br />";
+				html2 << "</body></html>";
+				html2.close();
+				if (ftpClient.send(htmlFileName2, ofToDataPath(""), "/") > 0) {
+					fetch("videodromm.com/selfberry/" + htmlFileName2, 200, 1);
+				}
+			}
+		}
+	}
+	validationMode = false;
+
+}
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key)
 {
-	//stringstream html;
-	//stringstream html2;
-	string htmlFileName;
-	string htmlFileName2;
+
 	ofLogNotice("PRESSED KEY: " + ofToString(key));
 
 	switch (key) {
@@ -359,43 +396,7 @@ void ofApp::keyPressed(int key)
 	case 86: // V		
 		validationMode = false;
 		iEffect = 1;
-		if (gifFileName.length() > 0) {
-			if (ftpClient.send(gifFileName, ofToDataPath("gif"), "/gif/") > 0) {
-				ofLogNotice("Transfert ftp reussi\n" + gifFileName + ", creation fichier html");
-				// ecriture index.html
-				htmlFileName = "index.html";
-				gifValides.push_back(gifFileName);
-				ofFile html(htmlFileName, ofFile::WriteOnly);
-				html << "<!DOCTYPE html><html><head><title>Selfberry</title><meta http-equiv=\"refresh\" content=\"30\"><style>body{background-color: #111111;}</style></head><body>";
-				/*for (unsigned int i = 0; i < 60; i++) {
-					html << "<a href=\"" << i << ".html\">" << i << " </a>"; for (auto gifFile : gifValides) {
-				}*/
-				for (vector<string>::reverse_iterator gifFile = gifValides.rbegin(); gifFile != gifValides.rend(); ++gifFile) {
-					html << "<img src=\"gif/" << *gifFile << "\" /><br />";
-					html << "<a href=\"http://www.facebook.com/share.php?u=http://videodromm.com/selfberry/" << *gifFile << ".html\" target=\"_blank\"><button class=\"btn btn-social btn-facebook\"><span class =\"icon icon-facebook\"></span>Partager sur Facebook</button></a>";
-					html << "<a href=\"https://twitter.com/intent/tweet?text=http://videodromm.com/selfberry/" << *gifFile << ".html\">Twitter</a><br />";			
-				}
-				html << "</body></html>";
-				html.close();
-				// pas sur rpi.. ofBufferToFile(htmlFileName, html);
 
-				if (ftpClient.send(htmlFileName, ofToDataPath(""), "/") > 0) {
-					// 
-					htmlFileName2 = gifFileName + ".html";
-					ofFile html2(htmlFileName2, ofFile::WriteOnly);
-					html2 << "<!DOCTYPE html><html><head><title>Selfberry</title><style>body{background-color: #111111;}</style></head><body>";
-					html2 << "<img src=\"gif/" << gifFileName << "\" /><br />";
-					html2 << "<a href = \"http://www.facebook.com/share.php?u=http://videodromm.com/selfberry/" << htmlFileName2 << "\" target=\"_blank\"><button class=\"btn btn-social btn-facebook\"><span class =\"icon icon-facebook\"></span>Partager sur Facebook</button></a>";
-					html2 << "<a href=\"https://twitter.com/intent/tweet?text=http://videodromm.com/selfberry/" << htmlFileName2 << ".html\">Twitter</a><br />";
-					html2 << "</body></html>";
-					html2.close();
-					// pas sur rpi.. ofBufferToFile(htmlFileName2, html2);
-					if (ftpClient.send(htmlFileName2, ofToDataPath(""), "/") > 0) {
-						fetch("videodromm.com/selfberry/" + htmlFileName2, 200, 1);
-					}
-				}
-			}
-		}
 		break;
 	case 66: // bleu 66 0		
 	case 112: // p		

@@ -94,11 +94,13 @@ public:
 	int							startSecond;
 	int							finalCountdown;
 	ofxFTPClient				ftpClient;
+	void						ftpTransfer();
 	bool						validationMode;
 	// qrcode
 	void						fetch(const std::string& data, size_t size = 320, size_t margin = 1);
 	void						urlResponse(ofHttpResponse& response);
 	ofImage						qrcode;
 	bool						showQrcode;
+
 };
 
