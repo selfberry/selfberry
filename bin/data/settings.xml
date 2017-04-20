@@ -1,9 +1,11 @@
 <settings>
+<targetWidth>320</targetWidth>
+<targetHeight>240</targetHeight>
 <fullScreen>0</fullScreen>
 <cameraId>0</cameraId>
 <log>1</log>
 <frameAmount>10</frameAmount>
-<fps>25</fps>
+<fps>15</fps>
 
 <ui>ui.png</ui>
 <fonts>monot.ttf</fonts>

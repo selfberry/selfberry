@@ -5,19 +5,28 @@ void ofApp::setup()
 {
 	ofSetLogLevel(OF_LOG_VERBOSE);
 	ofSetLogLevel("ofThread", OF_LOG_ERROR);
-
+	ofLog() << "setup";
 	ofEnableAlphaBlending();
 
 	doDrawInfo = true;
 	validationMode = false;
 	showQrcode = false;
-	targetWidth = 640;
-	targetHeight = 480;
+	// load settings.xml
+	if (settings.loadFile("settings.xml") == false) {
+		ofLog() << "XML ERROR, possibly quit";
+	}
+	settings.pushTag("settings");
+	targetWidth = settings.getValue("targetWidth", 640);
+	targetHeight = settings.getValue("targetHeight", 480);
+	fps = settings.getValue("fps", 15);
+	ofLog() << "tw: " << ofToString(targetWidth) << " th: " << ofToString(targetHeight) << " fps: " << ofToString(fps);
+	ofLogNotice("targetWidth: " + ofToString(targetWidth) + " targetHeight: " + ofToString(targetHeight) + " fps: " + ofToString(fps));
+
 #if defined(TARGET_OPENGLES)
 	consoleListener.setup(this);
 	omxCameraSettings.width = targetWidth;
 	omxCameraSettings.height = targetHeight;
-	omxCameraSettings.framerate = 15;
+	omxCameraSettings.framerate = fps;
 	omxCameraSettings.enableTexture = true;
 
 	videoGrabber.setup(omxCameraSettings);
@@ -26,7 +35,7 @@ void ofApp::setup()
 	shader.load("shaderRpi");
 #else
 	videoGrabber.setDeviceID(0);
-	videoGrabber.setDesiredFrameRate(30);
+	videoGrabber.setDesiredFrameRate(fps);
 	videoGrabber.setup(targetWidth, targetHeight);
 	ofSetVerticalSync(true);
 	shader.load("shaderDesktop");
@@ -73,10 +82,6 @@ void ofApp::setup()
 	isRecording = false;
 	amountOfFrames = 10;
 	maxFrames = 10;
-	if (settings.loadFile("settings.xml") == false) {
-		ofLog() << "XML ERROR, possibly quit";
-	}
-	settings.pushTag("settings");
 
 	slotDir = "slot";
 	for (int i = 0; i < settings.getNumTags("slot"); i++) {
