@@ -19,7 +19,7 @@ void ofApp::setup()
 	targetWidth = settings.getValue("targetWidth", 640);
 	targetHeight = settings.getValue("targetHeight", 480);
 	fps = settings.getValue("fps", 15);
-	ofLog() << "tw: " << ofToString(targetWidth) << " th: " << ofToString(targetHeight) << " fps: " << ofToString(fps);
+	//ofLog() << "tw: " << ofToString(targetWidth) << " th: " << ofToString(targetHeight) << " fps: " << ofToString(fps);
 	ofLogNotice("targetWidth: " + ofToString(targetWidth) + " targetHeight: " + ofToString(targetHeight) + " fps: " + ofToString(fps));
 
 #if defined(TARGET_OPENGLES)
@@ -40,6 +40,8 @@ void ofApp::setup()
 	ofSetVerticalSync(true);
 	shader.load("shaderDesktop");
 #endif
+	ofLogNotice("videoGrabber is setup");
+
 	doShader = true;
 	iEffect = 1;
 
@@ -59,6 +61,8 @@ void ofApp::setup()
 	frameNumber = 0;
 	slotRecording = 255;
 	slotAmount = 4;
+
+	ofLogNotice("creating folders");
 	if (dirSRC.doesDirectoryExist(bufferDir)) {
 		dirSRC.removeDirectory(bufferDir, true);
 	}
@@ -99,6 +103,8 @@ void ofApp::setup()
 	deux.loadImage("deux.png");
 	un.loadImage("un.png");
 	qrcode.loadImage("qrcode.jpg");
+
+	ofLogNotice("ftp client");
 	ftpClient.setup("videodromm.com", "u39314325-selfberry", "tocs2016!");
 	ftpClient.setVerbose(true);
 }
