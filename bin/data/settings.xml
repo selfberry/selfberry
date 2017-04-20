@@ -1,6 +1,6 @@
 <settings>
-<targetWidth>320</targetWidth>
-<targetHeight>240</targetHeight>
+<targetWidth>640</targetWidth>
+<targetHeight>480</targetHeight>
 <fullScreen>0</fullScreen>
 <cameraId>0</cameraId>
 <log>1</log>
