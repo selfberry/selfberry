@@ -6,6 +6,26 @@ void ofApp::setup()
 	ofSetLogLevel(OF_LOG_VERBOSE);
 	ofSetLogLevel("ofThread", OF_LOG_ERROR);
 	ofLog() << "setup";
+#if defined(TARGET_OPENGLES)
+	omxCameraSettings.width = targetWidth;
+	omxCameraSettings.height = targetHeight;
+	omxCameraSettings.framerate = fps;
+	omxCameraSettings.enableTexture = true;
+
+	videoGrabber.setup(omxCameraSettings);
+	filterCollection.setup();
+	ofSetVerticalSync(false);
+	shader.load("shaderRpi");
+	consoleListener.setup(this);
+#else
+	videoGrabber.setDeviceID(0);
+	videoGrabber.setDesiredFrameRate(fps);
+	videoGrabber.setup(targetWidth, targetHeight);
+	ofSetVerticalSync(true);
+	shader.load("shaderDesktop");
+#endif
+	ofLogNotice("videoGrabber is setup");
+
 	ofEnableAlphaBlending();
 
 	doDrawInfo = true;
@@ -22,25 +42,6 @@ void ofApp::setup()
 	//ofLog() << "tw: " << ofToString(targetWidth) << " th: " << ofToString(targetHeight) << " fps: " << ofToString(fps);
 	ofLogNotice("targetWidth: " + ofToString(targetWidth) + " targetHeight: " + ofToString(targetHeight) + " fps: " + ofToString(fps));
 
-#if defined(TARGET_OPENGLES)
-	consoleListener.setup(this);
-	omxCameraSettings.width = targetWidth;
-	omxCameraSettings.height = targetHeight;
-	omxCameraSettings.framerate = fps;
-	omxCameraSettings.enableTexture = true;
-
-	videoGrabber.setup(omxCameraSettings);
-	filterCollection.setup();
-	ofSetVerticalSync(false);
-	shader.load("shaderRpi");
-#else
-	videoGrabber.setDeviceID(0);
-	videoGrabber.setDesiredFrameRate(fps);
-	videoGrabber.setup(targetWidth, targetHeight);
-	ofSetVerticalSync(true);
-	shader.load("shaderDesktop");
-#endif
-	ofLogNotice("videoGrabber is setup");
 
 	doShader = true;
 	iEffect = 1;
