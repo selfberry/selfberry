@@ -369,7 +369,7 @@ void ofApp::ftpTransfer() {
 				html2 << "</body></html>";
 				html2.close();
 				if (ftpClient.send(htmlFileName2, ofToDataPath(""), "/") > 0) {
-					fetch("videodromm.com/selfberry/" + htmlFileName2, 200, 1);
+					//fetch("videodromm.com/selfberry/" + htmlFileName2, 200, 1);
 				}
 			}
 		}
