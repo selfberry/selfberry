@@ -307,7 +307,7 @@ void ofApp::draw() {
 		}
 	}
 	if (doDrawInfo) {
-		ofDrawBitmapStringHighlight(info.str(), 5, 1016, ofColor::black, ofColor::yellow);
+		ofDrawBitmapStringHighlight(info.str(), 25, 1016, ofColor::black, ofColor::yellow);
 	}
 }
 /*void ofApp::fetch(const std::string& data, size_t size, size_t margin)
@@ -352,8 +352,8 @@ void ofApp::ftpTransfer() {
 
 			for (vector<string>::reverse_iterator gifFile = gifValides.rbegin(); gifFile != gifValides.rend(); ++gifFile) {
 				html << "<img src=\"gif/" << *gifFile << "\" /><br />";
-				html << "<a href=\"http://www.facebook.com/share.php?u=http://videodromm.com/selfberry/" << *gifFile << ".html\" target=\"_blank\"><button class=\"btn btn-social btn-facebook\"><span class =\"icon icon-facebook\"></span>Partager sur Facebook</button></a>";
-				html << "<a href=\"https://twitter.com/intent/tweet?text=http://videodromm.com/selfberry/" << *gifFile << ".html\">Twitter</a><br />";
+				html << "<a href=\"http://www.facebook.com/share.php?u=http://videodromm.com/selfberry/" << *gifFile << ".html\" target=\"_blank\"><button class=\"btn btn-social btn-facebook\"><span class =\"icon icon-facebook\"></span>Facebook</button></a>";
+				html << "<a href=\"https://twitter.com/intent/tweet?text=http://videodromm.com/selfberry/" << *gifFile << ".html\ target=\"_blank\"><button>Twitter</button></a><br />";
 			}
 			html << "</body></html>";
 			html.close();
@@ -364,8 +364,8 @@ void ofApp::ftpTransfer() {
 				ofFile html2(htmlFileName2, ofFile::WriteOnly);
 				html2 << "<!DOCTYPE html><html><head><title>Selfberry</title><style>body{background-color: #111111;}</style></head><body>";
 				html2 << "<img src=\"gif/" << gifFileName << "\" /><br />";
-				html2 << "<a href = \"http://www.facebook.com/share.php?u=http://videodromm.com/selfberry/" << htmlFileName2 << "\" target=\"_blank\"><button class=\"btn btn-social btn-facebook\"><span class =\"icon icon-facebook\"></span>Partager sur Facebook</button></a>";
-				html2 << "<a href=\"https://twitter.com/intent/tweet?text=http://videodromm.com/selfberry/" << htmlFileName2 << "\">Twitter</a><br />";
+				html2 << "<a href = \"http://www.facebook.com/share.php?u=http://videodromm.com/selfberry/" << htmlFileName2 << "\" target=\"_blank\"><button class=\"btn btn-social btn-facebook\"><span class =\"icon icon-facebook\"></span>Facebook</button></a>";
+				html2 << "<a href=\"https://twitter.com/intent/tweet?text=http://videodromm.com/selfberry/" << htmlFileName2 << "\" target=\"_blank\"><button>Twitter</button></a><br />";
 				html2 << "</body></html>";
 				html2.close();
 				if (ftpClient.send(htmlFileName2, ofToDataPath(""), "/") > 0) {
