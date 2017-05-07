@@ -27,7 +27,7 @@ void ofApp::setup()
 	videoGrabber.setup(omxCameraSettings);
 	filterCollection.setup();
 	shader.load("shaderRpi");
-	//consoleListener.setup(this);
+	consoleListener.setup(this);
 #else
 	videoGrabber.setDeviceID(0);
 	videoGrabber.setDesiredFrameRate(fps);
@@ -107,7 +107,15 @@ void ofApp::setup()
 	//qrcode.loadImage("qrcode.jpg");
 
 	ofLogNotice("ftp client");
-	ftpClient.setup("videodromm.com", "u39314325-selfberry", "tocs2016!");
+	// load ftp.xml
+	if (ftpSettings.loadFile("ftp.xml") == false) {
+		ofLog() << "FTP XML ERROR";
+	}
+	ftpSettings.pushTag("settings");
+	ftpHost = ftpSettings.getValue("host", "host");
+	ftpUser = ftpSettings.getValue("user", "username");
+	ftpPass = ftpSettings.getValue("password", "pass");
+	ftpClient.setup(ftpHost, ftpUser, ftpPass);
 	ftpClient.setVerbose(true);
 }
 
@@ -302,9 +310,9 @@ void ofApp::draw() {
 		ofDrawBitmapStringHighlight(info.str(), 5, 1016, ofColor::black, ofColor::yellow);
 	}
 }
-void ofApp::fetch(const std::string& data, size_t size, size_t margin)
+/*void ofApp::fetch(const std::string& data, size_t size, size_t margin)
 {
-	/*std::stringstream googleChartsQRurl;
+	std::stringstream googleChartsQRurl;
 	googleChartsQRurl
 		<< "http://chart.googleapis.com/chart?"   // Google Charts Endpoint
 		<< "chs=" << size << "x" << size << "&"   // chart size
@@ -314,12 +322,12 @@ void ofApp::fetch(const std::string& data, size_t size, size_t margin)
 		<< "chl=" << data;                        // QR code data
 
 	ofRegisterURLNotification(this);
-	ofLoadURLAsync(googleChartsQRurl.str(), "qrcode");*/
+	ofLoadURLAsync(googleChartsQRurl.str(), "qrcode");
 }
 
 void ofApp::urlResponse(ofHttpResponse& response)
 {
-	/*if (response.request.name == "qrcode")
+	if (response.request.name == "qrcode")
 	{
 		if (response.status == 200) {
 			qrcode.loadImage(response.data);
@@ -328,8 +336,8 @@ void ofApp::urlResponse(ofHttpResponse& response)
 		}
 
 		ofUnregisterURLNotification(this);
-	}*/
-}
+	}
+}*/
 void ofApp::ftpTransfer() {
 	string htmlFileName;
 	string htmlFileName2;
@@ -426,8 +434,8 @@ void ofApp::keyPressed(int key)
 	}
 }
 #if defined(TARGET_OPENGLES)
-/*void ofApp::onCharacterReceived(KeyListenerEventData& e)
+void ofApp::onCharacterReceived(KeyListenerEventData& e)
 {
 	keyPressed((int)e.character);
-}*/
+}
 #endif	
