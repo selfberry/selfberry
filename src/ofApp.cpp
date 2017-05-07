@@ -30,7 +30,7 @@ void ofApp::setup()
 
 	doDrawInfo = true;
 	validationMode = false;
-	showQrcode = false;
+	//showQrcode = false;
 	// load settings.xml
 	if (settings.loadFile("settings.xml") == false) {
 		ofLog() << "XML ERROR, possibly quit";
@@ -103,7 +103,7 @@ void ofApp::setup()
 	trois.loadImage("trois.png");
 	deux.loadImage("deux.png");
 	un.loadImage("un.png");
-	qrcode.loadImage("qrcode.jpg");
+	//qrcode.loadImage("qrcode.jpg");
 
 	ofLogNotice("ftp client");
 	ftpClient.setup("videodromm.com", "u39314325-selfberry", "tocs2016!");
@@ -303,7 +303,7 @@ void ofApp::draw() {
 }
 void ofApp::fetch(const std::string& data, size_t size, size_t margin)
 {
-	std::stringstream googleChartsQRurl;
+	/*std::stringstream googleChartsQRurl;
 	googleChartsQRurl
 		<< "http://chart.googleapis.com/chart?"   // Google Charts Endpoint
 		<< "chs=" << size << "x" << size << "&"   // chart size
@@ -313,12 +313,12 @@ void ofApp::fetch(const std::string& data, size_t size, size_t margin)
 		<< "chl=" << data;                        // QR code data
 
 	ofRegisterURLNotification(this);
-	ofLoadURLAsync(googleChartsQRurl.str(), "qrcode");
+	ofLoadURLAsync(googleChartsQRurl.str(), "qrcode");*/
 }
 
 void ofApp::urlResponse(ofHttpResponse& response)
 {
-	if (response.request.name == "qrcode")
+	/*if (response.request.name == "qrcode")
 	{
 		if (response.status == 200) {
 			qrcode.loadImage(response.data);
@@ -327,7 +327,7 @@ void ofApp::urlResponse(ofHttpResponse& response)
 		}
 
 		ofUnregisterURLNotification(this);
-	}
+	}*/
 }
 void ofApp::ftpTransfer() {
 	string htmlFileName;
