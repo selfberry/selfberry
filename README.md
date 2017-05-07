@@ -23,8 +23,8 @@ Once compiled, launch directly from command line
 ```
 
 Keyboard shortcuts:
-enter to record
-up and down arrow to choose shader
+`enter` to record,
+`up` or `down` arrow to choose shader
 
 Some samples on 
 https://videodromm.com/selfberry/
