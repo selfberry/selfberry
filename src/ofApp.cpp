@@ -6,7 +6,19 @@ void ofApp::setup()
 	ofSetLogLevel(OF_LOG_VERBOSE);
 	ofSetLogLevel("ofThread", OF_LOG_ERROR);
 	ofLog() << "setup";
+	// load settings.xml
+	if (settings.loadFile("settings.xml") == false) {
+		ofLog() << "XML ERROR, possibly quit";
+	}
+	settings.pushTag("settings");
+	targetWidth = settings.getValue("targetWidth", 640);
+	targetHeight = settings.getValue("targetHeight", 480);
+	fps = settings.getValue("fps", 15);
+	//ofLog() << "tw: " << ofToString(targetWidth) << " th: " << ofToString(targetHeight) << " fps: " << ofToString(fps);
+	ofLogNotice("targetWidth: " + ofToString(targetWidth) + " targetHeight: " + ofToString(targetHeight) + " fps: " + ofToString(fps));
+
 #if defined(TARGET_OPENGLES)
+	ofSetVerticalSync(false);
 	omxCameraSettings.width = targetWidth;
 	omxCameraSettings.height = targetHeight;
 	omxCameraSettings.framerate = fps;
@@ -14,7 +26,6 @@ void ofApp::setup()
 
 	videoGrabber.setup(omxCameraSettings);
 	filterCollection.setup();
-	ofSetVerticalSync(false);
 	shader.load("shaderRpi");
 	//consoleListener.setup(this);
 #else
@@ -31,16 +42,6 @@ void ofApp::setup()
 	doDrawInfo = true;
 	validationMode = false;
 	//showQrcode = false;
-	// load settings.xml
-	if (settings.loadFile("settings.xml") == false) {
-		ofLog() << "XML ERROR, possibly quit";
-	}
-	settings.pushTag("settings");
-	targetWidth = settings.getValue("targetWidth", 640);
-	targetHeight = settings.getValue("targetHeight", 480);
-	fps = settings.getValue("fps", 15);
-	//ofLog() << "tw: " << ofToString(targetWidth) << " th: " << ofToString(targetHeight) << " fps: " << ofToString(fps);
-	ofLogNotice("targetWidth: " + ofToString(targetWidth) + " targetHeight: " + ofToString(targetHeight) + " fps: " + ofToString(fps));
 
 
 	doShader = true;
@@ -280,9 +281,9 @@ void ofApp::draw() {
 	if (validationMode) {
 		valideLayer.draw(736, 580);
 	}
-	if (showQrcode) {
+	/*if (showQrcode) {
 		qrcode.draw(860, 390);
-	}
+	}*/
 	if (isRecording) {
 		sourisitepajoli.draw(400, 0);
 		switch (finalCountdown) {
@@ -385,7 +386,7 @@ void ofApp::keyPressed(int key)
 	case 13: //	Entree
 		if (!isRecording) {
 			isRecording = true;
-			showQrcode = false;
+			//showQrcode = false;
 			indexSavedPhoto = 0;
 			currentDisplaySlot++;
 			if (currentDisplaySlot > 3) currentDisplaySlot = 1;
