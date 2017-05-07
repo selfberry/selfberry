@@ -13,7 +13,7 @@
 #include "ofxFTP.h"
 
 #if defined(TARGET_OPENGLES)
-class ofApp : public ofBaseApp, public KeyListener {
+class ofApp : public ofBaseApp { //, public KeyListener
 #else
 class ofApp : public ofBaseApp {
 #endif
