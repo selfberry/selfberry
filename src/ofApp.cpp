@@ -16,7 +16,7 @@ void ofApp::setup()
 	filterCollection.setup();
 	ofSetVerticalSync(false);
 	shader.load("shaderRpi");
-	consoleListener.setup(this);
+	//consoleListener.setup(this);
 #else
 	videoGrabber.setDeviceID(0);
 	videoGrabber.setDesiredFrameRate(fps);
@@ -425,8 +425,8 @@ void ofApp::keyPressed(int key)
 	}
 }
 #if defined(TARGET_OPENGLES)
-void ofApp::onCharacterReceived(KeyListenerEventData& e)
+/*void ofApp::onCharacterReceived(KeyListenerEventData& e)
 {
 	keyPressed((int)e.character);
-}
+}*/
 #endif	
