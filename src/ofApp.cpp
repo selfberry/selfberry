@@ -353,7 +353,7 @@ void ofApp::ftpTransfer() {
 			for (vector<string>::reverse_iterator gifFile = gifValides.rbegin(); gifFile != gifValides.rend(); ++gifFile) {
 				html << "<img src=\"gif/" << *gifFile << "\" /><br />";
 				html << "<a href=\"http://www.facebook.com/share.php?u=http://videodromm.com/selfberry/" << *gifFile << ".html\" target=\"_blank\"><button class=\"btn btn-social btn-facebook\"><span class =\"icon icon-facebook\"></span>Facebook</button></a>";
-				html << "<a href=\"https://twitter.com/intent/tweet?text=http://videodromm.com/selfberry/" << *gifFile << ".html\ target=\"_blank\"><button>Twitter</button></a><br />";
+				html << "<a href=\"https://twitter.com/intent/tweet?text=http://videodromm.com/selfberry/" << *gifFile << ".html\" target=\"_blank\"><button>Twitter</button></a><br />";
 			}
 			html << "</body></html>";
 			html.close();

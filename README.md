@@ -1,4 +1,7 @@
-# selfberry
+# Selfberry
+Make animated Gif file from a raspberry pi's camera, share them on social networks.
+Ideal for events.
+Created by Bruce Lane, Piotr Nierobisz, SebMas
 
 Follow instructions here to setup openFrameworks for raspberry pi: http://openframeworks.cc/setup/raspberrypi/raspberry-pi-getting-started/
 
