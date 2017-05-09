@@ -79,6 +79,7 @@ public:
 	ofImage						trois;
 	ofImage						deux;
 	ofImage						un;
+	ofImage						recfx;
 	ofImage						valideLayer;
 	//ofImage						img;
 	int							startSecond;

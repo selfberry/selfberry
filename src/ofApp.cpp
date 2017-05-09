@@ -105,6 +105,7 @@ void ofApp::setup()
 	deux.loadImage("deux.png");
 	un.loadImage("un.png");
 	qrcode.loadImage("un.jpg");
+	recfx.loadImage("recfx.jpg");
 
 	ofLogNotice("ftp client");
 	// load ftp.xml
@@ -309,7 +310,11 @@ void ofApp::draw() {
 			un.draw(400, 0);
 			break;
 		}
+	} 
+	else {
+		recfx.draw(450, 360);
 	}
+
 	if (doDrawInfo) {
 		ofDrawBitmapStringHighlight(info.str(), 25, 1016, ofColor::black, ofColor::yellow);
 	}
