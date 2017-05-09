@@ -105,7 +105,7 @@ void ofApp::setup()
 	deux.loadImage("deux.png");
 	un.loadImage("un.png");
 	qrcode.loadImage("un.jpg");
-	recfx.loadImage("recfx.jpg");
+	recfx.loadImage("recfx.png");
 
 	ofLogNotice("ftp client");
 	// load ftp.xml
@@ -168,7 +168,7 @@ void ofApp::update()
 			recordedFramesAmount = dirSRC.size();
 			ofLogNotice("AMOUNT OF FILES: " + ofToString(recordedFramesAmount) + "/" + ofToString(maxFrames));
 			if (recordedFramesAmount == maxFrames) {
-				isRecording = false;
+				//isRecording = false;
 				indexSavedPhoto = 0;
 				ofLogNotice("update() stop recording");
 			}
@@ -215,7 +215,7 @@ void ofApp::update()
 					indexSavedPhoto++;
 					if (indexSavedPhoto == amountOfFrames) {
 						ofLogNotice("Stop recording: " + ofToString(indexSavedPhoto) + "/" + ofToString(amountOfFrames));
-						isRecording = false;
+						//isRecording = false;
 						indexSavedPhoto = 0;
 						saveGif();
 					}
@@ -298,15 +298,17 @@ void ofApp::draw() {
 		qrcode.draw(860, 390);
 	}
 	if (isRecording) {
-		sourisitepajoli.draw(400, 0);
 		switch (finalCountdown) {
 		case 0:
+			sourisitepajoli.draw(400, 0);
 			trois.draw(400, 0);
 			break;
 		case 1:
+			sourisitepajoli.draw(400, 0);
 			deux.draw(400, 0);
 			break;
 		case 2:
+			sourisitepajoli.draw(400, 0);
 			un.draw(400, 0);
 			break;
 		}
