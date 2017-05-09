@@ -94,6 +94,6 @@ public:
 	void						urlResponse(ofHttpResponse& response);
 	ofImage						qrcode;
 	bool						showQrcode;
-
+	std::string 				status;
 };
 

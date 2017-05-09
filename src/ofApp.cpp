@@ -16,7 +16,7 @@ void ofApp::setup()
 	fps = settings.getValue("fps", 15);
 	//ofLog() << "tw: " << ofToString(targetWidth) << " th: " << ofToString(targetHeight) << " fps: " << ofToString(fps);
 	ofLogNotice("targetWidth: " + ofToString(targetWidth) + " targetHeight: " + ofToString(targetHeight) + " fps: " + ofToString(fps));
-
+	status = "";
 #if defined(TARGET_OPENGLES)
 	ofSetVerticalSync(false);
 	omxCameraSettings.width = targetWidth;
@@ -238,6 +238,7 @@ void ofApp::saveGif()
 	ofLogNotice("saveGif: " + gifFileName);
 	colorGifEncoder.save("gif//" + gifFileName);
 	ofLogNotice("saveGif end");
+	status = "saveGif end";
 }
 void ofApp::onGifSaved(string & fileName) {
 	cout << "gif saved as " << fileName << endl;
@@ -274,8 +275,9 @@ void ofApp::draw() {
 	}
 
 #if defined(TARGET_OPENGLES)
-	info << "Resolution Camera: " << videoGrabber.getWidth() << "x" << videoGrabber.getHeight() << " @ " << videoGrabber.getFrameRate() << "FPS" << "\n";
-	info << "FILTRE: " << filterCollection.getCurrentFilterName() << "\n";
+	//info << "Resolution Camera: " << videoGrabber.getWidth() << "x" << videoGrabber.getHeight() << " @ " << videoGrabber.getFrameRate() << "FPS" << "\n";
+	//info << "FILTRE: " << filterCollection.getCurrentFilterName() << "\n";
+	info << status;
 #endif
 
 	for (i = 1; i < slotAmount; i++) {
@@ -312,6 +314,7 @@ void ofApp::draw() {
 }
 void ofApp::fetch(const std::string& data, size_t size, size_t margin)
 {
+	status = "fetch";
 	std::stringstream googleChartsQRurl;
 	googleChartsQRurl
 		<< "http://chart.googleapis.com/chart?"   // Google Charts Endpoint
@@ -327,6 +330,7 @@ void ofApp::fetch(const std::string& data, size_t size, size_t margin)
 
 void ofApp::urlResponse(ofHttpResponse& response)
 {
+	status = "urlResponse";
 	if (response.request.name == "qrcode")
 	{
 		if (response.status == 200) {
@@ -334,11 +338,13 @@ void ofApp::urlResponse(ofHttpResponse& response)
 			qrcode.saveImage("qrcode.jpg");
 			showQrcode = true;
 		}
-
+		status = "qrcode saved";
 		ofUnregisterURLNotification(this);
 	}
 }
 void ofApp::ftpTransfer() {
+	status = "ftpTransfer";
+
 	string htmlFileName;
 	string htmlFileName2;
 	if (gifFileName.length() > 0) {
@@ -369,7 +375,7 @@ void ofApp::ftpTransfer() {
 				html2 << "</body></html>";
 				html2.close();
 				if (ftpClient.send(htmlFileName2, ofToDataPath(""), "/") > 0) {
-					//fetch("videodromm.com/selfberry/" + htmlFileName2, 200, 1);
+					fetch("videodromm.com/selfberry/" + htmlFileName2, 200, 1);
 				}
 			}
 		}
