@@ -81,6 +81,7 @@ public:
 	ofImage						un;
 	ofImage						recfx;
 	ofImage						valideLayer;
+	ofImage						patientez;
 	//ofImage						img;
 	int							startSecond;
 	int							finalCountdown;
