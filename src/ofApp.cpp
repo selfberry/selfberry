@@ -13,7 +13,7 @@ void ofApp::setup()
 	settings.pushTag("settings");
 	targetWidth = settings.getValue("targetWidth", 640);
 	targetHeight = settings.getValue("targetHeight", 480);
-	quickrecord = settings.getValue("quickrecord", false);
+	quickrecord = settings.getValue("quickrecord", 0);
 	fps = settings.getValue("fps", 15);
 	//ofLog() << "tw: " << ofToString(targetWidth) << " th: " << ofToString(targetHeight) << " fps: " << ofToString(fps);
 	ofLogNotice("targetWidth: " + ofToString(targetWidth) + " targetHeight: " + ofToString(targetHeight) + " fps: " + ofToString(fps));
@@ -347,7 +347,7 @@ void ofApp::fetch(const std::string& data, size_t size, size_t margin)
 void ofApp::urlResponse(ofHttpResponse& response)
 {
 	string qrFileName;
-	status = "urlResponse";
+	status = "qrCode créé " + qrFileName;
 	if (response.request.name == "qrcode")
 	{
 		if (response.status == 200) {
@@ -355,7 +355,7 @@ void ofApp::urlResponse(ofHttpResponse& response)
 			qrFileName = timeStamp + ".jpg";
 			qrcode.saveImage(qrFileName);
 			if (ftpClient.send(qrFileName, ofToDataPath(""), "/qr/") > 0) {
-				status = "qrcode saved:" + qrFileName;
+				status = "qrcode saved: " + qrFileName;
 				isRecording = false;
 			}
 			showQrcode = true;
@@ -372,6 +372,7 @@ void ofApp::ftpTransfer() {
 	if (gifFileName.length() > 0) {
 		if (ftpClient.send(gifFileName, ofToDataPath("gif"), "/gif/") > 0) {
 			ofLogNotice("Transfert ftp reussi\n" + gifFileName + ", creation fichier html");
+			status = "Transfert ftp reussi " + gifFileName + ", creation index.html"; 
 			// ecriture index.html
 			htmlFileName = "index.html";
 			gifValides.push_back(gifFileName);
@@ -388,6 +389,7 @@ void ofApp::ftpTransfer() {
 
 			if (ftpClient.send(htmlFileName, ofToDataPath(""), "/") > 0) {
 				// 
+				status = "Transfert ftp reussi " + htmlFileName; 
 				htmlFileName2 = gifFileName + ".html";
 				ofFile html2(htmlFileName2, ofFile::WriteOnly);
 				html2 << "<!DOCTYPE html><html><head><title>Selfberry</title><style>body{background-color: #111111;}</style></head><body>";
@@ -397,6 +399,7 @@ void ofApp::ftpTransfer() {
 				html2 << "</body></html>";
 				html2.close();
 				if (ftpClient.send(htmlFileName2, ofToDataPath(""), "/") > 0) {
+					status = "Transfert ftp reussi " + htmlFileName2 + ", creation qrcode"; 
 					fetch("videodromm.com/selfberry/" + htmlFileName2, 200, 1);
 				}
 			}
