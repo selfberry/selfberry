@@ -391,7 +391,7 @@ void ofApp::keyPressed(int key)
 #endif
 		break;
 	case 27: // ESC
-		quit();
+		exit();
 		break;
 	case 10: // rouge 10
 	case 13: //	Entree
