@@ -40,7 +40,7 @@ void ofApp::setup()
 	ofEnableAlphaBlending();
 
 	doDrawInfo = true;
-	validationMode = false;
+	//validationMode = false;
 	//showQrcode = false;
 
 	doShader = true;
@@ -243,7 +243,7 @@ void ofApp::onGifSaved(string & fileName) {
 	ofLogNotice("onGifSaved: " + fileName);
 	colorGifEncoder.reset();
 	ofLogNotice("onGifSaved reset");
-	validationMode = true;
+	//validationMode = true;
 	ftpTransfer();
 }
 //--------------------------------------------------------------
@@ -251,7 +251,7 @@ void ofApp::draw() {
 
 	ofClear(0, 0, 0, 0);
 	stringstream info;
-	info << "VERT:changement de filtre ROUGE:enregistrer BLANC:annuler JAUNE:partager" << "\n";
+	info << "Boutons: VERT=changement de filtre ROUGE=enregistrer" << "\n";// BLANC:annuler JAUNE:partager" << "\n";
 	info << "\n";
 	info << "sec: " << ofToString(ofGetSeconds()) << " st: " << ofToString(startSecond) << " fin: " << ofToString(finalCountdown) << " slot: " << ofToString(currentDisplaySlot) << " Effet: " << ofToString(iEffect) << "FPS: " << ofToString(ofGetFrameRate()) << "\n";
 
@@ -285,10 +285,10 @@ void ofApp::draw() {
 	//img.loadImage(filename);
 	//img.draw(0, 0);
 	bkgLayer.draw(0, 0);
-	if (validationMode) {
+	/*if (validationMode) {
 		valideLayer.draw(736, 580);
 	}
-	/*if (showQrcode) {
+	if (showQrcode) {
 		qrcode.draw(860, 390);
 	}*/
 	if (isRecording) {
@@ -405,7 +405,7 @@ void ofApp::keyPressed(int key)
 	case 120: // x
 	case 88: // X
 			  //doDrawInfo = !doDrawInfo;
-		validationMode = false;
+		//validationMode = false;
 		iEffect = 0;
 		currentDisplaySlot++;
 		if (currentDisplaySlot > 3) currentDisplaySlot = 1;
@@ -414,7 +414,7 @@ void ofApp::keyPressed(int key)
 	case 67: // jaune 67 0		
 	case 118: // v		
 	case 86: // V		
-		validationMode = false;
+		//validationMode = false;
 		iEffect = 1;
 
 		break;

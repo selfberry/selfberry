@@ -87,7 +87,7 @@ public:
 	ofxXmlSettings 				ftpSettings;
 	ofxFTPClient				ftpClient;
 	void						ftpTransfer();
-	bool						validationMode;
+	//bool						validationMode;
 	std::string 				ftpHost, ftpUser, ftpPass;
 	// qrcode
 	/*void						fetch(const std::string& data, size_t size = 320, size_t margin = 1);
