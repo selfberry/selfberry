@@ -373,7 +373,7 @@ void ofApp::ftpTransfer() {
 			}
 		}
 	}
-	validationMode = false;
+	//validationMode = false;
 
 }
 //--------------------------------------------------------------
