@@ -106,7 +106,7 @@ void ofApp::setup()
 	un.loadImage("un.png");
 	qrcode.loadImage("un.jpg");
 	recfx.loadImage("recfx.png");
-
+	patientez.loadImage("patientez.png");
 	ofLogNotice("ftp client");
 	// load ftp.xml
 	if (ftpSettings.loadFile("ftp.xml") == false) {
@@ -310,6 +310,9 @@ void ofApp::draw() {
 		case 2:
 			sourisitepajoli.draw(400, 0);
 			un.draw(400, 0);
+			break;
+		default:
+			patientez.draw(400, 0);
 			break;
 		}
 	} 
