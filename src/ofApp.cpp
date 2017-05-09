@@ -103,7 +103,7 @@ void ofApp::setup()
 	trois.loadImage("trois.png");
 	deux.loadImage("deux.png");
 	un.loadImage("un.png");
-	//qrcode.loadImage("qrcode.jpg");
+	qrcode.loadImage("un.jpg");
 
 	ofLogNotice("ftp client");
 	// load ftp.xml
