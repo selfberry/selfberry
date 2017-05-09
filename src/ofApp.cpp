@@ -243,9 +243,9 @@ void ofApp::saveGif()
 	colorGifEncoder.save("gif//" + gifFileName);
 	ofLogNotice("saveGif end");
 	status = "saveGif end";
-	if (quickrecord) {
+	/*if (quickrecord) {
 		isRecording = false;
-	}
+	}*/
 }
 void ofApp::onGifSaved(string & fileName) {
 	cout << "gif saved as " << fileName << endl;
