@@ -41,7 +41,7 @@ void ofApp::setup()
 
 	doDrawInfo = true;
 	//validationMode = false;
-	//showQrcode = false;
+	showQrcode = false;
 
 	doShader = true;
 	iEffect = 1;
@@ -233,7 +233,8 @@ void ofApp::update()
 }
 void ofApp::saveGif()
 {
-	gifFileName = ofToString(ofGetMonth()) + "-" + ofToString(ofGetDay()) + "-" + ofToString(ofGetHours()) + "-" + ofToString(ofGetMinutes()) + "-" + ofToString(ofGetSeconds()) + ".gif";
+	gifFileName = ofToString(ofGetUnixTime()) + ".gif";
+	//ofToString(ofGetMonth()) + "-" + ofToString(ofGetDay()) + "-" + ofToString(ofGetHours()) + "-" + ofToString(ofGetMinutes()) + "-" + ofToString(ofGetSeconds()) + ".gif";
 	ofLogNotice("saveGif: " + gifFileName);
 	colorGifEncoder.save("gif//" + gifFileName);
 	ofLogNotice("saveGif end");
@@ -287,10 +288,10 @@ void ofApp::draw() {
 	bkgLayer.draw(0, 0);
 	/*if (validationMode) {
 		valideLayer.draw(736, 580);
-	}
+	}*/
 	if (showQrcode) {
 		qrcode.draw(860, 390);
-	}*/
+	}
 	if (isRecording) {
 		sourisitepajoli.draw(400, 0);
 		switch (finalCountdown) {
@@ -309,7 +310,7 @@ void ofApp::draw() {
 		ofDrawBitmapStringHighlight(info.str(), 25, 1016, ofColor::black, ofColor::yellow);
 	}
 }
-/*void ofApp::fetch(const std::string& data, size_t size, size_t margin)
+void ofApp::fetch(const std::string& data, size_t size, size_t margin)
 {
 	std::stringstream googleChartsQRurl;
 	googleChartsQRurl
@@ -336,7 +337,7 @@ void ofApp::urlResponse(ofHttpResponse& response)
 
 		ofUnregisterURLNotification(this);
 	}
-}*/
+}
 void ofApp::ftpTransfer() {
 	string htmlFileName;
 	string htmlFileName2;
@@ -393,7 +394,7 @@ void ofApp::keyPressed(int key)
 	case 13: //	Entree
 		if (!isRecording) {
 			isRecording = true;
-			//showQrcode = false;
+			showQrcode = false;
 			indexSavedPhoto = 0;
 			currentDisplaySlot++;
 			if (currentDisplaySlot > 3) currentDisplaySlot = 1;
