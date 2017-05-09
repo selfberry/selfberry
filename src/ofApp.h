@@ -95,5 +95,6 @@ public:
 	ofImage						qrcode;
 	bool						showQrcode;
 	std::string 				status;
+	std::string 				timeStamp;
 };
 
