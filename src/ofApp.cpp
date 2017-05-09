@@ -342,6 +342,7 @@ void ofApp::urlResponse(ofHttpResponse& response)
 			qrcode.saveImage(qrFileName);
 			if (ftpClient.send(qrFileName, ofToDataPath(""), "/qr/") > 0) {
 				status = "qrcode saved:" + qrFileName;
+				isRecording = false;
 			}
 			showQrcode = true;
 		}
