@@ -98,5 +98,6 @@ public:
 	bool						showQrcode;
 	std::string 				status;
 	std::string 				timeStamp;
+	bool						quickrecord;
 };
 

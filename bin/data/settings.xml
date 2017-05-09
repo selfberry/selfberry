@@ -6,6 +6,7 @@
 <log>1</log>
 <frameAmount>10</frameAmount>
 <fps>15</fps>
+<quickrecord>true</quickrecord>
 
 <ui>ui.png</ui>
 <fonts>monot.ttf</fonts>

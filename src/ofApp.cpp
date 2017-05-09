@@ -13,6 +13,7 @@ void ofApp::setup()
 	settings.pushTag("settings");
 	targetWidth = settings.getValue("targetWidth", 640);
 	targetHeight = settings.getValue("targetHeight", 480);
+	quickrecord = settings.getValue("quickrecord", false);
 	fps = settings.getValue("fps", 15);
 	//ofLog() << "tw: " << ofToString(targetWidth) << " th: " << ofToString(targetHeight) << " fps: " << ofToString(fps);
 	ofLogNotice("targetWidth: " + ofToString(targetWidth) + " targetHeight: " + ofToString(targetHeight) + " fps: " + ofToString(fps));
@@ -242,6 +243,9 @@ void ofApp::saveGif()
 	colorGifEncoder.save("gif//" + gifFileName);
 	ofLogNotice("saveGif end");
 	status = "saveGif end";
+	if (quickrecord) {
+		isRecording = false;
+	}
 }
 void ofApp::onGifSaved(string & fileName) {
 	cout << "gif saved as " << fileName << endl;
