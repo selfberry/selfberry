@@ -27,7 +27,7 @@ void ofApp::setup()
 	videoGrabber.setup(omxCameraSettings);
 	filterCollection.setup();
 	shader.load("shaderRpi");
-	consoleListener.setup(this);
+	//consoleListener.setup(this);
 #else
 	videoGrabber.setDeviceID(0);
 	videoGrabber.setDesiredFrameRate(fps);
@@ -390,6 +390,9 @@ void ofApp::keyPressed(int key)
 		videoGrabber.setImageFilter(filterCollection.getNextFilter());
 #endif
 		break;
+	case 27: // ESC
+		quit();
+		break;
 	case 10: // rouge 10
 	case 13: //	Entree
 		if (!isRecording) {
@@ -434,8 +437,8 @@ void ofApp::keyPressed(int key)
 	}
 }
 #if defined(TARGET_OPENGLES)
-void ofApp::onCharacterReceived(KeyListenerEventData& e)
+/*void ofApp::onCharacterReceived(KeyListenerEventData& e)
 {
 	keyPressed((int)e.character);
-}
+}*/
 #endif	

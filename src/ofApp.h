@@ -3,7 +3,7 @@
 #include "ofMain.h"
 #if defined(TARGET_OPENGLES)
 #include "ofAppEGLWindow.h"
-#include "TerminalListener.h"
+//#include "TerminalListener.h"
 #include "ofxRPiCameraVideoGrabber.h"
 #include "ImageFilterCollection.h"
 #endif
@@ -13,7 +13,7 @@
 #include "ofxFTP.h"
 
 #if defined(TARGET_OPENGLES)
-class ofApp : public ofBaseApp, public KeyListener { 
+class ofApp : public ofBaseApp {//, public KeyListener { 
 #else
 class ofApp : public ofBaseApp {
 #endif
@@ -29,8 +29,8 @@ public:
 	ofxRPiCameraVideoGrabber videoGrabber;
     OMXCameraSettings omxCameraSettings;
 	ImageFilterCollection filterCollection;
-	void onCharacterReceived(KeyListenerEventData& e);
-	TerminalListener consoleListener;
+/*	void onCharacterReceived(KeyListenerEventData& e);
+	TerminalListener consoleListener;*/
 #else
 
 	ofVideoGrabber 				videoGrabber;
