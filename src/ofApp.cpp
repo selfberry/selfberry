@@ -16,7 +16,8 @@ void ofApp::setup()
 	fps = settings.getValue("fps", 15);
 	//ofLog() << "tw: " << ofToString(targetWidth) << " th: " << ofToString(targetHeight) << " fps: " << ofToString(fps);
 	ofLogNotice("targetWidth: " + ofToString(targetWidth) + " targetHeight: " + ofToString(targetHeight) + " fps: " + ofToString(fps));
-	status = "";
+	timeStamp = ofToString(ofGetUnixTime());
+	status = timeStamp;
 #if defined(TARGET_OPENGLES)
 	ofSetVerticalSync(false);
 	omxCameraSettings.width = targetWidth;
@@ -233,7 +234,8 @@ void ofApp::update()
 }
 void ofApp::saveGif()
 {
-	gifFileName = ofToString(ofGetUnixTime()) + ".gif";
+	timeStamp = ofToString(ofGetUnixTime());
+	gifFileName = timeStamp + ".gif";
 	//ofToString(ofGetMonth()) + "-" + ofToString(ofGetDay()) + "-" + ofToString(ofGetHours()) + "-" + ofToString(ofGetMinutes()) + "-" + ofToString(ofGetSeconds()) + ".gif";
 	ofLogNotice("saveGif: " + gifFileName);
 	colorGifEncoder.save("gif//" + gifFileName);
@@ -330,15 +332,20 @@ void ofApp::fetch(const std::string& data, size_t size, size_t margin)
 
 void ofApp::urlResponse(ofHttpResponse& response)
 {
+	string qrFileName;
 	status = "urlResponse";
 	if (response.request.name == "qrcode")
 	{
 		if (response.status == 200) {
 			qrcode.loadImage(response.data);
-			qrcode.saveImage("qrcode.jpg");
+			qrFileName = timeStamp + ".jpg";
+			qrcode.saveImage(qrFileName);
+			if (ftpClient.send(qrFileName, ofToDataPath(""), "/qr/") > 0) {
+				status = "qrcode saved:" + qrFileName;
+			}
 			showQrcode = true;
 		}
-		status = "qrcode saved";
+		
 		ofUnregisterURLNotification(this);
 	}
 }
