@@ -370,7 +370,7 @@ void ofApp::ftpTransfer() {
 	string htmlFileName;
 	string htmlFileName2;
 	if (gifFileName.length() > 0) {
-		if (ftpClient.send(gifFileName, ofToDataPath("gif"), "/gif/") > 0) {
+		if (ftpClient.send(gifFileName, ofToDataPath("gif"), "/codeandplay/gif/") > 0) {
 			ofLogNotice("Transfert ftp reussi\n" + gifFileName + ", creation fichier html");
 			status = "Transfert ftp reussi " + gifFileName + ", creation index.html"; 
 			// ecriture index.html
@@ -387,7 +387,7 @@ void ofApp::ftpTransfer() {
 			html << "</body></html>";
 			html.close();
 
-			if (ftpClient.send(htmlFileName, ofToDataPath(""), "/") > 0) {
+			if (ftpClient.send(htmlFileName, ofToDataPath(""), "/codeandplay") > 0) {
 				// 
 				status = "Transfert ftp reussi " + htmlFileName; 
 				htmlFileName2 = gifFileName + ".html";
