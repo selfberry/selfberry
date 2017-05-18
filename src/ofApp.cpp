@@ -377,7 +377,7 @@ void ofApp::ftpTransfer() {
 			htmlFileName = "index.html";
 			gifValides.push_back(gifFileName);
 			ofFile html(htmlFileName, ofFile::WriteOnly);
-			html << "<!DOCTYPE html><html><head><title>Selfberry</title><meta http-equiv=\"refresh\" content=\"30\"><style>body{background-color: #111111;}</style></head><body>";
+			html << "<!DOCTYPE html><html><head><title>Selfberry</title><meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" /><meta http-equiv=\"refresh\" content=\"30\"><style>body{background-color: #111111;}</style></head><body>";
 
 			for (vector<string>::reverse_iterator gifFile = gifValides.rbegin(); gifFile != gifValides.rend(); ++gifFile) {
 				html << "<img src=\"gif/" << *gifFile << "\" /><br />";
@@ -392,7 +392,7 @@ void ofApp::ftpTransfer() {
 				status = "Transfert ftp reussi " + htmlFileName; 
 				htmlFileName2 = gifFileName + ".html";
 				ofFile html2(htmlFileName2, ofFile::WriteOnly);
-				html2 << "<!DOCTYPE html><html><head><title>Selfberry</title><style>body{background-color: #111111;}</style></head><body>";
+				html2 << "<!DOCTYPE html><html><head><title>Selfberry</title><meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" /><style>body{background-color: #111111;}</style></head><body>";
 				html2 << "<img src=\"gif/" << gifFileName << "\" /><br />";
 				html2 << "<a href = \"http://www.facebook.com/share.php?u=http://videodromm.com/selfberry/" << htmlFileName2 << "\" target=\"_blank\"><button class=\"btn btn-social btn-facebook\"><span class =\"icon icon-facebook\"></span>Facebook</button></a>";
 				html2 << "<a href=\"https://twitter.com/intent/tweet?text=http://videodromm.com/selfberry/" << htmlFileName2 << "\" target=\"_blank\"><button>Twitter</button></a><br />";
