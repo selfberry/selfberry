@@ -234,8 +234,11 @@ _Pvt_Extensions
 .fake/
 
 # ignore ftp config
-bin/data/ftp.xml
+#bin/data/ftp.xml
 
 # ignore compiled files
 bin/libs
 bin/selfberry-seb
+
+# ignore data files
+bin/data
