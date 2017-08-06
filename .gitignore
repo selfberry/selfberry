@@ -232,3 +232,13 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+
+# ignore ftp config
+#bin/data/ftp.xml
+
+# ignore compiled files
+bin/libs
+bin/selfberry-seb
+
+# ignore data files
+bin/data
